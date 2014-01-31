@@ -1,4 +1,4 @@
 TimeReservation
 ===============
 
-Time reservation library based on SOAP server provided by TISAL
+Booking of medical appointments library based on SOAP server provided by TISAL
