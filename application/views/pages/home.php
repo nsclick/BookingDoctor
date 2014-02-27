@@ -1,6 +1,71 @@
-      <!-- Main jumbotron for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a href="#" class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+<h1>Médicos</h1>
+
+<ul>
+	<li>Si conoces el apellido del médico con el cual te quieres atender, escríbelo en el espacio asignado.</li>
+	<li>Si no tienes médico definido, elije el área en la que te quieres atender.</li>
+</ul>
+
+<h3>Clínica Dávila</h3>
+
+<?php $attributes = array('role' => 'form'); ?>
+<?php echo form_open('buscarmedico', $attributes); ?>
+  <div class="form-group">
+    <label for="apellido">Apellido Profesional</label>
+    
+	<div class='input-group'>
+    	<input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese el apellido del profesional">
+        <span class="input-group-addon" >
+        	<span class="glyphicon glyphicon-search"></span>
+        </span>
+    </div> 
+  </div>  
+</form>
+
+<?php $attributes['id'] = 'buscaarea'; ?>
+<?php echo form_open('buscarmedico', $attributes); ?>
+	<input type="hidden" name="area" id="area" value="">
+  <div class="form-group">
+    <label for="area-label">Área</label>
+	<div class='input-group'>
+    	<input type="text" class="form-control" id="area-label" name="area-label" placeholder="Ingrese el área">
+        <span class="input-group-addon" >
+        	<span class="glyphicon glyphicon-search"></span>
+        </span>
+    </div> 
+	
+  </div>
+</form>
+
+<p>
+Para anular las horas reservadas, haz click <a href="<?php echo base_url("anulacion/");?>">aquí</a><br>
+Para consultar las horas reservadas, haz click <a href="<?php echo base_url("consulta/");?>">aquí</a>
+</p>
+
+<p>Para recibir información de Clínica Dávila sobre temas de salud y otros, en tu correo electrónico, presiona <a href="javascript:void(0)" id="emailme" data-toggle="modal" data-target="#myModal">aquí</a></p>
+
+
+
+ <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Registra tu correo electrónico</h4>
       </div>
+	  <form method="POST" role="form">
+      <div class="modal-body">
+		  <div class="form-group">
+		    <label for="apellido">Correo Electrónico</label>
+		    <input type="email" class="form-control" id="apellido" name="apellido" placeholder="Ingrese el apellido">
+		  </div>  
+		
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Enviar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
