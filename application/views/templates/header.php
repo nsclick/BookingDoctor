@@ -13,7 +13,7 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="<?php echo base_url("consulta/");?>">Consulta de horas</a></li>
-            <li><a href="<?php echo base_url("anulacion/");?>">Anulación de horas</a></li>
+            <li><a href="<?php echo base_url("anulacion/");?>">Anulaci&oacute;n de horas</a></li>
             <li><a href="<?php echo base_url("modificardatos/");?>">Modificar datos</a></li>
             <li><a href="<?php echo base_url("registro/");?>">Registro</a></li>
             
