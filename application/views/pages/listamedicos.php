@@ -2,6 +2,7 @@
 <h3><? echo $title; ?></h3>
 
 <?php if(count($doctors)): ?>
+<?php var_dump($doctors); ?>;
 <div class="table-responsive">
   <table class="table table-bordered">
     <thead>
@@ -21,7 +22,20 @@
 	    	<td><?php echo $d->DESC_ITEM ?></td>
 	    	<td><?php echo $d->SUCURSAL ?></td>
 	    	<td><?php echo $d->PROXIMA_HORA_DISPONIBLE_CHAR ?></td>
-	    	<td><button type="button" class="btn btn-primary">Ver</button></td>
+	    	<td>
+				<?php $attributes = array('role' => 'form'); ?>
+				<?php echo form_open('agenda', $attributes); ?>
+	    			<input type="hidden" name="appp" value="<?php echo $d->APEPAT_PROF; ?>" />
+	    			<input type="hidden" name="ce" value="<?php echo $d->COD_ESPECIALIDAD; ?>" />
+	    			<input type="hidden" name="cp" value="<?php echo $d->COD_PROF; ?>" />
+	    			<input type="hidden" name="a" value="<?php echo $d->HORARIOPROX_AGENDA; ?>" />
+	    			<input type="hidden" name="fa" value="<?php echo $d->FECHAINICPROX_AGENDA; ?>" />
+	    			<input type="hidden" name="pfa" value="<?php echo $d->PROXIMA_HORA_DISPONIBLE; ?>" />
+	    			<input type="hidden" name="corr" value="<?php echo $d->CORRAGENDA; ?>" />
+	    			<input type="hidden" name="cu" value="<?php echo $d->COD_UNIDAD; ?>" />
+	    			<button type="submit" class="btn btn-primary">Ver</button>
+				</form>
+	    	</td>
     	</tr>
     	<?php endforeach; ?>
     </tbody>

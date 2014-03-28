@@ -22,7 +22,7 @@ class Home extends CI_Controller {
 		
 		$this->template->write_view('content', 'pages/home', $this->page_params, TRUE);
 
-		$this->template->render();	
+		$this->template->render();
 
 	}
 }

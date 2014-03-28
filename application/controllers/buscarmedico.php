@@ -11,7 +11,7 @@ class Buscarmedico extends CI_Controller {
 		// Call the Model constructor
 		parent :: __construct();
 		
-		$this->load->model('Buscarmedico_model');
+		$this->load->model('Agenda_model');
 	}
 		
 	public function index() {
@@ -26,13 +26,13 @@ class Buscarmedico extends CI_Controller {
 			$arealbl = $this->input->post('area-label', TRUE);
 			$msg = "área: $arealbl";
 			
-			$doctors = $this->Buscarmedico_model->por_area($area);
+			$doctors = $this->Agenda_model->getDoctorListByArea($area);
 			
 		} else {
 			$apellido = strtoupper($apellido);
 			$msg = "nombre : $apellido";
 			
-			$doctors = $this->Buscarmedico_model->por_apellido($apellido);
+			$doctors = $this->Agenda_model->getDoctorListByLastName($apellido);
 		}
 		
 		$this->page_params['doctors'] = $doctors;
