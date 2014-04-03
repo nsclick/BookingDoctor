@@ -5,9 +5,9 @@
  * To change the template for this generated file go to
  * Window - Preferences - PHPeclipse - PHP - Code Templates
  */
- require_once('TimeReservation.class.php');
+ require_once('timebooking.php');
  
- $tr = new TimeReservation;
+ $tr = new Timeooking;
  
 // $login = $tr->userLogin(16235269, 5, 'familia7');
 // print_r($login);
@@ -23,7 +23,7 @@
 // $tr->getFamilyMembers(948490);
 // $patient = $tr->getPatient(16235269, 5);
  
- $members = $tr->getFamilyMembers(948490);
- print_r($members);
+$communes = $tr->getCommunes();
+print_r($communes);
  
 ?>
