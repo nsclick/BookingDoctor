@@ -4,7 +4,7 @@
 
 000 no hay horas
 
-5A1 -- dia lleno
+5A1 - - dia lleno
 
 cualquier otra cosa disponible
 
@@ -21,11 +21,13 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 	'id' => 'registro', 
 	//'class' => 'form-inline'
 ); ?>
-<?php echo form_open('registro', $attributes); ?>
+
+
+<?php echo form_open('registro/guardar', $attributes); ?>
 
 <div class="form-group">
     <label for="rut">RUT*</label>
-    <input type="text" class="form-control validate[required]" id="Rut_Paciente" name="Rut_Paciente" placeholder="Ej: 333333333-K" value="<?php echo set_value('Rut_Paciente'); ?>"> 
+    <input type="text" class="form-control validate[required,rut]" id="Rut_Paciente" name="Rut_Paciente" placeholder="Ej: 12345678K" value="<?php echo set_value('Rut_Paciente'); ?>"> 
   </div>  
   <div class="form-group">
     <label for="Fechanac_Paciente">Fecha Nacimiento*</label>
@@ -64,7 +66,7 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 
   <div class="form-group">
     <label for="Ciudad_Paciente">Ciudad</label>
-    <input type="text" class="form-control validate[required]" id="Ciudad_Paciente" name="Ciudad_Pacient" placeholder="Ingrese la cuidad" value="<?php echo set_value('Ciudad_Pacient');?>">
+    <input type="text" class="form-control validate[required]" id="Ciudad_Paciente" name="Ciudad_Paciente" placeholder="Ingrese la cuidad" value="<?php echo set_value('Ciudad_Pacient');?>">
   </div> 
 
   <div class="form-group">
@@ -214,7 +216,7 @@ fecha de inicio inicio de la agenda desde donde donde inicias
   </div> 
   <div class="form-group">
     <label for="RespuestaClave">Respuesta</label>
-    <input type="text" class="form-control validate[required]" id="RespuestaClave" placeholder="RespuestaClave" value="<?php echo set_value('RespuestaClave');?>">
+    <input type="text" class="form-control validate[required]" id="RespuestaClave" name="RespuestaClave"  placeholder="RespuestaClave" value="<?php echo set_value('RespuestaClave');?>">
   </div> 
   
   <br/><br/>

@@ -20,13 +20,14 @@ class Registro extends CI_Controller {
 		$this->render();
 	}
 	
-	private function render(){
+	private function render($page = 'registro'){
 		$this->template->write('title', $this->title);
 
 		$this->template->add_js('assets/js/moment-2.4.0.js');
 		$this->template->add_js('assets/third_party/bootstrap/js/bootstrap-datetimepicker.min.js');
 		$this->template->add_js('assets/js/jquery.validationEngine.js');
 		$this->template->add_js('assets/js/jquery.validationEngine-es.js');
+		$this->template->add_js('assets/js/jquery.Rut.js');
 		$this->template->add_js('assets/third_party/bootstrap/js/bootstrap3-typeahead.js');
 		$this->template->add_js('assets/js/registro.js');
 		
@@ -35,18 +36,19 @@ class Registro extends CI_Controller {
 		
 		$this->template->write_view('header', 'templates/header', $this->registro_params, TRUE);
 		
-		$this->template->write_view('content', 'pages/registro', $this->registro_params, TRUE);
+		$this->template->write_view('content', "pages/$page", $this->registro_params, TRUE);
 
 		$this->template->render();	
-
 	}
 	
-	public function do_registration(){
+	
+	
+	public function guardar(){
 		
 		/* Para registrar las opciones de mensajeria usar el metodo del web service
 		 * WM_ActualizaOpcionesMensajeria donde:
 		 * (VIa de confirmación) Op_SmsEmail dede ser:
-		 * 2^3 => SMS t Email
+		 * 2^3 => SMS y Email
 		 * 2^  => Sms
 		 * ^3  => Email
 		 * ^   => No quiere ser informado
@@ -56,8 +58,37 @@ class Registro extends CI_Controller {
 		 * N => No
 		 * S => Si*/
 		
+		//Define the validation rules
+		$validation_rules = array(
+			
+		);
+		
+		//To prvent attacks, clean the input
+		$data = array();
+		foreach($_POST as $f => $v){
+			
+			if($f == 'Email_Paciente-confirma' || $f == 'Clave_Usuario-confirma' || $f == 'Comuna_Paciente-label')
+				continue;
+			
+			if($f == 'Rut_Paciente'){
+				$v = str_replace('.', '', $this->input->post($f, TRUE));
+				$rut = explode('-', $v);
+				$data[$f] = $rut[0];
+				$data['Dv_Paciente'] = $rut[1];
+			} else {
+				$data[$f] = $this->input->post($f, TRUE);
+			}
+			
+		}
+		
+		$this->load->model('Patient_model', 'patient');
+		
+		$result = $this->patient->create($data);
+		if(!$result){
+			echo $this->patient->getError();
+		}
+		
+		//echo '<pre>',var_dump($result),'</pre>';
+		//$this->index();
 	}
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

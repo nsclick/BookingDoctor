@@ -32,7 +32,7 @@ class Timebooking {
 	 * @var string
 	 * @access private
 	 */
-	public $error = null;
+	private $error = null;
 	/**
 	 * Company ID
 	 *
@@ -62,6 +62,15 @@ class Timebooking {
 	 */
 	public $webUser = 'UINTERNET';
 
+	/**
+	 * Get the process error
+	 * 
+	 * @return error string
+	 */
+	public function getError(){
+		return $this->error;
+	}
+	
 	function __construct() {
 		if (!$this->client) {
 			$this->client = new nusoap_client($this->host, $this->wsdl);
@@ -84,8 +93,14 @@ class Timebooking {
 	 */
 	private function call($method, $params = array (), $action = '') {
 
+		//echo '<pre>',print_r($params),'</pre>';
 		//$action = $this->namespace . '/' . $method;
 		$result = $this->client->call($method, $params, '', '', false, true);
+		
+		if(isset($result['faultcode'])){
+			$this->error = $result["faultstring"];
+			return false;		
+		}
 
 		// Check for a fault
 		if ($this->client->fault) {
@@ -142,7 +157,7 @@ class Timebooking {
 		}
 		
 		$loginData = new stdClass();
-		$loginData->state = $xmlObject->LogeoPaciente->InformacionLogeo->ESTADO;
+		$loginData->state = (string) $xmlObject->LogeoPaciente->InformacionLogeo->ESTADO;
 		$loginData->stateName = $xmlObject->LogeoPaciente->InformacionLogeo->DESC_ESTADO;
 		$loginData->tmpKey = $xmlObject->LogeoPaciente->InformacionLogeo->CLAVE_TEMP;
 		$loginData->ambulatoryID = $xmlObject->LogeoPaciente->InformacionLogeo->ID_AMBULATORIO;
@@ -346,7 +361,14 @@ class Timebooking {
 		
 		return $comunas;		
 	}
-	
+
+	/**
+	 * Register a patient
+	 * 
+	 * @access public
+	 * @param array $data 
+	 * @param int id_ambulatorio
+	 */	
 	function registerPatient($data){
 		
 		$params = array(
@@ -355,28 +377,48 @@ class Timebooking {
 			'Usuario' => $this->webUser,
 			'Accion' => 'I',
 			'Cod_Empresa' => $this->companyID,
-			'Cod_Sucursal' => $this->branchID
+			'Cod_Sucursal' => $this->branchID,
+			'Id_Ambulatorio' => '1111111'
 		);
+
+		$SMS_notificacion = $data['SMS_notificacion'];
+		$EMAIL_notificacion = $data['EMAIL_notificacion'];
+		unset($data['SMS_notificacion']);
+		unset($data['EMAIL_notificacion']);
 		
 		foreach($data as $field => $value){
-			if($field != 'Clave_Usuario'){
-				$params[$field] = strtoupper($value);
-			}	
+			$params[$field] = ($field != 'Clave_Usuario') ? strtoupper($value) : $value;
 		}	
-			
-		if($this->registerUser($params)){
-			
-		} else {
+		
+		echo '<pre>',print_r($params),'</pre>';
+		$result = $this->registerUser($params);
+		
+		if(!$result){
 			return false;
 		}
+		
+		if(!$result->estado){
+			$this->error = $result->descEstado;
+			return false;	
+		}
+		
+		return $result->idAmbulatorio;
 	}
 	
 	private function registerUser($params){
 		$result = $this->call('WM_MantUsuario', $params);
 		
+		if(!$result){
+			return false;
+		}
+		
 		$xmlObject = $this->_xml2Object($result['WM_MantUsuarioResult']);
 		
-		
+		$result = new stdClass();
+		$result->idAmbulatorio = (string) $xmlObject->MantUsuarios->Datos->ID_AMB_INGRESO;
+		$result->descEstado = (string) $xmlObject->MantUsuarios->Datos->DESC_ESTADO;
+		$result->estado = ($result->idAmbulatorio) ? TRUE : FALSE;
+		return $result;		
 	}
 }
 ?>

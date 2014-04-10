@@ -1,5 +1,9 @@
   $(function() {
     
+    $('#Rut_Paciente').Rut({
+		format_on: 	'keyup'
+	});
+		
     $('#datetimepicker1').datetimepicker({
     	pickTime: false
     });
