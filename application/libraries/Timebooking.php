@@ -366,9 +366,35 @@ class Timebooking {
 	 * Register a patient
 	 * 
 	 * @access public
-	 * @param array $data 
-	 * @param int id_ambulatorio
-	 */	
+	 * @param array $data (
+	 *					[Rut_Paciente]
+	 *					[Dv_Paciente]
+	 *					[Fechanac_Paciente]
+	 *					[Nombre_Paciente]
+	 *					[Apepat_Paciente]
+	 *					[Apemat_Paciente]
+	 * 					[Direccion_Paciente]
+	 *					[Comuna_Paciente]
+	 *					[Ciudad_Paciente]
+	 *					[prefijo_Fono1_Paciente]
+	 *					[Fono1_Paciente]
+	 *					[prefijo_Fono2_Paciente]
+	 *					[Fono2_Paciente]
+	 *					[PrefMovil1]
+	 *					[FonoMovil1]
+	 *					[PrefMovil2]
+	 *					[FonoMovil2]
+	 *					[Email_Paciente]
+	 *					[Sexo_Paciente]
+	 *					[Prevision_Paciente]
+	 *					[SMS_notificacion]
+	 *					[EMAIL_notificacion]
+	 *					[Op_InfoClinica]
+	 *					[Clave_Usuario]
+	 *					[Pregunta_Clave]
+	 *					[RespuestaClave]
+	 *				)
+	 **/	
 	function registerPatient($data){
 		
 		$params = array(
@@ -391,6 +417,7 @@ class Timebooking {
 		}	
 		
 		echo '<pre>',print_r($params),'</pre>';
+		
 		$result = $this->registerUser($params);
 		
 		if(!$result){
@@ -420,5 +447,21 @@ class Timebooking {
 		$result->estado = ($result->idAmbulatorio) ? TRUE : FALSE;
 		return $result;		
 	}
+	
+	
+	/**
+	 * Updates the user messagin options
+	 * 
+	 * @access public
+	 * @param array $data [Id_Paciente, ]
+	 * @param int id_ambulatorio
+	 */	
+	private function updateMessagingOptions($data){
+		
+		$result = $this->call('WM_MantUsuario', $params);
+		
+	}
+	
+		//WM_ActualizaOpcionesMensajeria
 }
 ?>

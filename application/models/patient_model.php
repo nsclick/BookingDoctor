@@ -30,6 +30,8 @@ class Patient_model extends CI_Model {
 	}
 	
 	function create($data){
+		
+		//Compose the phones
 		$result = $this->timebooking->registerPatient( $data );
 		if(!$result){
 			$this->error = $this->timebooking->getError();
@@ -41,7 +43,12 @@ class Patient_model extends CI_Model {
 		$dv = $data['Dv_Paciente'];
 		$password = $data['Clave_Usuario'];
 		
-		$this->login($rut, $dv, $password);
+		if(!$this->login($rut, $dv, $password)){
+			return false;
+		}
+		
+		//Add to session the user name
+		$this->session->set_userdata('userName', "{$data['Nombre_Paciente']} {$data['Apepat_Paciente']} {$data['Apemat_Paciente']}");
 		
 		return true;
 	}
