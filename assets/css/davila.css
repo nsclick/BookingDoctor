@@ -1,0 +1,28 @@
+body{margin:0;padding:0}
+.divclear{clear:both;height:0}
+.container{width:100%;padding:0}
+.registrotabs{width:100%;position:relative}
+.navbar-collapse.collapse{padding:0}
+h2.tab1{display:block;float:left;width:32%;background:#eee;padding:10px 0;margin:0;text-align:center;border-radius:10px 10px 0 0;-moz-border-radius:10px 10px 0 0;-ms-border-radius:10px 10px 0 0;-webkit-border-radius:10px 10px 0 0;color:#888;font-size:24px}
+h2.tab1:first-of-type{margin:0 1% 0 1%;}
+h2.tab1:last-of-type{margin:0 1% 0 1%}
+h2.tab1.tabactive{background:#ddd;color:#333}
+.tabspace{background:#ddd;padding:20px;color:#333;display:none}
+.tabspace.tabactive{display:block!important}
+.btnspace{text-align:right}
+.enviando{background-color:rgba(255,255,255,0.8);position:absolute;height:100%;width:100%;display:none;top:0}
+.enviando .uno, .enviando .dos{display:none;text-align:center;font-size:24px;font-weight:bold;width:200px;height:100px;position:absolute;top:50%;left:50%;margin-top:-50px;margin-left:-100px}
+.enviando1{display:block!important}
+
+/*desde 768*/
+@media (min-width: 768px){
+	.navbar-brand{display:none}
+}
+/*hasta 1000*/
+@media (max-width: 1000px){
+	h2.tab1{font-size:20px}
+}
+/*hasta 768*/
+@media (max-width: 768px){
+	h2.tab1{font-size:14px;min-height:50px}
+}
