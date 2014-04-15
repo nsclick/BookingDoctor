@@ -16,9 +16,9 @@ fecha de inicio inicio de la agenda desde donde donde inicias
  
 
 <div class="registrotabs">
-	<h2 class="tab1 taba tabactive">Información Personal</h2>
-	<h2 class="tab1 tabb">Información de Contacto</h2>
-	<h2 class="tab1 tabc">Configuraci&oacute;n de Seguridad</h2>
+	<h2 class="tab1 taba tabactive">Información <br /> Personal</h2>
+	<h2 class="tab1 tabb">Información <br /> de Contacto</h2>
+	<h2 class="tab1 tabc">Configuraci&oacute;n <br /> de Seguridad</h2>
 	<div class="divclear">&nbsp;</div>
 
 	<!-- Block 1 -->
@@ -78,6 +78,7 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 				<?php endforeach; ?>
 			</select>
 	  	</div>
+	  	<div class="divclear">&nbsp;</div>
 	  	<div class="btnspace">
 	  		<button type="button" class="btn btn-primary sgte">Siguiente</button>
 	  	</div>
@@ -89,10 +90,10 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 	<!-- Block 2 -->
 	<?php echo form_open('registro2', array('id' => 'registro2')); ?>
   	<div class="tabspace space2">
-	  	<div class="form-group">
+	  	<div class="form-group" style="width:23%">
 	    	<label for="Fono1_Paciente">Teléfono 1</label>
 	      	<div class="row">
-				<div class="col-lg-2">
+				<div class="col-lg-4">
 					<select class="form-control" id="prefijo_Fono1_Paciente" name="prefijo_Fono1_Paciente">
 						<?php foreach($phone_prefixes as $prefix): ?>
 						<option value="<?php echo $prefix ?>" <?php echo set_select('prefijo_Fono1_Paciente', $prefix); ?> ><?php echo $prefix ?></option>
@@ -104,10 +105,10 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 				</div>
 		  	</div> 
 	  	</div> 
-	  	<div class="form-group">
+	  	<div class="form-group" style="width:23%">
 	    	<label for="Fono2_Paciente">Teléfono 2</label>
 	      	<div class="row">
-				<div class="col-lg-2">
+				<div class="col-lg-4">
 					<select class="form-control" id="prefijo_Fono2_Paciente" name="prefijo_Fono2_Paciente">
 						<?php foreach($phone_prefixes as $prefix): ?>
 						<option value="<?php echo $prefix ?>" <?php echo set_select('prefijo_Fono2_Paciente', $prefix); ?> ><?php echo $prefix ?></option>
@@ -119,10 +120,10 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 				</div>
 		  	</div> 
 	  	</div>
-	  	<div class="form-group">
+	  	<div class="form-group" style="width:23%">
 	    	<label for="FonoMovil1">Celular 1</label>
 	      	<div class="row">
-				<div class="col-lg-2">
+				<div class="col-lg-4">
 					<select class="form-control" id="PrefMovil1" name="PrefMovil1">
 						<option value="2" selected="selected">9</option>
 					</select>
@@ -132,10 +133,10 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 				</div>
 		  	</div> 
 	  	</div>
-	  	<div class="form-group">
+	  	<div class="form-group" style="width:23%">
 	    	<label for="FonoMovil2">Celular 2</label>
 	      	<div class="row">
-				<div class="col-lg-2">
+				<div class="col-lg-4">
 					<select class="form-control" id="PrefMovil2" name="PrefMovil2">
 						<option value="2" selected="selected">9</option>
 					</select>
@@ -153,9 +154,10 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 	    	<label for="Email_Paciente-confirma">Confirmar Email</label>
 	    	<input type="text" class="form-control validate[required,equals[Email_Paciente]]" id="Email_Paciente-confirma" name="Email_Paciente-confirma" placeholder="Ingrese su email" value="<?php echo set_value('Email_Paciente-confirma'); ?>">
 	  	</div> 
-	  	<p>¿Cómo prefieres que te recordemos tu hora médica?</p>
+	  	<hr />
+	  	<h4>¿Cómo prefieres que te recordemos tu hora médica?</h4>
 	  	<div class="form-group">
-	    	<label>A través de Mensaje de texto</label>
+	    	<label style="font-weight:normal">A través de Mensaje de texto</label>
 			<label class="radio-inline">
 		  		<input type="radio" name="SMS_notificacion" value="2" <?php echo set_radio('SMS_notificacion', '2', TRUE); ?>> Si
 			</label>
@@ -164,17 +166,18 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 			</label>
 	  	</div> 
 	  	<div class="form-group">
-	    	<label>A través de correo electrónico</label>
+	    	<label style="font-weight:normal">A través de correo electrónico</label>
 			<label class="radio-inline">
 		  		<input type="radio" name="EMAIL_notificacion" value="3" <?php echo set_radio('EMAIL_notificacion', '3', TRUE); ?>> Si
 			</label>
 			<label class="radio-inline">
 		  		<input type="radio" name="EMAIL_notificacion" value="" <?php echo set_radio('EMAIL_notificacion', ''); ?>> No
 			</label>
-	  	</div> 
-	  	<p>Si luego de enviado el mensaje no confirmas la hora, te llamaremos para verificar la cita médica. </p>
+	  	</div>
+	  	<hr /> 
+	  	<h4>Si luego de enviado el mensaje no confirmas la hora, te llamaremos para verificar la cita médica. </h4>
 	  	<div class="form-group">
-		    <label>¿Quisiera recibir información de la clínica Dávila?</label>
+		    <label style="font-weight:normal">¿Quisiera recibir información de la clínica Dávila?</label>
 			<label class="radio-inline">
 		  		<input type="radio" name="Op_InfoClinica" value="S" <?php echo set_radio('Op_InfoClinica', 'S', TRUE); ?>> Si
 			</label>
@@ -182,6 +185,7 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 		  		<input type="radio" name="Op_InfoClinica" value="N" <?php echo set_radio('Op_InfoClinica', 'N'); ?>> No
 			</label>
 	  	</div>
+	  	<div class="divclear">&nbsp;</div>
 	  	<div class="btnspace">
 		  	<button type="button" class="btn btn-primary ante">Anterior</button>
 		  	<button type="button" class="btn btn-primary sgte">Siguiente</button>
@@ -211,6 +215,7 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 	    	<label for="RespuestaClave">Respuesta</label>
 	    	<input type="text" class="form-control validate[required]" id="RespuestaClave" placeholder="RespuestaClave" value="<?php echo set_value('RespuestaClave'); ?>" data-prompt-position="inline"/>
 	  	</div>
+	  	<div class="divclear">&nbsp;</div>
 	  	<div class="btnspace">
 	  		<button type="button" class="btn btn-primary ante">Anterior</button>
 	  		<button type="submit" class="btn btn-primary fin">Finalizar</button>
