@@ -32,6 +32,7 @@ class Registro extends CI_Controller {
 		
 		$this->template->add_css('assets/css/validationEngine.jquery.css');
 		$this->template->add_css('assets/third_party/bootstrap/css/bootstrap-datetimepicker.min.css');
+		$this->template->add_css('assets/css/davila.css');
 		
 		$this->template->write_view('header', 'templates/header', $this->registro_params, TRUE);
 		
