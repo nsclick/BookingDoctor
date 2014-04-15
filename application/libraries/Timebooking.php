@@ -11,7 +11,9 @@ class Timebooking {
 	 * @var string
 	 * @access private
 	 */
-	private $host = 'http://reservas.davila.cl/Age_Ws_Reserva_Horas_demo/ResHoraWeb.asmx?wsdl';
+//	private $host = 'http://reservas.davila.cl/Age_Ws_Reserva_Horas_demo/ResHoraWeb.asmx?wsdl';
+	private $host = 'http://reservas.davila.cl/Ws_ReservaHorasWeb/ResHoraWeb/ResHoraWeb.asmx?wsdl';
+	
 	/**
 	 * Whether uses WSDL
 	 *
@@ -404,19 +406,22 @@ class Timebooking {
 			'Accion' => 'I',
 			'Cod_Empresa' => $this->companyID,
 			'Cod_Sucursal' => $this->branchID,
-			'Id_Ambulatorio' => '1111111'
+			'Id_Ambulatorio' => '1111111',
+			'Estado' => 'D'
 		);
-
+		
+		$Op_InfoClinica = $data['Op_InfoClinica'];
 		$SMS_notificacion = $data['SMS_notificacion'];
 		$EMAIL_notificacion = $data['EMAIL_notificacion'];
 		unset($data['SMS_notificacion']);
 		unset($data['EMAIL_notificacion']);
+		unset($data['Op_InfoClinica']);
 		
 		foreach($data as $field => $value){
 			$params[$field] = ($field != 'Clave_Usuario') ? strtoupper($value) : $value;
 		}	
 		
-		echo '<pre>',print_r($params),'</pre>';
+		//echo '<pre>',print_r($params),'</pre>';
 		
 		$result = $this->registerUser($params);
 		
@@ -441,6 +446,7 @@ class Timebooking {
 		
 		$xmlObject = $this->_xml2Object($result['WM_MantUsuarioResult']);
 		
+		//echo '<pre>',print_r($xmlObject),'</pre>';
 		$result = new stdClass();
 		$result->idAmbulatorio = (string) $xmlObject->MantUsuarios->Datos->ID_AMB_INGRESO;
 		$result->descEstado = (string) $xmlObject->MantUsuarios->Datos->DESC_ESTADO;

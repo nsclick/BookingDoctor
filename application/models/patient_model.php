@@ -22,7 +22,8 @@ class Patient_model extends CI_Model {
 		
 		$sessionData = array(
 			'tmpKey' => $result->tmpKey,
-			'ambulatoryID' => $result->ambulatoryID
+			'ambulatoryID' => $result->ambulatoryID,
+			'rut' => $rut. '-' . $dv
 		);
 		
 		$this->session->set_userdata($sessionData);
@@ -32,6 +33,11 @@ class Patient_model extends CI_Model {
 	function create($data){
 		
 		//Compose the phones
+		$data['Fono1_Paciente'] = $data['prefijo_Fono1_Paciente'] . $data['Fono1_Paciente'];
+		unset($data['prefijo_Fono1_Paciente']);
+		$data['Fono2_Paciente'] = ($data['Fono2_Paciente']) ? $data['prefijo_Fono2_Paciente'] . $data['Fono2_Paciente'] : NULL;
+		unset($data['prefijo_Fono2_Paciente']);
+		
 		$result = $this->timebooking->registerPatient( $data );
 		if(!$result){
 			$this->error = $this->timebooking->getError();
