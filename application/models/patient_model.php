@@ -15,7 +15,7 @@ class Patient_model extends CI_Model {
 	
 	function login($rut, $dv, $password){	
 		$result = $this->timebooking->userLogin($rut, $dv, $password);
-		
+
 		if(!$result){
 			$this->error = $this->timebooking->getError();
 			return false;
