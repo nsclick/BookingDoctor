@@ -36,6 +36,8 @@
 		var base_url = '<?php echo base_url(); ?>';
 		var site_url = '<?php echo site_url(); ?>';
 	</script>
+	<!-- Davila CSS -->
+	<link href="<?=base_url()?>assets/css/davila.css" rel="stylesheet">
   </head>
 
   <body role="document">
