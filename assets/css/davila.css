@@ -2,7 +2,7 @@ body{margin:0;padding:0}
 h1, .h1, h2, .h2, h3, .h3{margin-top:10px;margin-bottom:20px}
 .navbar-default{margin:0}
 .divclear{clear:both;height:0}
-.btn.btn-default{color:#fff;background-color:#fe9900;border-color:#df9421}
+.btn.btn-default{color:#fff;background-color:#fe9900;border:1px solid #df9421}
 .btn.btn-default:hover{background-color:#df9421;border-color:#fe9900}
 .container{width:100%;padding:0}
 .registrotabs{width:100%;position:relative}
@@ -35,6 +35,11 @@ tbody tr td{vertical-align:middle;padding:5px;line-height:normal}
 .agendamed table tbody td a{display:block;padding:8px;text-decoration:none;color:#444}
 .agendamed table tbody td a:hover span{display:inline;font-weight:bold;font-size:11px}
 .agendamed table tbody td a:hover{background:#94c8f4;color:#444}
+.consulta .hora{padding:10px 10px 0 10px;border-radius:10px;-moz-border-radius:10px;-ms-border-radius:10px;-webkit-border-radius:10px;background:#eee;border:1px solid #eee;font-weight:bold;margin-bottom:20px}
+.consulta .hora span{font-weight:normal}
+.consulta .hora a{display:block;padding:10px;text-align:center;color:#fff;background:#fe9900;border:1px solid #df9421;margin:10px -10px 0 -10px;border-radius:0 0 10px 10px;-moz-border-radius:0 0 10px 10px;-ms-border-radius:0 0 10px 10px;-webkit-border-radius:0 0 10px 10px;text-decoration:none}
+.consulta .hora a:hover{background:#df9421;border:1px solid #fe9900}
+.consulta .hora .pasada{display:block;padding:10px;text-align:center;color:#333;background:#aaa;border:1px solid #999;margin:10px -10px 0 -10px;border-radius:0 0 10px 10px;-moz-border-radius:0 0 10px 10px;-ms-border-radius:0 0 10px 10px;-webkit-border-radius:0 0 10px 10px;text-decoration:none;font-weight:bold}
 /*desde 768*/
 @media (min-width: 768px){
 	.navbar-brand{display:none}
