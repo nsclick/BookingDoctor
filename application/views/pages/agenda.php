@@ -5,13 +5,15 @@
  * otro: Si hay horas?
  */
 ?>
-<?php var_dump($agenda); ?>
+<?php //var_dump($agenda); ?>
 <?php
-	// var_dump($agenda['pfa']);
 	$t = strtotime( substr($agenda['pfa'], 0, 16) );
 	$d = date('Y m d h:i:s', $t);
-
 	$agenda_days = array();
+	
+	// var_dump($agenda['pfa']);
+	// var_dump ( $d );
+	var_dump( date ( 'Y m d', strtotime ( '05-04-2014' ) ) );
 ?>
 <?php
 	$splitted_agenda_strings = str_split ( $agenda['a'], 3 );
@@ -41,9 +43,32 @@
 		$agenda_days[$index]['date'] = date ( 'Y m d h:i:s',  $agenda_days[$index]['time']);
 		$agenda_days[$index]['cls']	 = date ( 'D M d Y',  $agenda_days[$index]['time']);
 
-		if ($agenda_days[$index]['state'])
-			var_dump($agenda_days[$index]);
+		// if ($agenda_days[$index]['state'])
+		// 	var_dump($agenda_days[$index]);
 	}
+
+	$agenda_days = array(
+		array (
+			'available'	=> false,
+			'date' 		=> date ( 'd/m/Y', strtotime ( '04-04-2014' ) ),
+			'cls' 		=> date ( 'D M d Y', strtotime ( '04-04-2014' ) )
+		),
+		array (
+			'available'	=> true,
+			'date' 		=> date ( 'd/m/Y', strtotime ( '05-04-2014' ) ),
+			'cls' 		=> date ( 'D M d Y', strtotime ( '05-04-2014' ) )
+		),
+		array (
+			'available'	=> false,
+			'date' 		=> date ( 'd/m/Y', strtotime ( '06-04-2014' ) ),
+			'cls' 		=> date ( 'D M d Y', strtotime ( '06-04-2014' ) )
+		),
+		array (
+			'available'	=> true,
+			'date' 		=> date ( 'd/m/Y', strtotime ( '07-04-2014' ) ),
+			'cls' 		=> date ( 'D M d Y', strtotime ( '07-04-2014' ) )
+		)
+	);
 
 	ob_start();
 ?>
@@ -72,6 +97,21 @@
 					}
 				}
 			})
+		};
+
+		w.getDetalleDia = function(data, fn) {
+			
+			jQuery.ajax('/nsclick/davila/reservadehoras/agenda/getdetalledia', {
+				data: data,
+				type: 'GET',
+				dataType: 'json',
+				success: function(r) {
+					console.log(r);
+					if (typeof(fn) == 'function') {
+						fn(r);
+					}
+				}
+			});
 		};
 
 	})(window, jQuery);

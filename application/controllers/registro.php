@@ -7,7 +7,15 @@ class Registro extends CI_Controller {
 	var $title = 'Registro';
 	var $registro_params = array();
 
-	
+	function __construct () {
+		parent::__construct();
+		$this->load->library ( 'Timebooking' );
+		
+		$this->registro_params['phone_prefixes'] = $this->config->item('phone_prefixes');
+		$this->registro_params['medical_services'] = $this->config->item('medical_services');
+		
+	}
+		
 	public function index() {
 		$this->render();
 	}
@@ -31,6 +39,23 @@ class Registro extends CI_Controller {
 
 		$this->template->render();	
 
+	}
+	
+	public function do_registration(){
+		
+		/* Para registrar las opciones de mensajeria usar el metodo del web service
+		 * WM_ActualizaOpcionesMensajeria donde:
+		 * (VIa de confirmación) Op_SmsEmail dede ser:
+		 * 2^3 => SMS t Email
+		 * 2^  => Sms
+		 * ^3  => Email
+		 * ^   => No quiere ser informado
+		 * 
+		 * Recibe info davila? 
+		 * Op_InfoClinica:
+		 * N => No
+		 * S => Si*/
+		
 	}
 }
 

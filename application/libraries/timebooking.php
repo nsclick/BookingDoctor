@@ -11,7 +11,9 @@ class Timebooking {
 	 * @var string
 	 * @access private
 	 */
-	private $host = 'http://reservas.davila.cl/Age_Ws_Reserva_Horas_demo/ResHoraWeb.asmx?wsdl';
+	// private $host = 'http://reservas.davila.cl/Age_Ws_Reserva_Horas_demo/ResHoraWeb.asmx?wsdl'; // Dev
+	private $host = 'http://reservas.davila.cl/Ws_ReservaHorasWeb/ResHoraWeb/ResHoraWeb.asmx?wsdl'; // Prod
+
 	/**
 	 * Whether uses WSDL
 	 *
@@ -47,6 +49,13 @@ class Timebooking {
 	 * @access public
 	 */
 	public $branchID = 1;
+	/**
+	 * Medical Center ID
+	 *
+	 * @var string
+	 * @access public
+	 */
+	public $medcID = 1;
 	/**
 	 * IP
 	 *
@@ -303,6 +312,60 @@ class Timebooking {
 		}
 		
 		return $fm;
+	}
+
+	function getAgendaProfesional($cod_unidad, $cod_especialidad, $cod_profesional, $corr_agenda, $fecha_aprox) {
+		$params = array(
+			'Cod_Empresa'			=> $this->companyID,
+			'Cod_Sucursal'			=> $this->branchID,
+			'Cod_CentMedico'		=> $this->medcID,
+			'Cod_Unidad'			=> $cod_unidad,
+			'Cod_Especialidad' 		=> $cod_especialidad,
+			'Cod_Prof' 				=> $cod_profesional,
+			'Corr_Agenda' 			=> $corr_agenda,
+			'Fecha' 				=> $fecha_aprox,
+			'Fecha_proxhoradisp' 	=> $fecha_aprox
+		);
+
+		$result = $this->call('WM_ObtenerAgendaProfesional', $params);
+		
+		$xmlObject = $this->_xml2Object($result['WM_ObtenerAgendaProfesional']);
+		
+		// if($xmlObject->Error->Error_Cod != 0){
+		// 	$this->error = $xmlObject->Error->ErrorDesc;
+		// 	return false;
+		// }
+		
+		return $xmlObject;
+	}
+
+	function getDetalleDia($cod_unidad, $cod_especialidad, $cod_profesional, $corr_agenda, $fecha_aprox) {
+		$params = array(
+			'Cod_Empresa'			=> 1,
+			'Cod_Sucursal'			=> 1,
+			'Cod_CentMedico'		=> 1,
+			'Cod_Unidad'			=> 3501,
+			'Cod_Especialidad' 		=> 30101014,
+			'Cod_Prof' 				=> 9888,
+			'Corr_Agenda' 			=> 2669,
+			'Fecha' 				=> '29/05/2014',
+			'Fecha_proxhoradisp' 	=> '29/05/2014'
+		);
+
+		$result = $this->call('WM_CreaXmlDetalleDiaCalendari', $params);
+		
+		// $xmlObject = $this->_xml2Object($result['CreaXmlDetalleDiaCalendarioResult']);
+		
+		// if($xmlObject->Error->Error_Cod != 0){
+		// 	$this->error = $xmlObject->Error->ErrorDesc;
+		// 	return false;
+		// }
+
+		// if(!count($xmlObject->CreaXmlDetalleDiaCalendarioResult->InfoCarga)){
+		// 	return array();
+		// }
+		
+		return $result;
 	}
 	
 }
