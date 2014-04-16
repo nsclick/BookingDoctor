@@ -1,0 +1,17 @@
+<XML>
+    <MantUsuarios>
+        <Datos>
+            <ESTADO>S</ESTADO>
+            <DESC_ESTADO>GRABACION NUEVO REGISTRO WEB EXITOSA</DESC_ESTADO>
+            <ID_AMB_INGRESO>3061476</ID_AMB_INGRESO>
+        </Datos>
+    </MantUsuarios>
+    <Mensaje>
+        <CodMensaje>3</CodMensaje>
+        <DescMensaje></DescMensaje>
+    </Mensaje>
+    <Error>
+        <Error_Cod>0</Error_Cod>
+        <ErrorDesc>SIN ERRORES</ErrorDesc>
+    </Error>
+</XML>

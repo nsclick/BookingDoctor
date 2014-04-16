@@ -1,0 +1,94 @@
+body{margin:0;padding:0}
+h1, .h1, h2, .h2, h3, .h3{margin-top:10px;margin-bottom:20px}
+.navbar-default{margin:0}
+.divclear{clear:both;height:0}
+.btn.btn-default{color:#fff;background-color:#fe9900;border-color:#df9421}
+.btn.btn-default:hover{background-color:#df9421;border-color:#fe9900}
+.container{width:100%;padding:0}
+.registrotabs{width:100%;position:relative}
+.navbar-collapse.collapse{padding:0}
+h2.tab1{display:block;float:left;width:29%;background:#eee;padding:5px 10px;margin:0;text-align:center;color:#888;font-size:18px;position:relative;height:50px}
+h2.tab1:first-of-type{margin:0 4% 0 2%;}
+h2.tab1:last-of-type{margin:0 2% 0 4%}
+h2.tab1.tabactive{background:#ddd;color:#333}
+h2.tab1:before{width:0px;height:0px;border-top:25px solid #eee;border-bottom:25px solid #eee;border-left:12px solid transparent;position:absolute;content:"";top:0px;left:-12px}
+h2.tab1:after{width:0;height:0;border-top:25px solid transparent;border-bottom:25px solid transparent;border-left:12px solid #eee;position:absolute;content:"";top:0px;right:-12px}
+h2.tab1.tabactive:before{border-top:25px solid #ddd;border-bottom:25px solid #ddd}
+h2.tab1.tabactive:after{border-left:12px solid #ddd}
+.tabspace{background:#ddd;padding:20px;color:#333;display:none;margin-top:10px}
+.tabspace.tabactive{display:block!important}
+.btnspace{text-align:right}
+.enviando{background-color:rgba(255,255,255,0.8);position:absolute;height:100%;width:100%;display:none;top:0}
+.enviando .uno, .enviando .dos{display:none;text-align:center;font-size:24px;font-weight:bold;width:200px;height:100px;position:absolute;top:50%;left:50%;margin-top:-50px;margin-left:-100px}
+.enviando1{display:block!important}
+.form-group{width:48%;float:left;margin:0 1% 15px 1%}
+.form-group label{margin-bottom:0}
+.container > .navbar-header, .container-fluid > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-collapse{margin:0!important}
+.navbar-nav{margin:0;width:100%}
+.webhome .form-group{width:100%;float:none;margin:0 0 15px}
+thead{background:#eee}
+tbody tr td{vertical-align:middle;padding:5px;line-height:normal}
+.listamedicos tbody tr td:last-of-type{text-align:center}
+.agendamed table select{width:100%;border:0;background:#eee;padding:10px}
+.agendamed table thead th{padding:0}
+.agendamed table tbody td{padding:0}
+.agendamed table tbody td a{display:block;padding:8px;text-decoration:none;color:#444}
+.agendamed table tbody td a:hover span{display:inline;font-weight:bold;font-size:11px}
+.agendamed table tbody td a:hover{background:#94c8f4;color:#444}
+/*desde 768*/
+@media (min-width: 768px){
+	.navbar-brand{display:none}
+	.mb-on{display:none}
+	table{margin-top:20px;margin-bottom:20px;border:0;border-collapse:separate;border-spacing:0}
+	table tr th,table tr td,.agendamed table tr th,.agendamed table tr td{border-right:1px solid #ddd;border-bottom:1px solid #ddd}
+	table tr th:first-child,table tr td:first-child{border-left:1px solid #ddd}
+	table tr th{background:#eee;border-top:1px solid #ddd;text-align:left}
+	.table > thead:first-child > tr:first-child > th{border-top:1px solid #ddd}
+	/* top-left border-radius */
+	table tr:first-child th:first-child{border-top-left-radius:6px}
+	/* top-right border-radius */
+	table tr:first-child th:last-child{border-top-right-radius:6px}
+	/* bottom-left border-radius */
+	table tr:last-child td:first-child{border-bottom-left-radius:6px}
+	/* bottom-right border-radius */
+	table tr:last-child td:last-child{border-bottom-right-radius:6px}
+	.agendamed table tbody td span{display:none}
+	.agendamed table{width:75%;margin:20px auto}
+}
+/*hasta 1000*/
+@media (max-width: 1000px){
+	.col-lg-4{width:33.33333333333333%;float:left;position: relative;min-height: 1px;padding-right: 15px;padding-left: 15px;}
+	.col-lg-8{width:66.66666666666666%;float:left;position: relative;min-height: 1px;padding-right: 15px;padding-left: 15px;}
+	.form-group{width:100%!important;float:none;margin:0 0 15px}
+	.col-lg-4{width:33.33333333333333%;float:left;position: relative;min-height: 1px;padding-right: 15px;padding-left: 15px;}
+	.col-lg-8{width:66.66666666666666%;float:left;position: relative;min-height: 1px;padding-right: 15px;padding-left: 15px;}
+}
+/*hasta 768*/
+@media (max-width: 768px){
+	h2.tab1{font-size:14px;min-height:50px;padding:10px}
+	.theme-showcase{padding:10px}
+	.tabspace{border-radius:10px;-moz-border-radius:10px;-ms-border-radius:10px;-webkit-border-radius:10px;margin-top:10px}
+	.mb-no{display:none}
+	.listamedicos table{border:none;margin-top:20px;margin-bottom:0}
+	.listamedicos tbody tr{border:1px solid #ddd;position:relative;display:block;margin-bottom:20px;border-radius:10px;-moz-border-radius:10px;-ms-border-radius:10px;-webkit-border-radius:10px;background:#fafafa;padding:5px 0 0}
+	.listamedicos tbody tr td{display:block;padding:0 10px 5px 10px;border:0;font-weight:bold}
+	.listamedicos tbody tr td span{font-weight:normal}
+	.listamedicos tbody tr td:last-of-type{padding:0}
+	.listamedicos tbody tr td:last-of-type button{width:100%;border-radius:0 0 10px 10px;-moz-border-radius:0 0 10px 10px;-ms-border-radius:0 0 10px 10px;-webkit-border-radius:0 0 10px 10px}
+	.agendamed table{margin-top:20px;margin-bottom:20px;border:0;border-collapse:separate;border-spacing:0}
+	.agendamed table tr th,.agendamed table tr td{border-right:1px solid #ddd;border-bottom:1px solid #ddd}
+	.agendamed table tr th:first-child,.agendamed table tr td:first-child{border-left:1px solid #ddd}
+	.agendamed table tr th{background:#eee;border-top:1px solid #ddd;text-align:left}
+	.agendamed .table > thead:first-child > tr:first-child > th{border-top:1px solid #ddd}
+	/* top-left border-radius */
+	.agendamed table tr:first-child th:first-child{border-top-left-radius:6px}
+	/* top-right border-radius */
+	.agendamed table tr:first-child th:last-child{border-top-right-radius:6px}
+	/* bottom-left border-radius */
+	.agendamed table tr:last-child td:first-child{border-bottom-left-radius:6px}
+	/* bottom-right border-radius */
+	.agendamed table tr:last-child td:last-child{border-bottom-right-radius:6px}
+	.agendamed table tbody td a{display:block;padding:8px;text-decoration:none;color:#444;position:relative}
+	.agendamed table tbody td a span{display:inline;font-weight:bold;font-size:11px;position:absolute;top:10px;right:10px}
+	.agendamed table tbody td a span.glyphicon{top:12px;right:60px}
+}

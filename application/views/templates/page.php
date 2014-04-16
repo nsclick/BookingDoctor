@@ -18,8 +18,9 @@
 	<!-- Page added CSS -->
     <?php echo $_styles ?>
 
-    <script src="<?=base_url()?>assets/js/jquery-2.1.0.min.js"></script>
-	<script src="<?=base_url()?>assets/third_party/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url()?>assets/js/jquery-2.1.0.min.js"></script>
+	<script src="<?php echo base_url()?>assets/third_party/bootstrap/js/bootstrap.min.js"></script>
+	<script src="<?php echo base_url()?>assets/js/common.js"></script>
 	
 	<!-- Page added JS -->
 	<?php echo $_scripts ?>
@@ -30,7 +31,12 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-        
+	<script type="text/javascript">
+	
+		var base_url = '<?php echo base_url(); ?>';
+	</script>
+	<!-- Davila CSS -->
+	<link href="<?=base_url()?>assets/css/davila.css" rel="stylesheet">
   </head>
 
   <body role="document">

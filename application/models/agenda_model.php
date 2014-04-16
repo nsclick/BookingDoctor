@@ -21,22 +21,7 @@ class Agenda_model extends CI_Model {
 	}
 
 	function getAgendaProfesional($cod_unidad, $cod_especialidad, $cod_profesional, $corr_agenda, $fecha_aprox) {
-		// return $this->timebooking->getAgendaProfesional($cod_unidad, $cod_especialidad, $cod_profesional, $corr_agenda, $fecha_aprox);
-		
-		// Dummie data for month 04
-		$fake_data = array(
-
-		);
-	}
-
-	function getDetalleDia($cod_unidad, $cod_especialidad, $cod_profesional, $corr_agenda, $fecha_aprox) {
-		// $this->timebooking->getDetalleDia($cod_unidad, $cod_especialidad, $cod_profesional, $corr_agenda, $fecha_aprox);
-		
-		$fake_data = array(
-			1 => array(
-
-			)
-		);
+		return $this->timebooking->getAgendaProfesional($cod_unidad, $cod_especialidad, $cod_profesional, $corr_agenda, $fecha_aprox);
 	}
 }
 ?>

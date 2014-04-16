@@ -1,0 +1,21 @@
+<XML>
+	<Resultado>
+		<ObtieneOpcionesMensajeria>
+			<PREFIJO_CELULAR>9</PREFIJO_CELULAR>
+			<NUMERO_CELULAR>51236828</NUMERO_CELULAR>
+			<PREFIJO_CELULAR2>9</PREFIJO_CELULAR2>
+			<NUMERO_CELULAR2 xml:space="preserve"> </NUMERO_CELULAR2>
+			<FONO_CONFIR>1</FONO_CONFIR>
+			<VIA_CONFIR>2^3</VIA_CONFIR>
+			<AUT_INFO>S</AUT_INFO>
+		</ObtieneOpcionesMensajeria>
+	</Resultado>
+	<Mensaje>
+		<CodMensaje>0</CodMensaje>
+		<DescMensaje></DescMensaje>
+	</Mensaje>
+	<Error>
+		<Error_Cod>0</Error_Cod>
+		<ErrorDesc>SIN ERRORES</ErrorDesc>
+	</Error>
+</XML>

@@ -604,6 +604,9 @@
 							promptType = "load";
 						}
 						break;
+					case "rut":
+						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._rut);
+						break;					
 					case "minSize":
 						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._minSize);
 						break;
@@ -1097,6 +1100,25 @@
 				return rule.alertText + min + rule.alertText2;
 			}
 		},
+
+		/**
+		* Check the chilenian rut
+		*
+		* @param {jqObject} field
+		* @param {Array[String]} rules
+		* @param {int} i rules index
+		* @param {Map}
+		*            user options
+		* @return an error string if validation failed
+		*/
+		_rut: function(field, rules, i, options) {
+			var txt = field.val();
+			var texto = jQuery.Rut.quitarFormato(txt);
+			if (jQuery.Rut.validar(txt) != true ) {
+				return "* Digite un RUT válido!";
+			}
+		},
+		
 		/**
 		* Check number minimum value
 		*

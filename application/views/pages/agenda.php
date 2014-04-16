@@ -5,15 +5,12 @@
  * otro: Si hay horas?
  */
 ?>
-<?php //var_dump($agenda); ?>
 <?php
+	// var_dump($agenda['pfa']);
 	$t = strtotime( substr($agenda['pfa'], 0, 16) );
 	$d = date('Y m d h:i:s', $t);
+
 	$agenda_days = array();
-	
-	// var_dump($agenda['pfa']);
-	// var_dump ( $d );
-	var_dump( date ( 'Y m d', strtotime ( '05-04-2014' ) ) );
 ?>
 <?php
 	$splitted_agenda_strings = str_split ( $agenda['a'], 3 );
@@ -43,32 +40,9 @@
 		$agenda_days[$index]['date'] = date ( 'Y m d h:i:s',  $agenda_days[$index]['time']);
 		$agenda_days[$index]['cls']	 = date ( 'D M d Y',  $agenda_days[$index]['time']);
 
-		// if ($agenda_days[$index]['state'])
-		// 	var_dump($agenda_days[$index]);
+		//if ($agenda_days[$index]['state'])
+			//var_dump($agenda_days[$index]);
 	}
-
-	$agenda_days = array(
-		array (
-			'available'	=> false,
-			'date' 		=> date ( 'd/m/Y', strtotime ( '04-04-2014' ) ),
-			'cls' 		=> date ( 'D M d Y', strtotime ( '04-04-2014' ) )
-		),
-		array (
-			'available'	=> true,
-			'date' 		=> date ( 'd/m/Y', strtotime ( '05-04-2014' ) ),
-			'cls' 		=> date ( 'D M d Y', strtotime ( '05-04-2014' ) )
-		),
-		array (
-			'available'	=> false,
-			'date' 		=> date ( 'd/m/Y', strtotime ( '06-04-2014' ) ),
-			'cls' 		=> date ( 'D M d Y', strtotime ( '06-04-2014' ) )
-		),
-		array (
-			'available'	=> true,
-			'date' 		=> date ( 'd/m/Y', strtotime ( '07-04-2014' ) ),
-			'cls' 		=> date ( 'D M d Y', strtotime ( '07-04-2014' ) )
-		)
-	);
 
 	ob_start();
 ?>
@@ -99,25 +73,54 @@
 			})
 		};
 
-		w.getDetalleDia = function(data, fn) {
-			
-			jQuery.ajax('/nsclick/davila/reservadehoras/agenda/getdetalledia', {
-				data: data,
-				type: 'GET',
-				dataType: 'json',
-				success: function(r) {
-					console.log(r);
-					if (typeof(fn) == 'function') {
-						fn(r);
-					}
-				}
-			});
-		};
-
 	})(window, jQuery);
 <?php
 	$agenda_days_script = ob_get_contents();
 	ob_clean();
 	$this->template->add_js( $agenda_days_script, 'embed' );
 ?>
-<div id="calendar"></div>
+<div class="agendamed">
+	<h1>Horas Disponibles</h1>
+	<button type="button" class="btn btn-default volver"><span class="glyphicon glyphicon-circle-arrow-left"></span> Volver a Resultados</button>
+	<h4>Nombre del Doctor</h4>
+	<p>A continuaci&oacute;n se muestras las horas disponbles para el profesional seleccionado. Puede ver los d&iacute;as disponibles en el men&uacute; despleglable. <b>Se muestran exclusivamente los d&iacute;as y horas disponibles.</b></p>
+	<table class="table">
+		<thead>
+  			<tr>
+     			<th>
+     				<select>
+						<option value="volvo">Lunes 17 de Abril</option>
+					  	<option value="saab">Martes 18 de Abril</option>
+					  	<option value="mercedes">Jueves 20 de Abril</option>
+					</select>
+				</th>
+  			</tr>
+ 		</thead>
+ 		<tbody>
+  			<tr>
+     			<td><a href="#">14:00 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
+     		</tr>			<tr>
+     			<td><a href="#">14:30 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
+     		</tr>
+     		<tr>
+     			<td><a href="#">15:00 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
+     		</tr>
+     		<tr>
+     			<td><a href="#">16:00 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
+     		</tr>
+     		<tr>
+     			<td><a href="#">17:00 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
+  			</tr>
+ 		</tbody>
+	</table>
+	<button type="button" class="btn btn-default volver"><span class="glyphicon glyphicon-circle-arrow-left"></span> Volver a Resultados</button>
+</div>
+<script>
+	$( document ).ready(function() {
+		
+		$( '.volver' ).click(function (e){ 
+			window.history.back();
+		});
+
+	});
+</script>

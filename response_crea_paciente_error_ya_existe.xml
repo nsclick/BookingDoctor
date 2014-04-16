@@ -1,0 +1,16 @@
+<XML>
+    <MantUsuarios>
+        <Datos>
+            <ESTADO>S</ESTADO>
+            <DESC_ESTADO>EL REGISTRO YA EXISTE</DESC_ESTADO>
+        </Datos>
+    </MantUsuarios>
+    <Mensaje>
+        <CodMensaje>3</CodMensaje>
+        <DescMensaje></DescMensaje>
+    </Mensaje>
+    <Error>
+        <Error_Cod>0</Error_Cod>
+        <ErrorDesc>SIN ERRORES</ErrorDesc>
+    </Error>
+</XML>

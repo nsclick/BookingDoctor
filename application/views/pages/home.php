@@ -1,16 +1,14 @@
-<h1>Médicos</h1>
+<div class="webhome"><h1>Reserva de Horas</h1>
 
 <ul>
 	<li>Si conoces el apellido del médico con el cual te quieres atender, escríbelo en el espacio asignado.</li>
-	<li>Si no tienes médico definido, elije el área en la que te quieres atender.</li>
+	<li>Si no tienes médico definido, elige el área en la que te quieres atender.</li>
 </ul>
-
-<h3>Clínica Dávila</h3>
 
 <?php $attributes = array('role' => 'form'); ?>
 <?php echo form_open('buscarmedico', $attributes); ?>
   <div class="form-group">
-    <label for="apellido">Apellido Profesional</label>
+    <label for="apellido">Apellido del profesional</label>
     
 	<div class='input-group'>
     	<input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese el apellido del profesional">
@@ -37,11 +35,11 @@
 </form>
 
 <p>
-Para anular las horas reservadas, haz click <a href="<?php echo base_url("anulacion/");?>">aquí</a><br>
-Para consultar las horas reservadas, haz click <a href="<?php echo base_url("consulta/");?>">aquí</a>
+Para anular horas reservadas anteriormente, haz click <a href="<?php echo base_url("anulacion/");?>">aqu&iacute;</a>.<br>
+Para consultar por horas reservadas, haz click <a href="<?php echo base_url("consulta/");?>">aqu&iacute;</a>.
 </p>
 
-<p>Para recibir información de Clínica Dávila sobre temas de salud y otros, en tu correo electrónico, presiona <a href="javascript:void(0)" id="emailme" data-toggle="modal" data-target="#myModal">aquí</a></p>
+<p>Para recibir información de Clínica Dávila sobre temas de salud y otros, en tu correo electrónico, presiona <a href="javascript:void(0)" id="emailme" data-toggle="modal" data-target="#myModal">aqu&iacute;</a>.</p>
 
 
 
@@ -68,4 +66,5 @@ Para consultar las horas reservadas, haz click <a href="<?php echo base_url("con
       </form>
     </div>
   </div>
+</div>
 </div>
