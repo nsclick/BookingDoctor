@@ -150,8 +150,11 @@ class Timebooking {
 			'Clave_Paciente'		=> $password
 		);
 		
-		$result = $this->call('WM_LogeoPaciente', $params);
-		$xmlObject = $this->_xml2Object($result['WM_LogeoPacienteResult']);
+//		$result = $this->call('WM_LogeoPaciente', $params);
+//		$xmlObject = $this->_xml2Object($result['WM_LogeoPacienteResult']);
+//TODO: Remove this line simulating connections
+		$xmlObject = $this->_xml2Object('<XML><LogeoPaciente><InformacionLogeo><ESTADO>S</ESTADO><DESC_ESTADO>PACIENTE LOGEADO CORRECTAMENTE</DESC_ESTADO><CLAVE_TEMP>0</CLAVE_TEMP><ID_AMBULATORIO>3134429</ID_AMBULATORIO><NOMBRE_PACIENTE>MORIAL</NOMBRE_PACIENTE><APEPAT_PACIENTE>MARQUEZ</APEPAT_PACIENTE><APEMAT_PACIENTE>CHANAL</APEMAT_PACIENTE></InformacionLogeo></LogeoPaciente><Error><Error_Cod>0</Error_Cod><ErrorDesc>SIN ERRORES</ErrorDesc></Error></XML>');
+		
 		
 		if($xmlObject->Error->Error_Cod != 0){
 			$this->error = $xmlObject->Error->ErrorDesc;
@@ -406,7 +409,7 @@ class Timebooking {
 			'Accion' => 'I',
 			'Cod_Empresa' => $this->companyID,
 			'Cod_Sucursal' => $this->branchID,
-			'Id_Ambulatorio' => '1111111',
+			'Id_Ambulatorio' => '11111111',
 			'Estado' => 'D'
 		);
 		
@@ -421,8 +424,7 @@ class Timebooking {
 			$params[$field] = ($field != 'Clave_Usuario') ? strtoupper($value) : $value;
 		}	
 		
-		//echo '<pre>',print_r($params),'</pre>';
-		
+		//debug_var($params);
 		$result = $this->registerUser($params);
 		
 		if(!$result){
@@ -439,6 +441,25 @@ class Timebooking {
 	
 	private function registerUser($params){
 		$result = $this->call('WM_MantUsuario', $params);
+		
+		//TODO: Remove this assignation 
+		$result['WM_MantUsuarioResult'] = '<XML>
+					<MantUsuarios>
+						<Datos>
+							<ESTADO>S</ESTADO>
+							<DESC_ESTADO>GRABACION NUEVO REGISTRO WEB EXITOSA</DESC_ESTADO>
+							<ID_AMB_INGRESO>3061476</ID_AMB_INGRESO>
+						</Datos>
+					</MantUsuarios>
+					<Mensaje>
+						<CodMensaje>3</CodMensaje>
+						<DescMensaje></DescMensaje>
+					</Mensaje>
+					<Error>
+						<Error_Cod>0</Error_Cod>
+						<ErrorDesc>SIN ERRORES</ErrorDesc>
+					</Error>
+				</XML>';
 		
 		if(!$result){
 			return false;

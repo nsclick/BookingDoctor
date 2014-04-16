@@ -5,7 +5,9 @@ $(function() {
 	});
 
 
-	jQuery("#registro").validationEngine('attach', {promptPosition:"inline", scroll:true});
+	jQuery("#registro1").validationEngine('attach', {promptPosition:"inline", scroll:false});
+	jQuery("#registro2").validationEngine('attach', {promptPosition:"inline", scroll:false});
+	jQuery("#registro3").validationEngine('attach', {promptPosition:"inline", scroll:false});
 
 	$.getJSON(base_url + "assets/js/comunas.json", function(data) {
 		var items = [];
@@ -33,21 +35,21 @@ $(function() {
 
 	$('.space1 .sgte').click(function() {
 		
-		alert( $("#Fechanac_Paciente").validationEngine('validate') );
-		$('#Fechanac_Paciente').validationEngine('showPrompt', 'This a custom msg');
-		return true;
-		
-		$('.space1').removeClass('tabactive');
-    	$('.space2').addClass('tabactive');
-    	$('.taba').removeClass('tabactive');
-    	$('.tabb').addClass('tabactive');
+		if( $("#registro1").validationEngine('validate') ){
+			$('.space1').removeClass('tabactive');
+			$('.space2').addClass('tabactive');
+			$('.taba').removeClass('tabactive');
+			$('.tabb').addClass('tabactive');		
+		}		
 	});
 	
 	$('.space2 .sgte').click(function() {
-		$('.space2').removeClass('tabactive');
-    	$('.space3').addClass('tabactive');
-    	$('.tabb').removeClass('tabactive');
-    	$('.tabc').addClass('tabactive');
+		if( $("#registro2").validationEngine('validate') ){
+			$('.space2').removeClass('tabactive');
+			$('.space3').addClass('tabactive');
+			$('.tabb').removeClass('tabactive');
+			$('.tabc').addClass('tabactive');
+		}
 	});
 	$('.space2 .ante').click(function() {
 		$('.space2').removeClass('tabactive');
@@ -57,15 +59,42 @@ $(function() {
 	});
 	$('.space3 .ante').click(function() {
 		$('.space3').removeClass('tabactive');
-    	$('.space2').addClass('tabactive');
-    	$('.tabc').removeClass('tabactive');
-    	$('.tabb').addClass('tabactive');
+		$('.space2').addClass('tabactive');
+		$('.tabc').removeClass('tabactive');
+		$('.tabb').addClass('tabactive');
 	});
-	/*$('.space3 .fin').click(function() {
-    	$('.enviando').fadeIn('1500');
-    	setTimeout(function() { $(".enviando p.uno").fadeIn(1500); })
-    	setTimeout(function() { $(".enviando p.uno").fadeOut(1500); }, 3000)
-    	setTimeout(function() { $(".enviando p.dos").fadeIn(1500); }, 4500)
-	});*/
+	
+	$('.space3 .fin').click(function(e) {
+		if( $("#registro3").validationEngine('validate') ){
+			
+			$('.enviando').fadeIn('1500');
+			$(".enviando p.uno").fadeIn();
+			
+			//Sending data
+			var queryString1 = $('#registro1').formSerialize(); 
+			var queryString2 = $('#registro2').formSerialize(); 
+			var queryString3 = $('#registro3').formSerialize(); 
+			var queryString = queryString1 + '&' + queryString2 + '&' + queryString3;
+			
+			$.post(site_url + '/registro/guardar', queryString,function( data ) {
+				//console.log( data ); // 2pm
+				if(data.state){
+					$(".enviando p.uno").fadeOut();
+					$(".enviando p.dos").html('Error al crear el registro, intente mas tarde.');
+					$(".enviando p.dos").fadeIn(1500);
+					//setTimeout(function() { $(".enviando").fadeOut(1500); }, 4000);
+					//$(".enviando p.dos").fadeOut();
+					return false;
+				}
+				
+				$(".enviando p.uno").fadeOut(1500);
+				setTimeout(function() { $(".enviando p.dos").fadeIn(1500); }, 1500);
+			}, "json"); 
+
+			//setTimeout(function() { $(".enviando p.uno").fadeIn(1500); })
+			//setTimeout(function() { $(".enviando p.uno").fadeOut(1500); }, 3000)
+			//setTimeout(function() { $(".enviando p.dos").fadeIn(1500); }, 4500)
+		}
+	});
 
 });

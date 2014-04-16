@@ -15,14 +15,15 @@ class Patient_model extends CI_Model {
 	
 	function login($rut, $dv, $password){	
 		$result = $this->timebooking->userLogin($rut, $dv, $password);
+		
 		if(!$result){
 			$this->error = $this->timebooking->getError();
 			return false;
 		}
 		
 		$sessionData = array(
-			'tmpKey' => $result->tmpKey,
-			'ambulatoryID' => $result->ambulatoryID,
+			'tmpKey' => (string) $result->tmpKey,
+			'ambulatoryID' => (string) $result->ambulatoryID,
 			'rut' => $rut. '-' . $dv
 		);
 		

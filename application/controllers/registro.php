@@ -29,6 +29,7 @@ class Registro extends CI_Controller {
 		$this->template->add_js('assets/js/jquery.validationEngine-es.js');
 		$this->template->add_js('assets/js/jquery.Rut.js');
 		$this->template->add_js('assets/third_party/bootstrap/js/bootstrap3-typeahead.js');
+		$this->template->add_js('assets/js/jquery.form.min.js');
 		$this->template->add_js('assets/js/registro.js');
 		
 		$this->template->add_css('assets/css/validationEngine.jquery.css');
@@ -86,10 +87,10 @@ class Registro extends CI_Controller {
 		
 		$result = $this->patient->create($data);
 		if(!$result){
-			echo $this->patient->getError();
+			echo json_encode( array('state' => false, 'message' => $this->patient->getError() ) );
+			die();
 		}
 		
-		//echo '<pre>',var_dump($result),'</pre>';
-		//$this->index();
+		die(json_encode( array('state' => true, 'message' => '' ) ));
 	}
 }

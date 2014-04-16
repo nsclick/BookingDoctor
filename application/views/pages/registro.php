@@ -16,9 +16,9 @@ fecha de inicio inicio de la agenda desde donde donde inicias
  
 
 <div class="registrotabs">
-	<h2 class="tab1 taba tabactive">Información <br /> Personal</h2>
-	<h2 class="tab1 tabb">Información <br /> de Contacto</h2>
-	<h2 class="tab1 tabc">Configuraci&oacute;n <br /> de Seguridad</h2>
+	<h2 class="tab1 taba tabactive">Datos <br /> Personales</h2>
+	<h2 class="tab1 tabb">Datos <br /> Contacto</h2>
+	<h2 class="tab1 tabc">Datos <br /> Seguridad</h2>
 	<div class="divclear">&nbsp;</div>
 
 	<!-- Block 1 -->
@@ -58,21 +58,21 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 	  	</div> 
 	  	<div class="form-group">
 		    <label for="Ciudad_Paciente">Ciudad</label>
-	    	<input type="text" class="form-control validate[required]" id="Ciudad_Paciente" name="Ciudad_Pacient" placeholder="Ingrese la cuidad" value="<?php echo set_value('Ciudad_Pacient'); ?>">
+	    	<input type="text" class="form-control validate[required]" id="Ciudad_Paciente" name="Ciudad_Paciente" placeholder="Ingrese la cuidad" value="<?php echo set_value('Ciudad_Pacient'); ?>">
 	  	</div> 
 	  	<div class="form-group">
 	    	<label>Sexo</label><br>
 			<label class="radio-inline">
-		  		<input type="radio" id="Sexo_Paciente" name="Sexo_Paciente" value="M" <?php echo set_radio('Sexo_Paciente', 'M'); ?>> Masculuno
+		  		<input type="radio" class="validate[required]" id="Sexo_Paciente" name="Sexo_Paciente" value="M" <?php echo set_radio('Sexo_Paciente', 'M'); ?>> Masculuno
 			</label>
 			<label class="radio-inline">
-		  		<input type="radio" id="Sexo_Paciente" name="Sexo_Paciente" value="F" <?php echo set_radio('Sexo_Paciente', 'F'); ?>> Femenino
+		  		<input type="radio" class="validate[required]" id="Sexo_Paciente" name="Sexo_Paciente" value="F" <?php echo set_radio('Sexo_Paciente', 'F'); ?>> Femenino
 			</label>
 	  	</div> 
 	  	<div class="form-group">
 	    	<label for="Prevision_Paciente">Previsión</label>
 			<select id="Prevision_Paciente" name="Prevision_Paciente" class="form-control validate[required]">
-				<option value="" <?php echo set_select('Prevision_Paciente', '', TRUE); ?>>-- SELECCIONE --</option>
+				<option value="" <?php echo set_select('Prevision_Paciente', '', TRUE); ?>></option>
 				<?php foreach($medical_services as $id => $name): ?>
 				<option value="<?php echo $id ?>" <?php echo set_select('Prevision_Paciente', $id); ?> ><?php echo $name ?></option>
 				<?php endforeach; ?>
@@ -125,7 +125,7 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 	      	<div class="row">
 				<div class="col-lg-4">
 					<select class="form-control" id="PrefMovil1" name="PrefMovil1">
-						<option value="2" selected="selected">9</option>
+						<option value="9" selected="selected">9</option>
 					</select>
 				</div>
 				<div class="col-lg-8">
@@ -138,7 +138,7 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 	      	<div class="row">
 				<div class="col-lg-4">
 					<select class="form-control" id="PrefMovil2" name="PrefMovil2">
-						<option value="2" selected="selected">9</option>
+						<option value="9" selected="selected">9</option>
 					</select>
 				</div>
 				<div class="col-lg-8">
@@ -179,10 +179,10 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 	  	<div class="form-group">
 		    <label style="font-weight:normal">¿Quisiera recibir información de la clínica Dávila?</label>
 			<label class="radio-inline">
-		  		<input type="radio" name="Op_InfoClinica" value="S" <?php echo set_radio('Op_InfoClinica', 'S', TRUE); ?>> Si
+		  		<input type="radio" class="validate[required]" name="Op_InfoClinica" value="S" <?php echo set_radio('Op_InfoClinica', 'S', TRUE); ?>> Si
 			</label>
 			<label class="radio-inline">
-		  		<input type="radio" name="Op_InfoClinica" value="N" <?php echo set_radio('Op_InfoClinica', 'N'); ?>> No
+		  		<input type="radio" class="validate[required]" name="Op_InfoClinica" value="N" <?php echo set_radio('Op_InfoClinica', 'N'); ?>> No
 			</label>
 	  	</div>
 	  	<div class="divclear">&nbsp;</div>
@@ -213,14 +213,14 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 	  	</div> 
 	  	<div class="form-group">
 	    	<label for="RespuestaClave">Respuesta</label>
-	    	<input type="text" class="form-control validate[required]" id="RespuestaClave" placeholder="RespuestaClave" value="<?php echo set_value('RespuestaClave'); ?>" data-prompt-position="inline"/>
+	    	<input type="text" class="form-control validate[required]" id="RespuestaClave" name="RespuestaClave" placeholder="Ingrese su respuesta clave" value="<?php echo set_value('RespuestaClave'); ?>" />
 	  	</div>
 	  	<div class="divclear">&nbsp;</div>
 	  	<div class="btnspace">
 	  		<button type="button" class="btn btn-primary ante">Anterior</button>
-	  		<button type="submit" class="btn btn-primary fin">Finalizar</button>
+	  		<button type="button" class="btn btn-primary fin">Finalizar</button>
 	  	</div>
   	</div>
-  	<div class="enviando"><p class="uno">Enviando su registro.</p><p class="dos">Enviado</p></div>
+  	<div class="enviando"><p class="uno">Enviando su registro...</p><p class="dos">Enviado</p></div>
 </div>
 </form>
