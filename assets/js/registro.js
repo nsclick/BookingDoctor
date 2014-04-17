@@ -77,17 +77,17 @@ $(function() {
 			var queryString = queryString1 + '&' + queryString2 + '&' + queryString3;
 			
 			$.post(site_url + '/registro/guardar', queryString,function( data ) {
-				//console.log( data ); // 2pm
-				if(data.state){
-					$(".enviando p.uno").fadeOut();
-					$(".enviando p.dos").html('Error al crear el registro, intente mas tarde.');
-					$(".enviando p.dos").fadeIn(1500);
-					//setTimeout(function() { $(".enviando").fadeOut(1500); }, 4000);
-					//$(".enviando p.dos").fadeOut();
+				$(".enviando p.uno").fadeOut();
+				if(!data.state){
+					$(".enviando p.error").html('Error al crear el registro, intente mas tarde.');
+					$(".enviando p.error").fadeIn(1500);
+					setTimeout(function() { 
+						$(".enviando p.error").fadeOut();
+						$(".enviando").fadeOut(1500); 
+					}, 4000);
 					return false;
 				}
 				
-				$(".enviando p.uno").fadeOut(1500);
 				setTimeout(function() { $(".enviando p.dos").fadeIn(1500); }, 1500);
 			}, "json"); 
 

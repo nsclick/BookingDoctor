@@ -19,8 +19,9 @@ h2.tab1.tabactive:after{border-left:12px solid #ddd}
 .tabspace.tabactive{display:block!important}
 .btnspace{text-align:right}
 .enviando{background-color:rgba(255,255,255,0.8);position:absolute;height:100%;width:100%;display:none;top:0}
-.enviando .uno, .enviando .dos{display:none;text-align:center;font-size:24px;font-weight:bold;width:200px;height:100px;position:absolute;top:50%;left:50%;margin-top:-50px;margin-left:-100px}
+.enviando .uno, .enviando .dos, .enviando .error{display:none;text-align:center;font-size:24px;font-weight:bold;width:200px;height:100px;position:absolute;top:50%;left:50%;margin-top:-50px;margin-left:-100px}
 .enviando1{display:block!important}
+.enviando .error{color: #ff0000}
 .form-group{width:48%;float:left;margin:0 1% 15px 1%}
 .form-group label{margin-bottom:0}
 .container > .navbar-header, .container-fluid > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-collapse{margin:0!important}
