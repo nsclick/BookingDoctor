@@ -26,7 +26,7 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 	<div class="tabspace space1 tabactive">
 		<div class="form-group">
 	    	<label for="rut">RUT*</label>
-	    	<input type="text" class="form-control validate[required]" id="Rut_Paciente" name="Rut_Paciente" placeholder="Ej: 12345678-K" value="<?php echo set_value('Rut_Paciente'); ?>"> 
+	    	<input type="text" class="form-control validate[required,rut]" id="Rut_Paciente" name="Rut_Paciente" placeholder="Ej: 12345678-K" value="<?php echo set_value('Rut_Paciente'); ?>"> 
 	  	</div> 
 	  	<div class="form-group">
 	    	<label for="Fechanac_Paciente">Fecha Nacimiento*</label>
@@ -223,7 +223,7 @@ fecha de inicio inicio de la agenda desde donde donde inicias
   	</div>
   	<div class="enviando">
 		<p class="uno">Enviando su registro...</p>
-		<p class="dos">Registro exitoso!<br/> <a href="<?php echo site_url("home");?>">Ir a Reserva Horas</a> </p>
+		<p class="dos">Registro exitoso!<br/> <a href="<?php echo site_url("buscarmedico");?>">Ir a Reserva Horas</a> </p>
 		<p class="error">Enviado</p>
 	</div>
 </div>

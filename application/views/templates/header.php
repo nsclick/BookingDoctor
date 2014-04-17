@@ -20,11 +20,10 @@
           <ul class="nav navbar-nav">
           	<li><a href="<?php echo site_url("home");?>">Reserva de Horas</a></li>
             <li><a href="<?php echo site_url("consulta/");?>">Consulta de horas</a></li>
-            <?php if(is_array(isset($session_user['userName']))): ?>
             <li><a href="<?php echo site_url("adicionafamilia/");?>">Adicionar familiar</a></li>
-            <?php endif; ?>
             <li><a href="<?php echo site_url("modificardatos/");?>">Modificar datos</a></li>
-            <li><a href="<?php echo site_url("registro/");?>">Registro</a></li>
+            <!-- <li><a href="<?php echo site_url("registro/");?>">Registro</a></li>-->
+            <li><a href="<?php echo site_url("login/logout");?>">Cerrar Sesión</a></li>
             
           </ul>
         </div><!--/.nav-collapse -->

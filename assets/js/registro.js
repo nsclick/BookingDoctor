@@ -4,7 +4,6 @@ $(function() {
 		pickTime : false
 	});
 
-
 	jQuery("#registro1").validationEngine('attach', {promptPosition:"inline", scroll:false});
 	jQuery("#registro2").validationEngine('attach', {promptPosition:"inline", scroll:false});
 	jQuery("#registro3").validationEngine('attach', {promptPosition:"inline", scroll:false});

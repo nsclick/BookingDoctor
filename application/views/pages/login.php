@@ -5,30 +5,36 @@
  * Login form
  */
 ?>
-	
-	<h1>Autenticación de usuario</h1>
-
-	<form method="POST" action="<?php echo base_url("login/");?>" role="form">
-	  <div class="form-group">
-	    <label for="rut">R.U.T</label>
-	    <input type="text" class="form-control" id="rut" name="rut" placeholder="Ingrese su RUT">
-	  </div>
-	  <div class="form-group">
-	    <label for="clave">Clave</label>
-	    <input type="password" class="form-control" id="clave" name="clave" placeholder="Clave">
-	  </div>
-	  <button type="submit" class="btn btn-default">Continuar</button> <a href="<?php echo base_url("recuperarclave/");?>">¿Olvidaste tu clave?</a>
-	  <input type="hidden" name="do_login" value="true">
+<div id="wrapper">
+	<h1>Inicio de Sesi&oacute;n</h1>
+	<?php echo form_open('login/do_login', array('id' => 'login-form')); ?>
+		<div class="form-group">
+			<label for="rut">R.U.T</label>
+			<input type="text" class="form-control validate[required,rut]" id="Rut_PacienteTitular" name="Rut_PacienteTitular" placeholder="Ej: 12345678-K">
+		</div>
+		<div class="form-group">
+			<label for="clave">Clave</label>
+			<input type="password" class="form-control validate[required]" id="Clave_Paciente" name="Clave_Paciente" placeholder="Clave">
+		</div>
+		<div class="form-group final1">
+			
+		</div>
+		<div class="form-group final2">
+			<a href="<?php echo site_url("recuperarclave"); ?>">Recuperar contrase&ntilde;a</a> |
+			<a href="<?php echo site_url("registro"); ?>">Registrarse</a>
+			&nbsp;&nbsp;
+			<button type="button" class="btn btn-default" id="session-start">
+				Continuar
+			</button>
+			<input type="hidden" name="do_login" value="true">
+		</div>
+		<div class="divclear">&nbsp;</div>			
 	</form>
 
-	
-	<br>
-	<div class="container-fluid">		  
-		  <div class="row">
-		  	<div class="col-md-12">Si no estás registrado o aún no has establecido tu clave, ingresa aquí: <a href="<?php echo base_url("registro/");?>">Registro</a></div>
-		  </div>	
-		  
+	<div class="enviando">
+		<p class="uno">Iniciando sesión...</p>
+		<p class="dos">Inicio de sesión exitoso! </p>
+		<p class="error">Fallo el inicio de sesión, Intentelo mas tarde.</p>
 	</div>
-      
-      
-      
+	
+</div>
