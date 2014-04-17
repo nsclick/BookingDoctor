@@ -22,8 +22,9 @@ class Patient_model extends CI_Model {
 		
 		$sessionData = array(
 			'tmpKey' => $result->tmpKey,
-			'ambulatoryID' => $result->ambulatoryID,
-			'rut' => $rut. '-' . $dv
+			'ambulatoryID' => (string) $result->ambulatoryID,
+			'rut' => $rut. '-' . $dv,
+			'userName' => $result->userName
 		);
 		
 		$this->session->set_userdata($sessionData);

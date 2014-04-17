@@ -15,8 +15,13 @@ h2.tab1.tabactive:after{border-left:12px solid #ddd}
 .tabspace.tabactive{display:block!important}
 .btnspace{text-align:right}
 .enviando{background-color:rgba(255,255,255,0.8);position:absolute;height:100%;width:100%;display:none;top:0}
-.enviando .uno, .enviando .dos{display:none;text-align:center;font-size:24px;font-weight:bold;width:200px;height:100px;position:absolute;top:50%;left:50%;margin-top:-50px;margin-left:-100px}
+.enviando .uno, .enviando .dos, .enviando .error{display:none;text-align:center;font-size:24px;font-weight:bold;width:200px;height:100px;position:absolute;top:50%;left:50%;margin-top:-50px;margin-left:-100px}
 .enviando1{display:block!important}
+.enviando .error{color: #ff0000}
+.form-group{width:48%;float:left;margin:0 1% 15px 1%}
+.form-group label{margin-bottom:0}
+.container > .navbar-header, .container-fluid > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-collapse{margin:0!important}
+.navbar-nav{margin:0;width:100%}
 .webhome .form-group{width:100%;float:none;margin:0 0 15px}
 thead{background:#eee}
 tbody tr td{vertical-align:middle;padding:5px;line-height:normal}
@@ -108,3 +113,4 @@ form{background:#eee;padding:15px;margin:0 auto 20px;border-radius:10px;-moz-bor
 .form-group.final{width:98%;float:none;margin:0 1% 5px;text-align:right}
 .form-group.final1{margin:0 1% 5px}
 .form-group.final2{margin:0 1% 5px;text-align:right}
+

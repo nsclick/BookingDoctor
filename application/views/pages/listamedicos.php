@@ -1,6 +1,6 @@
 <div class="listamedicos">
-<h3><? echo $title; ?></h3>
 <h1>Resultados de b&uacute;squeda</h1>
+<h3><? echo $title; ?></h3>
 <button type="button" class="btn btn-default volver"><span class="glyphicon glyphicon-circle-arrow-left"></span> Realizar Nueva B&uacute;squeda</button>
 <?php if(count($doctors)): ?>
 <!--<div class="table-responsive">-->

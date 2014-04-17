@@ -34,11 +34,7 @@
   </div>
 </form>
 
-<p>
-Para anular horas reservadas anteriormente, haz click <a href="<?php echo base_url("anulacion/");?>">aqu&iacute;</a>.<br>
-Para consultar por horas reservadas, haz click <a href="<?php echo base_url("consulta/");?>">aqu&iacute;</a>.
-</p>
-
+<p>Para consultar y anular las horas reservadas anteriormente, haz click <a href="<?php echo site_url("consulta/");?>">aqu&iacute;</a>.</p>
 <p>Para recibir información de Clínica Dávila sobre temas de salud y otros, en tu correo electrónico, presiona <a href="javascript:void(0)" id="emailme" data-toggle="modal" data-target="#myModal">aqu&iacute;</a>.</p>
 
 

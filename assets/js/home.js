@@ -7,7 +7,7 @@ $(function() {
 		$(this).closest("form").submit();
 	});
 		
-	$.getJSON( "assets/js/areas.json", function( data ) {
+	$.getJSON(base_url +  "assets/js/areas.json", function( data ) {
 		var items = [];
 		
 		for(x=0; x < data.length; x++){
