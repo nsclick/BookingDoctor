@@ -1,7 +1,3 @@
-body{margin:0;padding:0}
-h1, .h1, h2, .h2, h3, .h3{margin-top:10px;margin-bottom:20px}
-.navbar-default{margin:0}
-.divclear{clear:both;height:0}
 .btn.btn-default{color:#fff;background-color:#fe9900;border:1px solid #df9421}
 .btn.btn-default:hover{background-color:#df9421;border-color:#fe9900}
 .container{width:100%;padding:0}
@@ -21,10 +17,6 @@ h2.tab1.tabactive:after{border-left:12px solid #ddd}
 .enviando{background-color:rgba(255,255,255,0.8);position:absolute;height:100%;width:100%;display:none;top:0}
 .enviando .uno, .enviando .dos{display:none;text-align:center;font-size:24px;font-weight:bold;width:200px;height:100px;position:absolute;top:50%;left:50%;margin-top:-50px;margin-left:-100px}
 .enviando1{display:block!important}
-.form-group{width:48%;float:left;margin:0 1% 15px 1%}
-.form-group label{margin-bottom:0}
-.container > .navbar-header, .container-fluid > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-collapse{margin:0!important}
-.navbar-nav{margin:0;width:100%}
 .webhome .form-group{width:100%;float:none;margin:0 0 15px}
 thead{background:#eee}
 tbody tr td{vertical-align:middle;padding:5px;line-height:normal}
@@ -64,7 +56,6 @@ tbody tr td{vertical-align:middle;padding:5px;line-height:normal}
 @media (max-width: 1000px){
 	.col-lg-4{width:33.33333333333333%;float:left;position: relative;min-height: 1px;padding-right: 15px;padding-left: 15px;}
 	.col-lg-8{width:66.66666666666666%;float:left;position: relative;min-height: 1px;padding-right: 15px;padding-left: 15px;}
-	.form-group{width:100%!important;float:none;margin:0 0 15px}
 	.col-lg-4{width:33.33333333333333%;float:left;position: relative;min-height: 1px;padding-right: 15px;padding-left: 15px;}
 	.col-lg-8{width:66.66666666666666%;float:left;position: relative;min-height: 1px;padding-right: 15px;padding-left: 15px;}
 }
@@ -97,3 +88,23 @@ tbody tr td{vertical-align:middle;padding:5px;line-height:normal}
 	.agendamed table tbody td a span{display:inline;font-weight:bold;font-size:11px;position:absolute;top:10px;right:10px}
 	.agendamed table tbody td a span.glyphicon{top:12px;right:60px}
 }
+
+
+/*Final*/
+body{margin:0;padding:0;font-family:Tahoma;color:#444;font-size:12px}
+h1, .h1, h2, .h2, h3, .h3{margin-top:10px;margin-bottom:20px;padding:0 5px}
+#wrapper{padding:10px}
+h1{color:#444;font-size:32px}
+.navbar-default{margin:0;background:#eee;color:#444;border-radius:0;border:none}
+.divclear{clear:both;height:0}
+.container > .navbar-header, .container-fluid > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-collapse{margin:0!important}
+.navbar-nav{margin:0;width:100%}
+.navbar-default .navbar-nav > li > a{color:#444;font-weight:bold}
+.navbar-default .navbar-nav > li > a:hover{background:#cccccc}
+.navbar-default .navbar-nav > li > a:active{background:#6fb4ef}
+form{background:#eee;padding:15px;margin:0 auto 20px;border-radius:10px;-moz-border-radius:10px;-ms-border-radius:10px;-webkit-border-radius:10px;border:1px solid #ddd}
+.form-group label{margin-bottom:2px;margin-left:12px}
+.form-group{width:48%;float:left;margin:0 1% 15px 1%}
+.form-group.final{width:98%;float:none;margin:0 1% 5px;text-align:right}
+.form-group.final1{margin:0 1% 5px}
+.form-group.final2{margin:0 1% 5px;text-align:right}
