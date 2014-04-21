@@ -1,3 +1,7 @@
+<?php
+		$session_user = get_session_user();
+		//debug_var($session_user);
+?> 
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -42,9 +46,11 @@
 
   <body role="document">
 	
+	<?php if(isset($session_user['userName'])): ?>
 	<div class="navbar navbar-default" role="navigation">
 	<?php echo $header; ?>
 	</div>
+	<?php endif; ?>
 	
 	<div class="container theme-showcase" role="main">
 	<?php echo $content; ?>

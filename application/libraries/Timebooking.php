@@ -150,10 +150,11 @@ class Timebooking {
 			'Clave_Paciente'		=> $password
 		);
 		
-//		$result = $this->call('WM_LogeoPaciente', $params);
-//		$xmlObject = $this->_xml2Object($result['WM_LogeoPacienteResult']);
+		$result = $this->call('WM_LogeoPaciente', $params);
+
+		$xmlObject = $this->_xml2Object($result['WM_LogeoPacienteResult']);
 //TODO: Remove this line simulating connections
-		$xmlObject = $this->_xml2Object('<XML><LogeoPaciente><InformacionLogeo><ESTADO>S</ESTADO><DESC_ESTADO>PACIENTE LOGEADO CORRECTAMENTE</DESC_ESTADO><CLAVE_TEMP>0</CLAVE_TEMP><ID_AMBULATORIO>3134429</ID_AMBULATORIO><NOMBRE_PACIENTE>MORIAL</NOMBRE_PACIENTE><APEPAT_PACIENTE>MARQUEZ</APEPAT_PACIENTE><APEMAT_PACIENTE>CHANAL</APEMAT_PACIENTE></InformacionLogeo></LogeoPaciente><Error><Error_Cod>0</Error_Cod><ErrorDesc>SIN ERRORES</ErrorDesc></Error></XML>');
+		//$xmlObject = $this->_xml2Object('<XML><LogeoPaciente><InformacionLogeo><ESTADO>S</ESTADO><DESC_ESTADO>PACIENTE LOGEADO CORRECTAMENTE</DESC_ESTADO><CLAVE_TEMP>0</CLAVE_TEMP><ID_AMBULATORIO>3134429</ID_AMBULATORIO><NOMBRE_PACIENTE>MORIAL</NOMBRE_PACIENTE><APEPAT_PACIENTE>MARQUEZ</APEPAT_PACIENTE><APEMAT_PACIENTE>CHANAL</APEMAT_PACIENTE></InformacionLogeo></LogeoPaciente><Error><Error_Cod>0</Error_Cod><ErrorDesc>SIN ERRORES</ErrorDesc></Error></XML>');
 		
 		
 		if($xmlObject->Error->Error_Cod != 0){
@@ -163,9 +164,17 @@ class Timebooking {
 		
 		$loginData = new stdClass();
 		$loginData->state = (string) $xmlObject->LogeoPaciente->InformacionLogeo->ESTADO;
-		$loginData->stateName = $xmlObject->LogeoPaciente->InformacionLogeo->DESC_ESTADO;
-		$loginData->tmpKey = $xmlObject->LogeoPaciente->InformacionLogeo->CLAVE_TEMP;
-		$loginData->ambulatoryID = $xmlObject->LogeoPaciente->InformacionLogeo->ID_AMBULATORIO;
+		if($loginData->state == 'NE'){
+			$this->error = 'NE';
+			return false;
+		}
+		
+		$loginData->stateName = (string) $xmlObject->LogeoPaciente->InformacionLogeo->DESC_ESTADO;
+		$loginData->tmpKey = (int) $xmlObject->LogeoPaciente->InformacionLogeo->CLAVE_TEMP;
+		$loginData->ambulatoryID = (int) $xmlObject->LogeoPaciente->InformacionLogeo->ID_AMBULATORIO;
+		$loginData->userName = (string) ucwords(strtolower($xmlObject->LogeoPaciente->InformacionLogeo->NOMBRE_PACIENTE . ' ' . 
+		$xmlObject->LogeoPaciente->InformacionLogeo->APEPAT_PACIENTE . ' ' .
+		$xmlObject->LogeoPaciente->InformacionLogeo->APEMAT_PACIENTE));
 		
 		return $loginData;
 	}
