@@ -79,8 +79,9 @@
 	ob_clean();
 	$this->template->add_js( $agenda_days_script, 'embed' );
 ?>
+<div id="wrapper">
 <div class="agendamed">
-	<h1>Horas Disponibles</h1>
+	<h2><b>Paso 4: </b>Seleccione la hora de la consulta.</h2>
 	<button type="button" class="btn btn-default volver"><span class="glyphicon glyphicon-circle-arrow-left"></span> Volver a Resultados</button>
 	<h4>Nombre del Doctor</h4>
 	<p>A continuaci&oacute;n se muestras las horas disponbles para el profesional seleccionado. Puede ver los d&iacute;as disponibles en el men&uacute; despleglable. <b>Se muestran exclusivamente los d&iacute;as y horas disponibles.</b></p>
@@ -124,3 +125,4 @@
 
 	});
 </script>
+</div>

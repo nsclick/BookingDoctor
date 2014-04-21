@@ -32,38 +32,38 @@ $(function() {
 
 	});
 
-	$('.space1 .sgte').click(function() {
+	$('#sgte1').click(function() {
 		
 		if( $("#registro1").validationEngine('validate') ){
-			$('.space1').removeClass('tabactive');
-			$('.space2').addClass('tabactive');
+			$('#registro1').removeClass('tabactive');
+			$('#registro2').addClass('tabactive');
 			$('.taba').removeClass('tabactive');
 			$('.tabb').addClass('tabactive');		
 		}		
 	});
 	
-	$('.space2 .sgte').click(function() {
+	$('#sgte2').click(function() {
 		if( $("#registro2").validationEngine('validate') ){
-			$('.space2').removeClass('tabactive');
-			$('.space3').addClass('tabactive');
+			$('#registro2').removeClass('tabactive');
+			$('#registro3').addClass('tabactive');
 			$('.tabb').removeClass('tabactive');
 			$('.tabc').addClass('tabactive');
 		}
 	});
-	$('.space2 .ante').click(function() {
-		$('.space2').removeClass('tabactive');
-    	$('.space1').addClass('tabactive');
+	$('#ante2').click(function() {
+		$('#registro2').removeClass('tabactive');
+    	$('#registro1').addClass('tabactive');
     	$('.tabb').removeClass('tabactive');
     	$('.taba').addClass('tabactive');
 	});
-	$('.space3 .ante').click(function() {
-		$('.space3').removeClass('tabactive');
-		$('.space2').addClass('tabactive');
+	$('#ante3').click(function() {
+		$('#registro3').removeClass('tabactive');
+		$('#registro2').addClass('tabactive');
 		$('.tabc').removeClass('tabactive');
 		$('.tabb').addClass('tabactive');
 	});
 	
-	$('.space3 .fin').click(function(e) {
+	$('#fin3').click(function(e) {
 		if( $("#registro3").validationEngine('validate') ){
 			
 			$('.enviando').fadeIn('1500');

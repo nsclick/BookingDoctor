@@ -55,6 +55,16 @@ class Agenda extends CI_Controller {
 			exit;
 		}
 	}
+	
+	public function confirmacion() {
+		$this->template->write ( 'title', $this->title );
+		$this->template->add_css ( 'assets/vendor/calendarjs/css/calendar.min.css' );
+		$this->template->add_js ( 'assets/vendor/underscore/underscore-min.js' );
+			
+		$this->template->write_view ( 'header', 'templates/header' );
+		$this->template->write_view ( 'content', 'pages/agenda-confirmacion');
+		$this->template->render ();
+	}
 
 
 }

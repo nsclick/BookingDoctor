@@ -23,8 +23,8 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 	<div class="divclear">&nbsp;</div>
 
 	<!-- Block 1 -->
-	<?php echo form_open('registro1', array('id' => 'registro1')); ?>
-	<div class="tabspace space1 tabactive">
+	<?php echo form_open('registro1', array('id' => 'registro1', 'class' => 'tabactive')); ?>
+	<div class="tabspace space1">
 		<div class="form-group">
 	    	<label for="rut">RUT*</label>
 	    	<input type="text" class="form-control validate[required,rut]" id="Rut_Paciente" name="Rut_Paciente" placeholder="Ej: 12345678-K" value="<?php echo set_value('Rut_Paciente'); ?>"> 
@@ -81,7 +81,7 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 	  	</div>
 	  	<div class="divclear">&nbsp;</div>
 	  	<div class="btnspace">
-	  		<button type="button" class="btn btn-primary sgte">Siguiente</button>
+	  		<button type="button" class="btn btn-primary sgte" id="sgte1">Siguiente</button>
 	  	</div>
 	</div>
 	</form>
@@ -188,8 +188,8 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 	  	</div>
 	  	<div class="divclear">&nbsp;</div>
 	  	<div class="btnspace">
-		  	<button type="button" class="btn btn-primary ante">Anterior</button>
-		  	<button type="button" class="btn btn-primary sgte">Siguiente</button>
+		  	<button type="button" class="btn btn-primary ante" id="ante2">Anterior</button>
+		  	<button type="button" class="btn btn-primary sgte" id="sgte2">Siguiente</button>
 		</div>
 	</div>
 	</form>
@@ -218,8 +218,8 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 	  	</div>
 	  	<div class="divclear">&nbsp;</div>
 	  	<div class="btnspace">
-	  		<button type="button" class="btn btn-primary ante">Anterior</button>
-	  		<button type="button" class="btn btn-primary fin">Finalizar</button>
+	  		<button type="button" class="btn btn-primary ante" id="sgte3">Anterior</button>
+	  		<button type="button" class="btn btn-primary fin" id="fin3">Finalizar</button>
 	  	</div>
   	</div>
   	<div class="enviando">
