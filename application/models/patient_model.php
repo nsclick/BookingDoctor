@@ -15,7 +15,6 @@ class Patient_model extends CI_Model {
 	
 	function login($rut, $dv, $password){	
 		$result = $this->timebooking->userLogin($rut, $dv, $password);
-
 		if(!$result){
 			$this->error = $this->timebooking->getError();
 			return false;
@@ -30,6 +29,12 @@ class Patient_model extends CI_Model {
 		
 		$this->session->set_userdata($sessionData);
 		return true;
+	}
+
+	function is_logged_in () {
+		$tmpKey = $this->session->userdata ( 'tmpKey' );
+		
+		 return !empty ( $tmpKey );
 	}
 	
 	function create($data){
