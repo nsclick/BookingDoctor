@@ -1,3 +1,4 @@
+<div id="wrapper">
 <h1>Registro</h1>
 
 <!-- cada tres caracteres es un dia.
@@ -224,3 +225,4 @@ fecha de inicio inicio de la agenda desde donde donde inicias
   	<div class="enviando"><p class="uno">Enviando su registro...</p><p class="dos">Enviado</p></div>
 </div>
 </form>
+</div>

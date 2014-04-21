@@ -1,6 +1,5 @@
 .btn.btn-default{color:#fff;background-color:#fe9900;border:1px solid #df9421}
 .btn.btn-default:hover{background-color:#df9421;border-color:#fe9900}
-.container{width:100%;padding:0}
 .registrotabs{width:100%;position:relative}
 .navbar-collapse.collapse{padding:0}
 h2.tab1{display:block;float:left;width:29%;background:#eee;padding:5px 10px;margin:0;text-align:center;color:#888;font-size:18px;position:relative;height:50px}
@@ -11,7 +10,6 @@ h2.tab1:before{width:0px;height:0px;border-top:25px solid #eee;border-bottom:25p
 h2.tab1:after{width:0;height:0;border-top:25px solid transparent;border-bottom:25px solid transparent;border-left:12px solid #eee;position:absolute;content:"";top:0px;right:-12px}
 h2.tab1.tabactive:before{border-top:25px solid #ddd;border-bottom:25px solid #ddd}
 h2.tab1.tabactive:after{border-left:12px solid #ddd}
-.tabspace{background:#ddd;padding:20px;color:#333;display:none;margin-top:10px}
 .tabspace.tabactive{display:block!important}
 .btnspace{text-align:right}
 .enviando{background-color:rgba(255,255,255,0.8);position:absolute;height:100%;width:100%;display:none;top:0}
@@ -88,13 +86,12 @@ tbody tr td{vertical-align:middle;padding:5px;line-height:normal}
 	.agendamed table tbody td a span{display:inline;font-weight:bold;font-size:11px;position:absolute;top:10px;right:10px}
 	.agendamed table tbody td a span.glyphicon{top:12px;right:60px}
 }
-
-
 /*Final*/
 body{margin:0;padding:0;font-family:Tahoma;color:#444;font-size:12px}
 h1, .h1, h2, .h2, h3, .h3{margin-top:10px;margin-bottom:20px;padding:0 5px}
 #wrapper{padding:10px}
 h1{color:#444;font-size:32px}
+.container{width:100%;padding:0}
 .navbar-default{margin:0;background:#eee;color:#444;border-radius:0;border:none}
 .divclear{clear:both;height:0}
 .container > .navbar-header, .container-fluid > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-collapse{margin:0!important}
@@ -108,3 +105,4 @@ form{background:#eee;padding:15px;margin:0 auto 20px;border-radius:10px;-moz-bor
 .form-group.final{width:98%;float:none;margin:0 1% 5px;text-align:right}
 .form-group.final1{margin:0 1% 5px}
 .form-group.final2{margin:0 1% 5px;text-align:right}
+.tabspace{display:none}
