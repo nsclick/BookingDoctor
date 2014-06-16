@@ -12,6 +12,33 @@ class Agenda extends CI_Controller {
 	}
 
 	public function index () {
+		
+		//TODO: Load the available dates and times
+		$dates = array(
+			'04-08-2014' => array(
+				'16:45',
+				'17:00',
+				'17:15',
+				'17:30',
+			),
+			'06-08-2014' => array(
+				'13:15',
+				'13:30',
+				'13:45',
+				'14:00',
+				'14:15'
+			),
+			'07-08-2014' => array(
+				'13:15',
+				'13:30',
+				'13:45',
+				'14:00',
+				'14:15'
+			),
+		);
+		$this->page_params['available_dates'] = $dates;
+		
+		
 		$this->render();
 	}
 
@@ -24,14 +51,14 @@ class Agenda extends CI_Controller {
 		$this->template->write ( 'title', $this->title );
 
 		// $this->template->add_js ( 'assets/third_party/bootstrap/js/bootstrap3-typeahead.js' );
-		$this->template->add_css ( 'assets/vendor/calendarjs/css/calendar.min.css' );
-		$this->template->add_js ( 'assets/vendor/underscore/underscore-min.js' );
-		$this->template->add_js ( 'assets/vendor/calendarjs/js/language/es-ES.js' );
-		$this->template->add_js ( 'assets/vendor/calendarjs/js/calendar.js' );
-		$this->template->add_css ( 'assets/vendor/calendarjs/js/calendar.js' );
+		//$this->template->add_css ( 'assets/vendor/calendarjs/css/calendar.min.css' );
+		//$this->template->add_js ( 'assets/vendor/underscore/underscore-min.js' );
+		//$this->template->add_js ( 'assets/vendor/calendarjs/js/language/es-ES.js' );
+		//$this->template->add_js ( 'assets/vendor/calendarjs/js/calendar.js' );
+		//$this->template->add_css ( 'assets/vendor/calendarjs/js/calendar.js' );
 		
 		$this->template->add_js ( 'assets/js/agenda.js' );
-		$this->template->add_css ( 'assets/css/agenda.css' );
+		//$this->template->add_css ( 'assets/css/agenda.css' );
 		
 		$this->template->write_view ( 'header', 'templates/header', $this->page_params, TRUE );
 		$this->template->write_view ( 'content', 'pages/agenda', $this->page_params, TRUE );

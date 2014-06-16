@@ -26,4 +26,6 @@ $config['medical_services'] = array(
 	'10001' => 'PARTICULAR'
 );
 
+$config['dias'] = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+$config['meses'] = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 ?>

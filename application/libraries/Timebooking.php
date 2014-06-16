@@ -11,8 +11,8 @@ class Timebooking {
 	 * @var string
 	 * @access private
 	 */
-	private $host = 'http://reservas.davila.cl/Age_Ws_Reserva_Horas_demo/ResHoraWeb.asmx?wsdl';
-//	private $host = 'http://reservas.davila.cl/Ws_ReservaHorasWeb/ResHoraWeb/ResHoraWeb.asmx?wsdl';
+//	private $host = 'http://reservas.davila.cl/Age_Ws_Reserva_Horas_demo/ResHoraWeb.asmx?wsdl';
+	private $host = 'http://reservas.davila.cl/Ws_ReservaHorasWeb/ResHoraWeb/ResHoraWeb.asmx?wsdl';
 	
 	/**
 	 * Whether uses WSDL
@@ -537,6 +537,18 @@ class Timebooking {
 		}
 		
 		return $userData;
+		
+	}
+
+	/**
+	 * Get available dates by a doctor
+	 * 
+	 * @access public
+	 * @param array $data [rut, dv]
+	 * @param int id_ambulatorio
+	 */	
+	 
+	function getAvailableDatesByDoctor(){
 		
 	}
 }

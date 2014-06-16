@@ -6,13 +6,14 @@
  */
 ?>
 <?php
+
+/*
 	// var_dump($agenda['pfa']);
 	$t = strtotime( substr($agenda['pfa'], 0, 16) );
 	$d = date('Y m d h:i:s', $t);
 
 	$agenda_days = array();
-?>
-<?php
+
 	$splitted_agenda_strings = str_split ( $agenda['a'], 3 );
 
 	// var_dump(count($splitted_agenda_strings));
@@ -44,9 +45,15 @@
 			//var_dump($agenda_days[$index]);
 	}
 
-	ob_start();
+	//TODO: Remover esto es temporal
+	*/
+	
+	$this->config->item('item name');
+	
+	
+	//ob_start();
 ?>
-	(function(w, $, undefined) {
+<!--	(function(w, $, undefined) {
 		w.calendar_agenda_days = <?php echo json_encode($agenda_days); ?>;
 		
 		w.getProfesionalAgenda = function(data, fn) {
@@ -73,11 +80,15 @@
 			})
 		};
 
-	})(window, jQuery);
+	})(window, jQuery);-->
 <?php
-	$agenda_days_script = ob_get_contents();
-	ob_clean();
-	$this->template->add_js( $agenda_days_script, 'embed' );
+//	$agenda_days_script = ob_get_contents();
+//	ob_clean();
+//	$this->template->add_js( $agenda_days_script, 'embed' );
+
+$days = $this->config->item('dias');
+$months = $this->config->item('meses');
+
 ?>
 <div id="wrapper">
 <div class="agendamed">
@@ -89,15 +100,23 @@
 		<thead>
   			<tr>
      			<th>
-     				<select>
-						<option value="volvo">Lunes 17 de Abril</option>
-					  	<option value="saab">Martes 18 de Abril</option>
-					  	<option value="mercedes">Jueves 20 de Abril</option>
+     				<select name="available-days">
+						<?php foreach($available_dates as $date => $times): ?>
+						<?php
+							$mday = date('w', strtotime($date));
+							$day = date('d', strtotime($date));
+							$month = date('n', strtotime($date));
+							$fdate = $days[$mday]." ".$day." de ".$months[$month-1]. " del ".date('Y') ;
+						?>
+						<option value="<?php echo $date?>"><?php echo $fdate ?></option>
+						<?php endforeach; ?>
 					</select>
 				</th>
   			</tr>
  		</thead>
  		<tbody>
+			<?php foreach($available_dates as $date => $times): ?>
+			<?php endforeach; ?>
   			<tr>
      			<td><a href="#">14:00 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
      		</tr>			<tr>
@@ -116,13 +135,4 @@
 	</table>
 	<button type="button" class="btn btn-default volver"><span class="glyphicon glyphicon-circle-arrow-left"></span> Volver a Resultados</button>
 </div>
-<script>
-	$( document ).ready(function() {
-		
-		$( '.volver' ).click(function (e){ 
-			window.history.back();
-		});
-
-	});
-</script>
 </div>
