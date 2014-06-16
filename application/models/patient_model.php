@@ -23,7 +23,8 @@ class Patient_model extends CI_Model {
 		$sessionData = array(
 			'tmpKey' => $result->tmpKey,
 			'ambulatoryID' => (string) $result->ambulatoryID,
-			'rut' => $rut. '-' . $dv,
+			'rut' => $rut ,
+			'dv' => $dv,
 			'userName' => $result->userName
 		);
 		
@@ -64,5 +65,15 @@ class Patient_model extends CI_Model {
 		$this->session->set_userdata('userName', "{$data['Nombre_Paciente']} {$data['Apepat_Paciente']} {$data['Apemat_Paciente']}");
 		
 		return true;
+	}
+	
+	function get($rut, $dv){
+		$result = $this->timebooking->getUserInfo( array( 'rut' => $rut, 'dv' => $dv ) );
+		if(!$result){
+			$this->error = $this->timebooking->getError();
+			return false;
+		}
+		
+		return $result;
 	}
 }

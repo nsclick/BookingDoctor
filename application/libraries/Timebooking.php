@@ -152,9 +152,9 @@ class Timebooking {
 		
 		$result = $this->call('WM_LogeoPaciente', $params);
 
-		$xmlObject = $this->_xml2Object($result['WM_LogeoPacienteResult']);
+		//$xmlObject = $this->_xml2Object($result['WM_LogeoPacienteResult']);
 //TODO: Remove this line simulating connections
-		//$xmlObject = $this->_xml2Object('<XML><LogeoPaciente><InformacionLogeo><ESTADO>S</ESTADO><DESC_ESTADO>PACIENTE LOGEADO CORRECTAMENTE</DESC_ESTADO><CLAVE_TEMP>0</CLAVE_TEMP><ID_AMBULATORIO>3134429</ID_AMBULATORIO><NOMBRE_PACIENTE>MORIAL</NOMBRE_PACIENTE><APEPAT_PACIENTE>MARQUEZ</APEPAT_PACIENTE><APEMAT_PACIENTE>CHANAL</APEMAT_PACIENTE></InformacionLogeo></LogeoPaciente><Error><Error_Cod>0</Error_Cod><ErrorDesc>SIN ERRORES</ErrorDesc></Error></XML>');
+		$xmlObject = $this->_xml2Object('<XML><LogeoPaciente><InformacionLogeo><ESTADO>S</ESTADO><DESC_ESTADO>PACIENTE LOGEADO CORRECTAMENTE</DESC_ESTADO><CLAVE_TEMP>0</CLAVE_TEMP><ID_AMBULATORIO>3134429</ID_AMBULATORIO><NOMBRE_PACIENTE>MORIAL</NOMBRE_PACIENTE><APEPAT_PACIENTE>MARQUEZ</APEPAT_PACIENTE><APEMAT_PACIENTE>CHANAL</APEMAT_PACIENTE></InformacionLogeo></LogeoPaciente><Error><Error_Cod>0</Error_Cod><ErrorDesc>SIN ERRORES</ErrorDesc></Error></XML>');
 		
 		
 		if($xmlObject->Error->Error_Cod != 0){
@@ -494,10 +494,50 @@ class Timebooking {
 	 */	
 	private function updateMessagingOptions($data){
 		
-		$result = $this->call('WM_MantUsuario', $params);
+		$result = $this->call('WM_ActualizaOpcionesMensajeria', $params);
 		
 	}
-	
-		//WM_ActualizaOpcionesMensajeria
+
+	/**
+	 * Get the user data
+	 * 
+	 * @access public
+	 * @param array $data [rut, dv]
+	 * @param int id_ambulatorio
+	 */	
+	public function getUserInfo($data){
+
+		$params = array(
+			'Usuario' => $this->webUser,
+			'Accion' => 'I',
+			'Cod_Empresa' => $this->companyID,
+			'Cod_Sucursal' => $this->branchID,
+			'Rut_Paciente' => $data['rut'],
+			'Dv_Paciente' => $data['dv']
+		);
+		
+		$result = $this->call('WM_BuscaPacienteTitular', $params);
+		
+		if(!$result){
+			return false;
+		}
+		
+		$xmlObject = $this->_xml2Object($result['WM_BuscaPacienteTitularResult']);
+		
+		
+		$vars = get_object_vars ( $xmlObject->Paciente->DatosPaciente );
+		
+		if($vars['ESTADO'] == 'NE'){
+			$this->error = $vars['DESC_ESTADO'];
+			return false;
+		}
+		
+		foreach($vars as $i => $val){
+			$userData[strtolower($i)] = (string) $val;
+		}
+		
+		return $userData;
+		
+	}
 }
 ?>

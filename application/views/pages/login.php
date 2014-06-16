@@ -23,7 +23,7 @@
 			<a href="<?php echo site_url("recuperarclave"); ?>">Recuperar contrase&ntilde;a</a> |
 			<a href="<?php echo site_url("registro"); ?>">Registrarse</a>
 			&nbsp;&nbsp;
-			<button type="submit" class="btn btn-default" id="session-start">
+			<button type="button" class="btn btn-default" id="session-start">
 				Continuar
 			</button>
 			<input type="hidden" name="do_login" value="true">

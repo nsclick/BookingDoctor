@@ -9,11 +9,7 @@ class Login extends CI_Controller {
 
 	
 	public function index() {
-		$session_user = get_session_user();
-		if(isset($session_user['userName'])){
-			redirect('home');
-		}
-		
+		validate_true_session();		
 		$this->render();
 	}
 	
