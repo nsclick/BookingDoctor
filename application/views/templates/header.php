@@ -3,9 +3,6 @@
 		$session_user = get_session_user();
 		//debug_var($session_user);
 ?>    
-	  <?php if(isset($session_user['userName'])): ?>
-	  <div><?php echo $session_user['userName'] ?></div>
-	  <?php endif; ?>
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -23,7 +20,11 @@
             <li><a href="<?php echo site_url("registro/adicionafamilia/");?>">Adicionar familiar</a></li>
             <li><a href="<?php echo site_url("registro/modificardatos/");?>">Modificar datos</a></li>
             <!-- <li><a href="<?php echo site_url("registro/");?>">Registro</a></li>-->
-            <li><a href="<?php echo site_url("login/logout");?>">Cerrar Sesión</a></li>
+            <li class="navbar-text navbar-right sesion">Hola 
+            <?php if(isset($session_user['userName'])): ?>
+	  			<span><?php echo $session_user['userName'] ?></span>
+	  		<?php endif; ?>
+	  		<a href="<?php echo site_url("login/logout");?>">Cerrar Sesión</a></li>
             
           </ul>
         </div><!--/.nav-collapse -->

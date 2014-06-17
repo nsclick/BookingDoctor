@@ -65,7 +65,9 @@ if(isset($error_msg))debug_var($error_msg)*/ ?>
 			</select>
 	  	</div>
 	  	<div class="divclear">&nbsp;</div>
-	  	<hr />
+	  	<div style="text-align:center"><button type="button" class="btn btn-primary">Guardar Cambios</button></div>
+</form>
+<form>
 	  	<h2>Informaci&oacute;n de Contacto</h2>
 	  	<div class="form-group" style="width:23%">
 	    	<label for="Fono1_Paciente">Teléfono 1</label>
@@ -163,7 +165,9 @@ if(isset($error_msg))debug_var($error_msg)*/ ?>
 			</label>
 	  	</div>
 	  	<div class="divclear">&nbsp;</div>
-	  	<hr />
+	  	<div style="text-align:center"><button type="button" class="btn btn-primary">Guardar Cambios</button></div>
+</form>
+<form>
 	  	<h2>Informaci&oacute;n de Seguridad</h2>
 	  	<p>Modificaci&oacute;n de la contrase&Nu;a de 8 d&iacute;gitos.</p>
 	  	<div class="form-group">

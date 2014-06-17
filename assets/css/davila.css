@@ -74,6 +74,10 @@ form .table{margin:0}
 .btab a{display:block;float:left;padding:10px 20px;background:#ddd;border-radius:10px 10px 0 0;-moz-border-radius:10px 10px 0 0;-webkit-border-radius:10px 10px 0 0;-ms-border-radius:10px 10px 0 0;margin:0 10px -2px;color:#444;text-decoration:none;border:#ddd solid 1px;border-bottom:1px solid #eee}
 .btab a:hover{background:#ccc}
 .btab a.active, .btab a.active:hover{background:#eee}
+.navbar-default .navbar-nav > li.sesion a{display:inline}
+.navbar-default .navbar-nav > li.sesion a:hover{background:none;color:#aaa}
+.agendamed table thead{margin-bottom:10px;display:block}
+.agendamed table thead tr,.agendamed table thead tr th{width:100%;display:block}
 /*desde 768*/
 @media (min-width: 768px){
 	.navbar-brand{display:none}
