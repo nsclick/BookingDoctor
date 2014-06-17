@@ -17,7 +17,6 @@
           <ul class="nav navbar-nav">
           	<li><a href="<?php echo site_url("home");?>">Reserva de Horas</a></li>
             <li><a href="<?php echo site_url("consulta/");?>">Consulta de horas</a></li>
-            <li><a href="<?php echo site_url("registro/adicionafamilia/");?>">Adicionar familiar</a></li>
             <li><a href="<?php echo site_url("registro/modificardatos/");?>">Modificar datos</a></li>
             <!-- <li><a href="<?php echo site_url("registro/");?>">Registro</a></li>-->
             <li class="navbar-text navbar-right sesion">Hola 
