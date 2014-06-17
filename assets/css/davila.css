@@ -6,7 +6,7 @@ tbody tr td{vertical-align:middle;padding:5px;line-height:normal}
 .webhome select,.modificar select{width:100%;padding:10px;color:#555;border:1px solid #ccc;-webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .075);box-shadow;inset 0 1px 1px rgba(0, 0, 0, .075);-webkit-transition:border-color ease-in-out .15s, box-shadow ease-in-out .15s;transition:border-color ease-in-out .15s, box-shadow ease-in-out .15s;border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;-ms-border-radius:4px;}
 .agendamed table thead th{padding:0}
 .agendamed table tbody td{padding:0}
-.agendamed table tbody td a{display:block;padding:8px;text-decoration:none;color:#444}
+.agendamed table tbody td a{display:block;padding:3px;text-decoration:none;color:#444;background:#fff;border:1px solid #ccc;border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;-ms-border-radius:4px;padding:6px 12px}
 .agendamed table tbody td a:hover span{display:inline;font-weight:bold;font-size:11px}
 .agendamed table tbody td a:hover{background:#94c8f4;color:#444}
 .consulta .hora{padding:10px 10px 0 10px;border-radius:10px;-moz-border-radius:10px;-ms-border-radius:10px;-webkit-border-radius:10px;background:#eee;border:1px solid #eee;font-weight:bold;margin-bottom:20px}
@@ -96,7 +96,8 @@ form .table{margin:0}
 	/* bottom-right border-radius */
 	table tr:last-child td:last-child{border-bottom-right-radius:6px}
 	.agendamed table tbody td span{display:none}
-	.agendamed table{width:75%;margin:20px auto}
+	.agendamed table{margin:0 auto}
+	.agendamed table tbody tr td{padding:5px 0}
 }
 /*hasta 1000*/
 @media (max-width: 1000px){

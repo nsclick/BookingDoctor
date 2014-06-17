@@ -96,43 +96,50 @@ $months = $this->config->item('meses');
 	<button type="button" class="btn btn-default volver"><span class="glyphicon glyphicon-circle-arrow-left"></span> Volver a Resultados</button>
 	<h4>Nombre del Doctor</h4>
 	<p>A continuaci&oacute;n se muestras las horas disponbles para el profesional seleccionado. Puede ver los d&iacute;as disponibles en el men&uacute; despleglable. <b>Se muestran exclusivamente los d&iacute;as y horas disponibles.</b></p>
-	<table class="table">
-		<thead>
-  			<tr>
-     			<th>
-     				<select name="available-days">
+	<form role="form">
+		<div class="row">
+	  		<div class="col-md-4"><label>Seleccione d&iacute;a</label></div>
+	  		<div class="col-md-8">
+	  			<select name="available-days" class="form-control">
+					<?php foreach($available_dates as $date => $times): ?>
+					<?php
+						$mday = date('w', strtotime($date));
+						$day = date('d', strtotime($date));
+						$month = date('n', strtotime($date));
+						$fdate = $days[$mday]." ".$day." de ".$months[$month-1]. " del ".date('Y') ;
+					?>
+					<option value="<?php echo $date?>"><?php echo $fdate ?></option>
+					<?php endforeach; ?>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+	  		<div class="col-md-4"><label>Seleccione hora</label></div>
+	  		<div class="col-md-8">
+	  			<table class="table">
+		 			<tbody>
 						<?php foreach($available_dates as $date => $times): ?>
-						<?php
-							$mday = date('w', strtotime($date));
-							$day = date('d', strtotime($date));
-							$month = date('n', strtotime($date));
-							$fdate = $days[$mday]." ".$day." de ".$months[$month-1]. " del ".date('Y') ;
-						?>
-						<option value="<?php echo $date?>"><?php echo $fdate ?></option>
 						<?php endforeach; ?>
-					</select>
-				</th>
-  			</tr>
- 		</thead>
- 		<tbody>
-			<?php foreach($available_dates as $date => $times): ?>
-			<?php endforeach; ?>
-  			<tr>
-     			<td><a href="#">14:00 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
-     		</tr>			<tr>
-     			<td><a href="#">14:30 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
-     		</tr>
-     		<tr>
-     			<td><a href="#">15:00 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
-     		</tr>
-     		<tr>
-     			<td><a href="#">16:00 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
-     		</tr>
-     		<tr>
-     			<td><a href="#">17:00 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
-  			</tr>
- 		</tbody>
-	</table>
+			  			<tr>
+			     			<td><a href="#">14:00 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
+			     		</tr>
+						<tr>
+			     			<td><a href="#">14:30 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
+			     		</tr>
+			     		<tr>
+			     			<td><a href="#">15:00 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
+			     		</tr>
+			     		<tr>
+			     			<td><a href="#">16:00 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
+			     		</tr>
+			     		<tr>
+			     			<td><a href="#">17:00 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
+			  			</tr>
+	 				</tbody>
+				</table>
+			</div>
+		</div>
+	</form>
 	<button type="button" class="btn btn-default volver"><span class="glyphicon glyphicon-circle-arrow-left"></span> Volver a Resultados</button>
 </div>
 </div>
