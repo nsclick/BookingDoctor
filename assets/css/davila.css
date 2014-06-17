@@ -39,7 +39,10 @@ form{background:#eee;padding:10px;margin:0 auto 20px;border-radius:10px;-moz-bor
 .form-group.final2{margin:0 1% 5px;text-align:right}
 .form-group:last-of-type{margin-bottom:0}
 #registro1, #registro2, #registro3{display:none}
-.formError.inline .formErrorContent{margin-left:5px;margin-top:-1px;border-radius:0 0 10px 10px;-moz-border-radius:0 0 10px 10px;-webkit-border-radius:0 0 10px 10px;-ms-border-radius:0 0 10px 10px;background:#ff4800}
+.formError.inline{position:relative;width:100%}
+.formError.inline .formErrorContent{border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;-ms-border-radius:5px;background:#ff4800;position:absolute;text-align:right;
+top:-10px;right:10px;width:auto}
+.radio-inline .formError.inline .formErrorContent{}
 .btn.btn-default{color:#fff;background-color:#3891dd;border:1px solid #267bc3}
 .btn.btn-default:hover{background-color:#267bc3;border-color:#3891dd}
 .btn.btn-default.volver{color:#fff;background-color:#fe9900;border:1px solid #d68101}
