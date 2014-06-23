@@ -1,7 +1,11 @@
+<?php
+	$session_user = get_session_user();
+		//debug_var($session_user);		
+?> 
 <div id="wrapper">
 	<div class="webhome">
 		<h1>Reserva de Horas</h1>
-		<h2><b>Paso1:</b> Selecci&oacute;n de Paciente</h2>
+		<!-- <h2><b>Paso 1:</b> Selecci&oacute;n de Paciente</h2>
 		<p>
 			Selecciona entre los afiliados al plan, la persona para quien buscas reservar una hora.
 		</p>
@@ -14,8 +18,8 @@
 					<option>Otro: Miguel Rosas</option>
 				</select>
 			</div>
-		</form>
-		<h2><b>Paso 2: </b>Selecci&oacute;n de Profesional</h2>
+		</form>-->
+		<h2><b>Paso 1: </b>Selecci&oacute;n de Profesional</h2>
 		<ul>
 			<li>
 				Si conoces el apellido del médico con el cual te quieres atender, escríbelo en el espacio asignado.
@@ -48,10 +52,12 @@
 
 		</div>
 		</form>
-
+		
+		<?php if(isset($session_user['userName'])): ?>
 		<p>
 			Para consultar y anular las horas reservadas anteriormente, haz click <a href="<?php echo site_url("consulta/"); ?>">aqu&iacute;</a>.
 		</p>
+		<?php endif; ?>
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">

@@ -547,9 +547,38 @@ class Timebooking {
 	 * @param array $data [rut, dv]
 	 * @param int id_ambulatorio
 	 */	
-	 
 	function getAvailableDatesByDoctor(){
-		
 	}
+	
+	/**
+	 * Get reserved dates by a doctor
+	 * 
+	 * @access public
+	 * @param array $data [rut, dv]
+	 * @param int id_ambulatorio
+	 */	
+	function getReservedDatesByDoctor(){	
+	}
+	
+	/**
+	 * Get reserved dates by a patient
+	 * 
+	 * @access public
+	 * @param array $data [rut, dv]
+	 * @param int id_ambulatorio
+	 */	
+	function getReservedDatesByPatient(){
+	}
+
+	/**
+	 * Reserve dates
+	 * 
+	 * @access public
+	 * @param array $data [rut, dv]
+	 * @param int id_ambulatorio
+	 */	
+	function reserveDates(){
+	}
+	
 }
 ?>

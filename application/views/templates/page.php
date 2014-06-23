@@ -46,11 +46,9 @@
 
   <body role="document">
 	
-	<?php if(isset($session_user['userName'])): ?>
 	<div class="navbar navbar-default" role="navigation">
 	<?php echo $header; ?>
 	</div>
-	<?php endif; ?>
 	
 	<div class="container theme-showcase" role="main">
 	<?php echo $content; ?>

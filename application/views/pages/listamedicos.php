@@ -1,6 +1,6 @@
 <div id="wrapper">
 <div class="listamedicos">
-<h2><b>Paso 3: </b>Seleccione el profesional de su preferencia.</h2>
+<h2><b>Paso 2: </b>Seleccione el profesional de su preferencia.</h2>
 <h3><? echo $title; ?></h3>
 <button type="button" class="btn btn-default volver"><span class="glyphicon glyphicon-circle-arrow-left"></span> Realizar Nueva B&uacute;squeda</button>
 <?php if(count($doctors)): ?>
