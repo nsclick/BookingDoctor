@@ -5,94 +5,167 @@ if ( !defined ( 'BASEPATH' ) )
 class Agenda extends CI_Controller {
 	public $title		= 'Agenda';
 	public $page_params = array ();
-
+	
 	public function __construct () {
 		parent::__construct ();
-		$this->load->model ( 'Agenda_model' );
+		$this->load->model ( 'Agenda_model', 'agenda' );
+		$this->load->model ( 'Patient_model', 'patient' );
 	}
 
 	public function index () {
 		
-		//TODO: Load the available dates and times
-		$dates = array(
-			'04-08-2014' => array(
-				'16:45',
-				'17:00',
-				'17:15',
-				'17:30',
-			),
-			'06-08-2014' => array(
-				'13:15',
-				'13:30',
-				'13:45',
-				'14:00',
-				'14:15'
-			),
-			'07-08-2014' => array(
-				'13:15',
-				'13:30',
-				'13:45',
-				'14:00',
-				'14:15'
-			),
-		);
-		$this->page_params['available_dates'] = $dates;
+		//Loading the available dates
+		$cod_unidad 		= $this->input->post ( 'cod_unidad' );
+		$cod_especialidad 	= $this->input->post ( 'cod_especialidad' );
+		$cod_profesional 	= $this->input->post ( 'cod_prof' );
+		$corr_agenda 		= $this->input->post ( 'corragenda' );
+		$fecha_prox 		= $this->input->post ( 'proxima_hora_disponible' );
 		
+		$available_dates = $this->agenda->getAvailableDatesByDoctor($cod_unidad, $cod_especialidad, $cod_profesional, $corr_agenda, $fecha_prox);
+		
+		//debug_var($available_dates);
+		
+		$this->page_params['available_dates'] = $available_dates;
+		$this->page_params['post'] = $this->input->post();
 		
 		$this->render();
 	}
 
 	private function render () {
-		// $profesional_rut 	= $this->input->post ( 'pr' );
-		// $profesional_agenda = $this->Agenda_model->getDoctorAgendaByRut ( $profesional_rut );
-
-		$this->page_params['agenda'] = $this->input->post();
 
 		$this->template->write ( 'title', $this->title );
-
-		// $this->template->add_js ( 'assets/third_party/bootstrap/js/bootstrap3-typeahead.js' );
-		//$this->template->add_css ( 'assets/vendor/calendarjs/css/calendar.min.css' );
-		//$this->template->add_js ( 'assets/vendor/underscore/underscore-min.js' );
-		//$this->template->add_js ( 'assets/vendor/calendarjs/js/language/es-ES.js' );
-		//$this->template->add_js ( 'assets/vendor/calendarjs/js/calendar.js' );
-		//$this->template->add_css ( 'assets/vendor/calendarjs/js/calendar.js' );
-		
 		$this->template->add_js ( 'assets/js/agenda.js' );
-		//$this->template->add_css ( 'assets/css/agenda.css' );
 		
 		$this->template->write_view ( 'header', 'templates/header', $this->page_params, TRUE );
 		$this->template->write_view ( 'content', 'pages/agenda', $this->page_params, TRUE );
 		$this->template->render ();
 	}
-
-	public function getAgendaProfesional() {
-		if ($this->input->is_ajax_request()) {
-			$cod_unidad 		= $this->input->get('cu');
-			$cod_especialidad	= $this->input->get('ce');
-			$cod_profesional 	= $this->input->get('cp');
-			$corr_agenda 		= $this->input->get('corr');
-			$fecha_aprox 		= $this->input->get('fa');
-
-			$response = array();
-			$response['agenda'] = $this->Agenda_model->getAgendaProfesional($cod_unidad, $cod_especialidad, $cod_profesional, $corr_agenda, $fecha_aprox);
-			echo json_encode($response);
-			// echo json_encode($this->input->get());
-			exit;
-		} else {
-			exit;
-		}
-	}
 	
 	public function confirmacion() {
+		
+		if(! $this->patient->is_logged_in () ){
+			$this->login();
+			return false;
+		}
+		
+		$step = 3;
+		$patient 		= $this->input->post ( 'patient' );
+		$post = getSessionValue('agenda_post');
+		$company_addr = getSessionValue('company_address');
+		
+		if($patient){ //Comes from patient page
+			$step = 4;
+			$familyMembers = $this->patient->getFamilyMembers();
+			foreach($familyMembers as $member){
+				if($member['id_ambulatorio'] == $patient){
+					$post['patient'] = $member;
+				}
+			}
+		} else { //Set the patient as the main user
+			$rut = getSessionValue('rut');
+			$dv = getSessionValue('dv');
+			$post['patient'] = $this->patient->get($rut, $dv);
+		}
+		
+		$this->page_params['step'] = $step;
+		$this->page_params['post'] = $post;	
+		$this->page_params['company_addr'] = $company_addr;	
+		
+		setSessionValue('agenda_post', $post);
+		
 		$this->template->write ( 'title', $this->title );
-		$this->template->add_css ( 'assets/vendor/calendarjs/css/calendar.min.css' );
-		$this->template->add_js ( 'assets/vendor/underscore/underscore-min.js' );
 			
-		$this->template->write_view ( 'header', 'templates/header' );
-		$this->template->write_view ( 'content', 'pages/agenda-confirmacion');
+		$this->template->write_view ( 'header', 'templates/header',  $this->page_params, TRUE );
+		$this->template->write_view ( 'content', 'pages/agenda-confirmacion', $this->page_params, TRUE);
 		$this->template->render ();
 	}
+	
+	public function login(){
+		
+		setSessionValue('agenda_post', $_POST);
+		
+		$this->page_params['redirect'] = 'agenda/paciente';
+		$this->page_params['page_title'] = '<h2>Primero debe iniciar sesión</h2>';
+		$this->page_params['mode'] = 'agenda';
+		
+		
+		$this->template->write ( 'title', $this->title );
 
+		$this->template->add_js('assets/js/jquery.validationEngine.js');
+		$this->template->add_js('assets/js/jquery.validationEngine-es.js');
+		$this->template->add_js('assets/js/jquery.Rut.js');
+		$this->template->add_js('assets/js/jquery.form.min.js');
+		$this->template->add_js('assets/js/login.js');
+		
+		$this->template->add_css('assets/css/validationEngine.jquery.css');
+			
+		$this->template->write_view ( 'header', 'templates/header', $this->page_params, TRUE );
+		$this->template->write_view ( 'content', 'pages/login', $this->page_params, TRUE);
+		$this->template->render ();	
+	}
+	
+	public function paciente(){
 
+		if(! $this->patient->is_logged_in () ){
+			$this->login();
+			return false;
+		}
+		
+		//loads the main user
+		$post = getSessionValue('agenda_post');
+		if(!$post)
+			$post = $_POST;
+		
+		$rut = getSessionValue('rut');
+		$dv = getSessionValue('dv');
+		$post['main'] = $this->patient->get($rut, $dv);
+		
+		setSessionValue('agenda_post', $post);
+		
+		//Get the patient family members
+		$fm = $this->patient->getFamilyMembers();
+		
+		//Whether there isn't family members uses the main user as patient
+		if(count($fm) == 1){
+			redirect('agenda/confirmacion');
+			return;
+		}
+		
+		$this->page_params['familyMembers'] = $fm;
+		$this->template->write ( 'title', $this->title );
+		$this->template->write_view ( 'header', 'templates/header', $this->page_params, TRUE );
+		$this->template->write_view ( 'content', 'pages/paciente', $this->page_params, TRUE);
+		$this->template->render ();	
+
+	}
+	
+	public function reservar(){
+		
+		if(! $this->patient->is_logged_in () ){
+			$this->login();
+			return false;
+		}
+		
+		$post = getSessionValue('agenda_post');
+		$result = $this->agenda->reservar($post);
+		
+		if(!$result){
+			setSessionValue('reserva_error', $this->agenda->getError() );
+			redirect('/agenda/confirmacion');
+			return false;
+		}
+		
+		//debug_var($result); 
+		$this->page_params['result'] = $result;
+		$this->page_params['company_address'] = getSessionValue('company_address');
+ 		
+		$this->template->write ( 'title', $this->title );
+		$this->template->write_view ( 'header', 'templates/header', $this->page_params, TRUE );
+		$this->template->write_view ( 'content', 'pages/hora-asignada', $this->page_params, TRUE);
+		$this->template->render ();	
+		
+	}
+	
+	
 }
 ?>

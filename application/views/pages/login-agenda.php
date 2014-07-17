@@ -4,12 +4,11 @@
  *
  * Login form
  */
- 
 ?>
 <div id="wrapper">
-	<?php echo $page_title ?>
+	<h1>Primero debe iniciar sesi&oacute;n</h1>
 	<?php echo form_open('login/do_login', array('id' => 'login-form')); ?>
-	<input type="hidden" name="redirect" value="<?php echo $redirect ?>" />
+		<input type="hidden" name="redirec" value="agenda/confirmacion" />
 		<div class="form-group">
 			<label for="rut">R.U.T</label>
 			<input type="text" class="form-control validate[required,rut]" id="Rut_PacienteTitular" name="Rut_PacienteTitular" placeholder="Ej: 12345678-K">
@@ -22,14 +21,7 @@
 			
 		</div>
 		<div class="form-group final2">
-			<?php if($mode == 'default'): ?>
 			<a href="<?php echo site_url("recuperarclave"); ?>">Recuperar contrase&ntilde;a</a> |
-			<?php endif; ?>
-
-			<?php if($mode == 'agenda'): ?>
-			Si aún no esta registrado, primero hagalo aqui:
-			<?php endif; ?>
- 
 			<a href="<?php echo site_url("registro"); ?>">Registrarse</a>
 			&nbsp;&nbsp;
 			<button type="button" class="btn btn-default" id="session-start">

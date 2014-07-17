@@ -29,20 +29,20 @@
 			</li>
 		</ul>
 		<?php $attributes = array('role' => 'form'); ?>
-		<?php echo form_open('buscarmedico', $attributes); ?>
+		<?php echo form_open('home', $attributes); ?>
 		<div class="form-group">
 			<label for="apellido">Apellido del profesional</label>
 
 			<div class='input-group'>
-				<input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese el apellido del profesional">
+				<input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese el apellido del profesional" value="<?php echo $apellido; ?>">
 				<span class="input-group-addon" > <span class="glyphicon glyphicon-search"></span> </span>
 			</div>
 		</div>
 		</form>
 
 		<?php $attributes['id'] = 'buscaarea'; ?>
-		<?php echo form_open('buscarmedico', $attributes); ?>
-		<input type="hidden" name="area" id="area" value="">
+		<?php echo form_open('home', $attributes); ?>
+		<input type="hidden" name="area" id="area" value="<?php echo $area; ?>">
 		<div class="form-group">
 			<label for="area-label">Área</label>
 			<div class='input-group'>
@@ -89,4 +89,54 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
+<?php if(isset($doctors)): ?>
+<div class="listamedicos">
+<h2><? echo $title; ?></h2>
+<?php if(count($doctors)): ?>
+<!--<div class="table-responsive">-->
+  <table class="table">
+    <thead class="mb-no">
+    	<tr>
+	    	<th>Profesional</th>
+	    	<th>Área</th>
+	    	<th>Centro Médico</th>
+	    	<th>Próx. Hora</th>
+	    	<th>Agenda</th>
+    	</tr>
+    </thead>
+
+    <tbody>
+    	<?php foreach($doctors as $d): ?>
+		<tr>
+	    	<td><span class="mb-on">Profesional: </span>Dr(a). <?php echo "{$d->NOMBRE1_PROF} {$d->APEPAT_PROF} {$d->APEMAT_PROF}" ?></td>
+	    	<td><span class="mb-on">&Aacute;rea: </span><?php echo $d->DESC_ITEM ?></td>
+	    	<td><span class="mb-on">Centro M&eacute;dico: </span><?php echo $d->SUCURSAL ?></td>
+	    	<td><span class="mb-on">Pr&oacute;x. Hora: </span><?php echo $d->PROXIMA_HORA_DISPONIBLE_CHAR ?></td>
+	    	<td>
+				<?php $attributes = array('role' => 'form'); ?>
+				<?php echo form_open('agenda', $attributes); ?>
+				<?php foreach($d as $key => $val): ?>
+				<input type="hidden" name="<?php echo strtolower($key); ?>" value="<?php echo $val; ?>" />
+				<?php endforeach; ?>
+	    			<button type="submit" class="btn btn-primary"><span class="mb-on"><span class="glyphicon glyphicon-calendar"></span> Ver Agenda</span><span class="mb-no">Ver</span></button>
+				</form>
+	    	</td>
+    	</tr>
+    	<?php endforeach; ?>
+    </tbody>
+  </table>
+<!--</div>-->
+<?php else: ?>
+<p>Para los datos seleccionados no se encontraron profesionales con agenda.</p>
+<p>Por favor intente nuevamente o de lo contrario solicite su hora llamando a los teléfonos : <a href="tel:022702700">270 2700</a></p>
+<?php endif; ?>
+
+</div>	
+<?php endif; ?>
+	
+	
+	
 </div>

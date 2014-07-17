@@ -26,14 +26,9 @@
 	    	<td>
 				<?php $attributes = array('role' => 'form'); ?>
 				<?php echo form_open('agenda', $attributes); ?>
-	    			<input type="hidden" name="appp" value="<?php echo $d -> APEPAT_PROF; ?>" />
-	    			<input type="hidden" name="ce" value="<?php echo $d -> COD_ESPECIALIDAD; ?>" />
-	    			<input type="hidden" name="cp" value="<?php echo $d -> COD_PROF; ?>" />
-	    			<input type="hidden" name="a" value="<?php echo $d -> HORARIOPROX_AGENDA; ?>" />
-	    			<input type="hidden" name="fa" value="<?php echo $d -> FECHAINICPROX_AGENDA; ?>" />
-	    			<input type="hidden" name="pfa" value="<?php echo $d -> PROXIMA_HORA_DISPONIBLE; ?>" />
-	    			<input type="hidden" name="corr" value="<?php echo $d -> CORRAGENDA; ?>" />
-	    			<input type="hidden" name="cu" value="<?php echo $d -> COD_UNIDAD; ?>" />
+				<?php foreach($d as $key => $val): ?>
+				<input type="hidden" name="<?php echo strtolower($key); ?>" value="<?php echo $val; ?>" />
+				<?php endforeach; ?>
 	    			<button type="submit" class="btn btn-primary"><span class="mb-on"><span class="glyphicon glyphicon-calendar"></span> Ver Agenda</span><span class="mb-no">Ver</span></button>
 				</form>
 	    	</td>

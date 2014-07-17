@@ -10,6 +10,19 @@
 |
 */
 
+$hook['pre_system'] = array(
+								'class'    => '',
+                                'function' => 'loadSession',
+                                'filename' => 'bookingdoctor.php',
+                                'filepath' => 'hooks'
+                                );
+
+$hook['post_controller_constructor'] = array(
+								'class'    => '',
+                                'function' => 'loadCompanyInfo',
+                                'filename' => 'bookingdoctor.php',
+                                'filepath' => 'hooks'
+                                );
 
 
 /* End of file hooks.php */

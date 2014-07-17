@@ -7,13 +7,23 @@ class Patient_model extends CI_Model {
 	function __construct () {
 		parent::__construct();
 		$this->load->library ( 'Timebooking' );
+		
+		if( $this->is_logged_in () ){
+			$rut = getSessionValue('rut');
+			$dv = getSessionValue('dv');
+			$patient = $this->get($rut, $dv);
+			foreach($patient as $key => $val){
+				$this->$key = $val;
+			}
+		}
+		
 	}
 
 	function getError(){
 		return $this->error;
 	}
 	
-	function login($rut, $dv, $password){	
+	function login($rut, $dv, $password){
 		$result = $this->timebooking->userLogin($rut, $dv, $password);
 		if(!$result){
 			$this->error = $this->timebooking->getError();
@@ -28,14 +38,17 @@ class Patient_model extends CI_Model {
 			'userName' => $result->userName
 		);
 		
-		$this->session->set_userdata($sessionData);
+		foreach($sessionData as $key => $val){
+			setSessionValue($key, $val);
+		}
+		
 		return true;
 	}
 
 	function is_logged_in () {
-		$tmpKey = $this->session->userdata ( 'tmpKey' );
 		
-		 return !empty ( $tmpKey );
+		$tmpKey = getSessionValue ( 'userName' );
+		return !empty ( $tmpKey );
 	}
 	
 	function create($data){
@@ -62,7 +75,7 @@ class Patient_model extends CI_Model {
 		}
 		
 		//Add to session the user name
-		$this->session->set_userdata('userName', "{$data['Nombre_Paciente']} {$data['Apepat_Paciente']} {$data['Apemat_Paciente']}");
+		//$this->session->set_userdata('userName', "{$data['Nombre_Paciente']} {$data['Apepat_Paciente']} {$data['Apemat_Paciente']}");
 		
 		return true;
 	}
@@ -76,4 +89,23 @@ class Patient_model extends CI_Model {
 		
 		return $result;
 	}
+	
+	function getFamilyMembers(){
+		
+		if(!isset($this->id_grupo_familiar))
+			return null;
+		
+		$rut = $this->session->userdata('rut');
+		$dv = $this->session->userdata('dv');
+		
+		$patient = get_object_vars($this);
+		$patient['desc_parentesco'] = 'Titular';
+		
+		$fm = $this->timebooking->getFamilyMembers($rut, $dv, $this->id_grupo_familiar);
+		
+		array_unshift($fm, $patient);
+		
+		return $fm;
+	}
+
 }

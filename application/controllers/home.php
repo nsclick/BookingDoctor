@@ -7,8 +7,42 @@ class Home extends CI_Controller {
 	var $title = 'Home';
 	var $page_params = array();
 
-	
+	function __construct() {
+		// Call the Model constructor
+		parent :: __construct();
+		
+		$this->load->model('Agenda_model', 'agenda');
+	}
+		
 	public function index() {
+	
+		//Get the search params
+		$apellido = $this->input->post('apellido', TRUE);
+		$area = $this->input->post('area', TRUE);
+		$this->page_params['apellido'] = $apellido;
+		$this->page_params['area'] = $area;
+
+		$doctors = NULL;
+		
+		//Perform the search		
+		if($area){
+			$arealbl = $this->input->post('area-label', TRUE);
+			$msg = "área: $arealbl";
+			
+			$doctors = $this->agenda->getDoctorListByArea($area);
+			
+		} elseif($apellido) {
+			$apellido = strtoupper($apellido);
+			$msg = "nombre : $apellido";
+			
+			$doctors = $this->agenda->getDoctorListByLastName($apellido);
+		}
+		
+		if($doctors){
+			$this->page_params['doctors'] = $doctors;
+			$this->page_params['title'] = "Listado de médicos por $msg";
+		}
+		
 		$this->render();
 	}
 	

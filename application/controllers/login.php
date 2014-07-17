@@ -9,7 +9,12 @@ class Login extends CI_Controller {
 
 	
 	public function index() {
-		validate_true_session();		
+		validate_true_session();
+		
+		$this->page_params['redirect'] = 'home';
+		$this->page_params['page_title'] = '<h1>Inicio de Sesi&oacute;n</h1>';
+		$this->page_params['mode'] = 'default';
+		
 		$this->render();
 	}
 	
@@ -59,7 +64,7 @@ class Login extends CI_Controller {
 	}
 	
 	public function logout(){
-		$this->session->sess_destroy();
+		killSession();
 		$this->index();
 	}
 }

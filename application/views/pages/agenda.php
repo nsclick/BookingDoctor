@@ -1,138 +1,84 @@
 <?php
-/**
- * 5A1 : Día lleno
- * 000 : No hay horas
- * otro: Si hay horas?
- */
-?>
-<?php
-
-/*
-	// var_dump($agenda['pfa']);
-	$t = strtotime( substr($agenda['pfa'], 0, 16) );
-	$d = date('Y m d h:i:s', $t);
-
-	$agenda_days = array();
-
-	$splitted_agenda_strings = str_split ( $agenda['a'], 3 );
-
-	// var_dump(count($splitted_agenda_strings));
-
-	function parse_day_state ( $c ) {
-		switch ( $c ) {
-			case '5A1':
-				return false; // Everything is reserved
-				break;
-			case '000':
-				return false; // Not available
-				break;
-			default:
-				return true; // Available
-				break;
-		}
-	}
-
-	foreach ( $splitted_agenda_strings as $index => $splitted_agenda_string ) {
-		$agenda_days[$index] = array(
-			'code'	=> $splitted_agenda_string,
-			'state'	=> parse_day_state ($splitted_agenda_string),
-			'time'	=> strtotime( '+' . $index . 'day', $t )
-		);
-		$agenda_days[$index]['date'] = date ( 'Y m d h:i:s',  $agenda_days[$index]['time']);
-		$agenda_days[$index]['cls']	 = date ( 'D M d Y',  $agenda_days[$index]['time']);
-
-		//if ($agenda_days[$index]['state'])
-			//var_dump($agenda_days[$index]);
-	}
-
-	//TODO: Remover esto es temporal
-	*/
-	
-	$this->config->item('item name');
-	
-	
-	//ob_start();
-?>
-<!--	(function(w, $, undefined) {
-		w.calendar_agenda_days = <?php echo json_encode($agenda_days); ?>;
-		
-		w.getProfesionalAgenda = function(data, fn) {
-			var options = {
-				ce: 	'<?php echo $agenda['ce']; ?>',
-				cp: 	'<?php echo $agenda['cp']; ?>',
-				cu: 	'<?php echo $agenda['cu']; ?>',
-				appp: 	'<?php echo $agenda['appp']; ?>',
-				corr: 	'<?php echo $agenda['corr']; ?>'
-			};
-			
-			$.extend(options, data);
-			
-			jQuery.ajax('/nsclick/davila/reservadehoras/agenda/getagendaprofesional', {
-				data: options,
-				type: 'GET',
-				dataType: 'json',
-				success: function(r) {
-					console.log(r);
-					if (typeof(fn) == 'function') {
-						fn(r);
-					}
-				}
-			})
-		};
-
-	})(window, jQuery);-->
-<?php
-//	$agenda_days_script = ob_get_contents();
-//	ob_clean();
-//	$this->template->add_js( $agenda_days_script, 'embed' );
-
 $days = $this->config->item('dias');
 $months = $this->config->item('meses');
 
+//debug_var($post);
 ?>
 <div id="wrapper">
 <div class="agendamed">
-	<h2><b>Paso 4: </b>Seleccione la hora de la consulta.</h2>
+	<h2><b>Paso 2: </b>Seleccione la hora de la consulta.</h2>
 	<button type="button" class="btn btn-default volver"><span class="glyphicon glyphicon-circle-arrow-left"></span> Volver a Resultados</button>
-	<h4>Nombre del Doctor</h4>
+	<h4><?php echo "Dr(a). {$post['nombre1_prof']} {$post['apepat_prof']} {$post['apemat_prof']}" ?></h4>
+	<h5><?php echo $post['desc_item'] ?></h5>
+	<h5><?php echo $post['sucursal'] ?></h5>
 	<p>A continuaci&oacute;n se muestras las horas disponbles para el profesional seleccionado. Puede ver los d&iacute;as disponibles en el men&uacute; despleglable. <b>Se muestran exclusivamente los d&iacute;as y horas disponibles.</b></p>
-	<table class="table">
-		<thead>
-  			<tr>
-     			<th>
-     				<select name="available-days">
-						<?php foreach($available_dates as $date => $times): ?>
-						<?php
-							$mday = date('w', strtotime($date));
-							$day = date('d', strtotime($date));
-							$month = date('n', strtotime($date));
-							$fdate = $days[$mday]." ".$day." de ".$months[$month-1]. " del ".date('Y') ;
-						?>
-						<option value="<?php echo $date?>"><?php echo $fdate ?></option>
+	<?php $attributes = array('role' => 'form', 'id' => 'form-agenda'); ?>
+	<?php echo form_open('agenda/paciente', $attributes); ?>
+		<div class="row">
+	  		<div class="col-md-4"><label>Seleccione d&iacute;a</label></div>
+	  		<div class="col-md-8">
+	  			<select name="available-days" class="form-control">
+					<?php foreach($available_dates as $date => $times): ?>
+					<?php
+						$mday = date('w', strtotime($date));
+						$day = date('d', strtotime($date));
+						$month = date('n', strtotime($date));
+						$fdate = $day." de ".$months[$month-1]. " del ".date('Y') . ' - ' . $days[$mday] ;
+					?>
+					<option value="<?php echo $date?>"><?php echo $fdate ?></option>
+					<?php endforeach; ?>
+				</select>
+			</div>
+		</div>
+		<hr />
+		<div class="row">
+	  		<div class="col-md-4"><label>Seleccione hora</label></div>
+	  		<div class="col-md-8">
+				<?php foreach($available_dates as $date => $times): ?>
+
+	  			<table class="table hide" id="<?php echo $date ?>">
+		 			<tbody>	
+						<?php foreach($times as $index => $time): ?>
+
+			  			<tr>
+			     			<td><a href="#" ct-time="<?php echo $time['time'] ?>" ct-schedule="<?php echo $time['id_schedule'] ?>" ct-box="<?php echo $time['box'] ?>" ct-multi="<?php echo $time['multiplicity'] ?>" class="time-chooser"><?php echo $time['time'] ?> <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
+			     		</tr>
+						
 						<?php endforeach; ?>
-					</select>
-				</th>
-  			</tr>
- 		</thead>
- 		<tbody>
-			<?php foreach($available_dates as $date => $times): ?>
-			<?php endforeach; ?>
-  			<tr>
-     			<td><a href="#">14:00 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
-     		</tr>			<tr>
-     			<td><a href="#">14:30 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
-     		</tr>
-     		<tr>
-     			<td><a href="#">15:00 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
-     		</tr>
-     		<tr>
-     			<td><a href="#">16:00 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
-     		</tr>
-     		<tr>
-     			<td><a href="#">17:00 <span class="glyphicon glyphicon-ok-sign"></span> <span>Agendar</span></a></td>
-  			</tr>
- 		</tbody>
-	</table>
+	 				</tbody>
+				</table>
+				
+				<?php endforeach; ?>
+			</div>
+		</div>
+		<input type="hidden" name="time" />
+		<input type="hidden" name="id_schedule" />
+		<input type="hidden" name="box" />
+		<input type="hidden" name="multiplicity" />
+		
+		<?php foreach($post as $key => $val): ?>
+		<input type="hidden" name="<?php echo $key ?>" value="<?php echo $val ?>">	
+		<?php endforeach; ?>
+	</form>
 	<button type="button" class="btn btn-default volver"><span class="glyphicon glyphicon-circle-arrow-left"></span> Volver a Resultados</button>
 </div>
 </div>
+
+
+<div class="modal fade" id="modal-confirmation">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+        <h4 class="modal-title">Confirmación</h4>
+      </div>
+      <div class="modal-body">
+        <p>¿Esta seguro de reservar hora el dia <b><span id="txt-date"></span></b> a las <b><span id="txt-time"></span></b>? </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" id="confirma-ok">Si</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

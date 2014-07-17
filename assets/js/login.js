@@ -1,5 +1,5 @@
 $(function() {
-
+	
 	jQuery("#login-form").validationEngine('attach', {promptPosition:"inline", scroll:false});
 	
 	$('#session-start').click(function(e) {
@@ -26,7 +26,7 @@ $(function() {
 				$(".enviando p.dos").fadeIn(1500);
 				
 				setTimeout(function() { 
-					location.href = site_url + '/home';
+					location.href = site_url + '/' + $('input[name="redirect"]').val();
 				}, 3500);
 				
 			}, "json");

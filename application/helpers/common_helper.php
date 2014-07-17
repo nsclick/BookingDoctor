@@ -3,7 +3,7 @@
 function get_session_user(){
 	$CI =& get_instance();
 	
-	if($session = $CI->session->all_userdata()){
+	if($session = getAllSession()){
 		return $session;
 	}
 	
@@ -25,3 +25,20 @@ function validate_true_session(){
 	}
 	return true;
 }
+
+function killSession(){
+	session_destroy();
+}
+
+function getAllSession(){
+	return $_SESSION;
+}
+
+function setSessionValue($varName, $varValue){
+	$_SESSION[$varName] = $varValue;
+}
+
+function getSessionValue($varName){
+	return isset($_SESSION[$varName]) ? $_SESSION[$varName] : NULL;
+}
+

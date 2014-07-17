@@ -1,79 +1,53 @@
 <div id="wrapper" class="confirmacion">
-	<h2><b>Paso 5: </b>Confirme la reserva.</h2>
+	<div class="alert alert-danger" role="alert">Error: Ahhhhhhhh!!!!!</div>
+	<h2><b>Paso <?php echo $step; ?>: </b>Confirme la reserva antes de registrarla.</h2>
 	<h2>Informaci&oacute;n de la reserva</h2>
 	<table class="table">
 		<thead>
 			<tr>
-				<th> C&oacute;digo Correlativo de Reserva </th>
-				<th>123465789789</th>
+				<th colspan="2"> Nota: La hora no ha sido reservada aún. </th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td>Paciente</td>
-				<td>Nombre</td>
+				<td><?php echo "{$post['patient']['nombre_paciente']} {$post['patient']['apepat_paciente']} {$post['patient']['apemat_paciente']}"?></td>
 			</tr>
 			<tr>
 				<td>Profesional</td>
-				<td>Nombre</td>
+				<td><?php echo "{$post['nombre1_prof']} {$post['apepat_prof']} {$post['apemat_prof']}"?></td>
 			</tr>
 			<tr>
 				<td>&Aacute;rea</td>
-				<td>Nombre &aacute;rea</td>
+				<td><?php echo $post['desc_item']?></td>
 			</tr>
 			<tr>
 				<td>Fecha</td>
-				<td>01/01/2014</td>
+				<td><?php echo str_replace('-', '/', $post['available-days'])?></td>
 			</tr>
 			<tr>
 				<td>Hora</td>
-				<td>16:30</td>
+				<td><?php echo $post['time']?></td>
 			</tr>
 			<tr>
 				<td>Isapre</td>
-				<td>M&aacute;s Vida</td>
+				<td><?php echo $post['patient']['desc_prevision']?></td>
 			</tr>
 			<tr>
 				<td>Direcci&oacute;n de atenci&oacute;n</td>
-				<td>Direcci&oacute;n</td>
+				<td><?php echo $company_addr ?></td>
 			</tr>
 		</tbody>
 	</table>
-	<h2>Valor de los servicios</h2>
-	<p style="font-weight:bold">
-		Tu previsi&oacute;n de salud tiene convenio con Cl&iacute;nica D&aacute;vila para consultas m&eacute;dicas.
-		<br />
-		El valor puede variar dependiendo del plan que tengas con tu Isapre.
-	</p>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>C&oacute;digo</th>
-				<th>Descripci&oacute;n</th>
-				<th>Valor</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>123456</td>
-				<td>Decripci&oacute;n</td>
-				<td>$99.999</td>
-			</tr>
-			<tr>
-				<td colspan="2">Total</td>
-				<td>$99.999</td>
-			</tr>
-		</tbody>
-	</table>
-	<div class="alert">
-		<b>Estimado paciente: </b>Te recordamos llegar con 15 minutos de anticipación. Muchas gracias.
-	</div>
 	<div style="text-align:center">
-		<button type="button" class="btn btn-default">
+	<?php $attributes = array('role' => 'form', 'id' => 'form-agenda'); ?>
+	<?php echo form_open('agenda/reservar', $attributes); ?>
+		<button type="submit" class="btn btn-default">
 			Confirmar Reserva
 		</button>
 		<button type="button" class="btn btn-default volver">
 			Cancelar
-		</button>
+		</button>		
+	</form>	
 	</div>
 </div>
