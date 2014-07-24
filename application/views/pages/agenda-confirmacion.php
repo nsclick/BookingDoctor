@@ -1,5 +1,7 @@
 <div id="wrapper" class="confirmacion">
-	<div class="alert alert-danger" role="alert">Error: Ahhhhhhhh!!!!!</div>
+	<?php if($reserva_error): ?>
+	<div class="alert alert-danger" role="alert"><?php echo $reserva_error ?></div>
+	<?php endif; ?>
 	<h2><b>Paso <?php echo $step; ?>: </b>Confirme la reserva antes de registrarla.</h2>
 	<h2>Informaci&oacute;n de la reserva</h2>
 	<table class="table">

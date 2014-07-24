@@ -34,6 +34,7 @@ input, select{height:30px!important;padding:4px 8px!important}
 .navbar-default .navbar-nav > li > a:hover{background:#cccccc}
 .navbar-default .navbar-nav > li > a:active,.navbar-default .navbar-nav > li > a.active{background:#6fb4ef}
 form{background:#eee;padding:10px;margin:0 auto 20px;border-radius:10px;-moz-border-radius:10px;-ms-border-radius:10px;-webkit-border-radius:10px;border:1px solid #ddd}
+form.hidden-form{background: none; padding: 0px; margin: 0px; border: none;}
 .form-group label{margin-bottom:4px;margin-left:9px}
 .form-group.final{width:98%;float:none;margin:0 1% 5px;text-align:right}
 .form-group.final1{margin:0 1% 5px}
@@ -47,6 +48,7 @@ top:-10px;right:10px;width:auto}
 .btn.btn-default{color:#fff;background-color:#3891dd;border:1px solid #267bc3}
 .btn.btn-default:hover{background-color:#267bc3;border-color:#3891dd}
 .btn.btn-default.volver{color:#fff;background-color:#fe9900;border:1px solid #d68101}
+.seleccionado{color:#fff !important;background-color:#fe9900 !important;}
 .alert{background:#ff4800;color:#fff}
 .btn.btn-default.volver:hover{background-color:#d68101;border-color:#fe9900}
 .registrotabs{width:100%;position:relative}
@@ -131,4 +133,10 @@ form .table{margin:0}
 	.agendamed table tbody td a span,.confirmacion table tbody td a span{display:inline;font-weight:bold;font-size:11px;position:absolute;top:10px;right:10px}
 	.agendamed table tbody td a span.glyphicon,.confirmacion table tbody td a span.glyphicon{top:12px;right:60px}
 	.form-group{width:100%!important;float:none;margin:0 0 15px}
+}
+
+.alert-success {
+    color: #3C763D !important;
+    background-color: #DFF0D8 !important;
+    border-color: #D6E9C6 !important;
 }

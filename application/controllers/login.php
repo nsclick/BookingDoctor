@@ -47,6 +47,8 @@ class Login extends CI_Controller {
 			die( json_encode( array( 'state' => false, 'message' => 'El rut y la clave son necesarios' ) ) );
 		}
 		
+		$rut = str_replace(array('.',',',"'",'"',' '), '', trim( $rut ) );
+		
 		$rut_parts = explode('-', $rut);
 		$rut = $rut_parts[0];
 		$dv = $rut_parts[1];

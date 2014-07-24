@@ -1,5 +1,6 @@
 <div id="wrapper" class="confirmacion">
-	<h2><b>Confirmación de reserva hecha.</h2>
+	<h2><b>Reserva de hora existosa.</h2>
+	<div id="PrintArea">
 	<h2>Informaci&oacute;n de la reserva</h2>
 	<table class="table">
 		<thead>
@@ -68,8 +69,11 @@
 	<div class="alert">
 		<b>Estimado paciente: </b>Te recordamos llegar con 15 minutos de anticipación. Muchas gracias.
 	</div>
+	</div>
+	<!-- END printable area -->
+	
 	<div style="text-align:center">
-		<button type="button" class="btn btn-default">
+		<button type="button" class="btn btn-default" id="print-doc">
 			Imprimir
 		</button>
 	</div>

@@ -70,6 +70,7 @@ class Agenda extends CI_Controller {
 		$this->page_params['step'] = $step;
 		$this->page_params['post'] = $post;	
 		$this->page_params['company_addr'] = $company_addr;	
+		$this->page_params['reserva_error'] = getSessionValue('reserva_error');
 		
 		setSessionValue('agenda_post', $post);
 		
@@ -147,6 +148,7 @@ class Agenda extends CI_Controller {
 		}
 		
 		$post = getSessionValue('agenda_post');
+		
 		$result = $this->agenda->reservar($post);
 		
 		if(!$result){
@@ -155,10 +157,15 @@ class Agenda extends CI_Controller {
 			return false;
 		}
 		
-		//debug_var($result); 
 		$this->page_params['result'] = $result;
 		$this->page_params['company_address'] = getSessionValue('company_address');
  		
+ 		//Clean the session
+ 		
+ 		$this->template->add_js('assets/js/jquery.PrintArea.js');
+ 		$this->template->add_js('assets/js/horaAsignada.js');
+ 		
+ 		removeSessionVar( array('agenda_post', 'reserva_error') ); 
 		$this->template->write ( 'title', $this->title );
 		$this->template->write_view ( 'header', 'templates/header', $this->page_params, TRUE );
 		$this->template->write_view ( 'content', 'pages/hora-asignada', $this->page_params, TRUE);
@@ -166,6 +173,18 @@ class Agenda extends CI_Controller {
 		
 	}
 	
-	
+	public function anular(){
+		
+		$result = $this->agenda->anulaReserva($_POST);
+		
+		if($result)
+		setSessionValue('anula-respuesta', 'success' );
+		else
+		setSessionValue('anula-respuesta', 'error' );
+		
+		redirect('consulta');
+
+		
+	}
 }
 ?>

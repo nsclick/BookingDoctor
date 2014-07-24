@@ -38,7 +38,7 @@ class Agenda_model extends CI_Model {
 			'Corr_Agenda' => $data['corragenda'],
 			'Cod_Isapre' => $data['patient']['prevision_paciente'] ? $data['patient']['prevision_paciente'] : $data['patient']['prevision'],
 			'Box' => $data['box'],
-			'Multi' => (bool) $data['multiplicity'],
+			'Multi' => ((bool) $data['multiplicity']) ? 'true' : 'false',
 			'Id_Paciente_Titular' => $data['main']['id_ambulatorio'],
 			'Id_Paciente' => $data['patient']['id_ambulatorio'],
 			'Corr_Horario' => $data['id_schedule'],
@@ -47,9 +47,7 @@ class Agenda_model extends CI_Model {
 			'Prox_HoraLibre' => $nfh[1] //Uses only the time
 		);
 		
-		//debug_var($input);
-		
-		$result = $this->timebooking->bookAppointment($data);
+		$result = $this->timebooking->bookAppointment($input);
 		if(!$result){
 			$this->error = $this->timebooking->getError();
 			return false;
@@ -61,7 +59,31 @@ class Agenda_model extends CI_Model {
 	function getError(){
 		return $this->error;
 	}
+	
+	function anulaReserva($data){
 		
+		$ambulatoryID = getSessionValue('ambulatoryID');
+		$input = array(
+			'Cod_Sucursal' => $data['cod_unidad'],
+			'Cod_Unidad' => $data['cod_unidad'],
+			'Cod_Profesional' => $data['cod_prof'],
+			'Corr_Agenda' => $data['correl_agenda'],
+			'Cod_Especialidad' => $data['cod_especialidad'],
+			'Fecha_Reserva' => $data['fecha_reserva'],
+			'Hora_Reserva' => $data['hora_reserva'],
+			'mvarIDReserva' => $data['correl_reserva'],
+			'Id_PacienteTitular' => $ambulatoryID
+		);
+		
+		$result = $this->timebooking->cancelReservation($input);
+		if(!$result){
+			$this->error = $this->timebooking->getError();
+			return false;
+		}
+		
+		return $result;
+		 		
+	}
 }
 
 ?>

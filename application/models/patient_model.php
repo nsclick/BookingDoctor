@@ -81,11 +81,18 @@ class Patient_model extends CI_Model {
 	}
 	
 	function get($rut, $dv){
+		$patient = getSessionValue( 'cache_patient' );
+		if($patient)
+			return $patient; 
+			
 		$result = $this->timebooking->getUserInfo( array( 'rut' => $rut, 'dv' => $dv ) );
+		
 		if(!$result){
 			$this->error = $this->timebooking->getError();
 			return false;
 		}
+		
+		setSessionValue( 'cache_patient', $result );
 		
 		return $result;
 	}
@@ -106,6 +113,16 @@ class Patient_model extends CI_Model {
 		array_unshift($fm, $patient);
 		
 		return $fm;
+	}
+	
+	function getReservedDates(){
+
+		if(!isset($this->id_grupo_familiar))
+			return null;
+		
+		$rd = $this->timebooking->getReservedDatesByFamily( $this->id_grupo_familiar );
+		return $rd;
+		
 	}
 
 }

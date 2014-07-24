@@ -1,7 +1,6 @@
 <?php
 
 function get_session_user(){
-	$CI =& get_instance();
 	
 	if($session = getAllSession()){
 		return $session;
@@ -42,3 +41,15 @@ function getSessionValue($varName){
 	return isset($_SESSION[$varName]) ? $_SESSION[$varName] : NULL;
 }
 
+function removeSessionVar($varName){
+	if(!$varName)
+		return false;
+		
+	if(!is_array($varName) && is_string($varName) )
+		$varName = array($varName);
+		
+	foreach($varName as $v){
+		unset($_SESSION[$v]);
+	}
+	return true;
+}
