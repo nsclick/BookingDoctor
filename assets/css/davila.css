@@ -33,6 +33,8 @@ input, select{height:30px!important;padding:4px 8px!important}
 .navbar-default .navbar-nav > li > a{color:#444;font-weight:bold}
 .navbar-default .navbar-nav > li > a:hover{background:#cccccc}
 .navbar-default .navbar-nav > li > a:active,.navbar-default .navbar-nav > li > a.active{background:#6fb4ef}
+ul{padding:0px;}
+li.carga {list-style:none;}
 form{background:#eee;padding:10px;margin:0 auto 20px;border-radius:10px;-moz-border-radius:10px;-ms-border-radius:10px;-webkit-border-radius:10px;border:1px solid #ddd}
 form.hidden-form{background: none; padding: 0px; margin: 0px; border: none;}
 .form-group label{margin-bottom:4px;margin-left:9px}
@@ -50,6 +52,7 @@ top:-10px;right:10px;width:auto}
 .btn.btn-default.volver{color:#fff;background-color:#fe9900;border:1px solid #d68101}
 .seleccionado{color:#fff !important;background-color:#fe9900 !important;}
 .alert{background:#ff4800;color:#fff}
+.alert-error{background:#ff4800;color:#fff}
 .btn.btn-default.volver:hover{background-color:#d68101;border-color:#fe9900}
 .registrotabs{width:100%;position:relative}
 .navbar-collapse.collapse{padding:0}
@@ -74,9 +77,10 @@ form.tabactive{display:block!important}
 form .table th,form .table td, form .table tr{border:none!important}
 form .table{margin:0}
 .modificar .table thead th{font-weight:normal}
+.btab ul{list-style:none;}
 .btab a{display:block;float:left;padding:10px 20px;background:#ddd;border-radius:10px 10px 0 0;-moz-border-radius:10px 10px 0 0;-webkit-border-radius:10px 10px 0 0;-ms-border-radius:10px 10px 0 0;margin:0 10px -2px;color:#444;text-decoration:none;border:#ddd solid 1px;border-bottom:1px solid #eee}
 .btab a:hover{background:#ccc}
-.btab a.active, .btab a.active:hover{background:#eee}
+.btab .active a, .btab .active a:hover{background:#eee}
 .navbar-default .navbar-nav > li.sesion a{display:inline}
 .navbar-default .navbar-nav > li.sesion a:hover{background:none;color:#aaa}
 .agendamed table thead{margin-bottom:10px;display:block}

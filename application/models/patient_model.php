@@ -79,6 +79,17 @@ class Patient_model extends CI_Model {
 		
 		return true;
 	}
+
+	function update ( $data ) {
+		$result = $this -> timebooking -> updatePatient ( $data );
+		
+		if ( !$result ) {
+			$this -> error = $this -> timebooking -> getError ();
+			return false;
+		}
+
+		return $result;
+	}
 	
 	function get($rut, $dv){
 		$patient = getSessionValue( 'cache_patient' );
@@ -96,19 +107,54 @@ class Patient_model extends CI_Model {
 		
 		return $result;
 	}
+
+	function getUserAccess($rut, $dv) {
+		$result = $this->timebooking->getUserAccess( array( 'rut' => $rut, 'dv' => $dv ) );
+		if(!$result){
+			$this->error = $this->timebooking->getError();
+			return false;
+		}
+
+		return $result;
+	}
+
+	function updateUserAccess ( $data ) {
+		$result = $this -> timebooking -> updateUserAccess ( $data );
+		if (!$result) {
+			$this -> error = $this -> timebooking -> getError();
+			return false;
+		}
+
+		return $result;
+	}
+
+	function updateUserMessagingOptions ( $data ) {
+		$result = $this -> timebooking -> updateMessagingOptions ( $data );
+
+		if ( !$result ) {
+			$this -> error = $this -> timebooking -> getError ();
+			return false;
+		}
+
+		return $result;
+	}
 	
-	function getFamilyMembers(){
+	function getFamilyMembers($rut = null, $dv = null, $id_grupo_familiar = null){
 		
-		if(!isset($this->id_grupo_familiar))
+
+		if(is_null($id_grupo_familiar) && !isset($this->id_grupo_familiar))
 			return null;
-		
-		$rut = $this->session->userdata('rut');
-		$dv = $this->session->userdata('dv');
+
+		if (is_null($rut))
+			$rut = $this->session->userdata('rut');
+
+		if (is_null($dv))
+			$dv = $this->session->userdata('dv');
 		
 		$patient = get_object_vars($this);
 		$patient['desc_parentesco'] = 'Titular';
 		
-		$fm = $this->timebooking->getFamilyMembers($rut, $dv, $this->id_grupo_familiar);
+		$fm = $this->timebooking->getFamilyMembers($rut, $dv, $id_grupo_familiar);
 		
 		array_unshift($fm, $patient);
 		
@@ -123,6 +169,17 @@ class Patient_model extends CI_Model {
 		$rd = $this->timebooking->getReservedDatesByFamily( $this->id_grupo_familiar );
 		return $rd;
 		
+	}
+
+	function addFamilyMember ( $data ) {
+		$result = $this -> timebooking -> addUserFamilyMember ( $data );
+
+		if ( !$result ) {
+			$this -> error = $this -> timebooking -> getError ();
+			return false;
+		}
+
+		return $result;
 	}
 
 }
