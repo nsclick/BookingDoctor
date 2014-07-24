@@ -11,8 +11,6 @@ class Registro extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		
-		validate_false_session ();
-		
 		$this -> load -> library('Timebooking');
 		$this -> load -> model ( 'Patient_model', 'patient' );
 
