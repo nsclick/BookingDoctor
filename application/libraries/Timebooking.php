@@ -11,7 +11,7 @@ class Timebooking {
 	 * @var string
 	 * @access private
 	 */
-	//private $host = 'http://reservas.davila.cl/Ws_ReservaHorasWeb/ResHoraWeb/ResHoraWeb.asmx?wsdl';
+	// private $host = 'http://reservas.davila.cl/Ws_ReservaHorasWeb/ResHoraWeb/ResHoraWeb.asmx?wsdl';
 	private $host = 'http://reservas.davila.cl/Age_Ws_Reserva_Horas_demo/ResHoraWeb.asmx?wsdl';
 	
 	/**
@@ -98,10 +98,10 @@ class Timebooking {
 		//echo '<pre>',print_r($params),'</pre>';
 		//$action = $this->namespace . '/' . $method;
 		$result = $this->client->call($method, $params, '', '', false, true);
-		
+
 		if(isset($result['faultcode'])){
 			$this->error = $result["faultstring"];
-			return false;		
+			return false;
 		}
 
 		// Check for a fault
@@ -126,9 +126,14 @@ class Timebooking {
 	 * @param string $xmlStr
 	 * @return object Object with XML DOM representation
 	 */
-	private function _xml2Object($xmlStr){		
+	private function _xml2Object($xmlStr){
 		$xmlStr = mb_convert_encoding($xmlStr, "UTF-8");
-		return new SimpleXMLElement('<?xml version="1.0" standalone="yes"?>' . $xmlStr);
+		try {
+			return $xmlSXmlE = new SimpleXMLElement("<?xml version='1.0' standalone='yes' ?>\n" . $xmlStr);
+		} catch(Exception $e) {
+			var_dump($e);
+		}
+		die;
 	}
 
 	/**
@@ -307,7 +312,6 @@ class Timebooking {
 		);
 		
 		$result = $this->call('WM_BuscaPacienteTitular', $params);
-		var_dump($result);
 		//var_dump($result);
 		//die();
 		
@@ -438,7 +442,6 @@ class Timebooking {
 			$params[$field] = ($field != 'Clave_Usuario') ? strtoupper($value) : $value;
 		}	
 		
-		//debug_var($params);
 		$result = $this->registerUser($params);
 		
 		if(!$result){
@@ -488,7 +491,150 @@ class Timebooking {
 		$result->estado = ($result->idAmbulatorio) ? TRUE : FALSE;
 		return $result;		
 	}
-	
+
+	/**
+	 * updatePatient
+	 */
+	public function updatePatient ( $params ) {
+		if ( !isset ( $params['Cod_Empresa'] ) || empty ( $params['Cod_Empresa'] ) ) {
+			$params['Cod_Empresa'] = $this -> companyID;
+		}
+
+		if ( !isset ( $params['Cod_Sucursal'] ) || empty ( $params['Cod_Sucursal'] ) ) {
+			$params['Cod_Sucursal'] = $this -> branchID;
+		}
+
+		if ( !isset ( $params['User'] ) || empty ( $params['User'] ) ) {
+			$params['Usuario'] = $this -> webUser;
+		}
+
+		if ( !isset ( $params['IP_Cliente'] ) || empty ( $params['IP_Cliente'] ) ) {
+			$params['IP_Cliente'] = $this -> ip;
+		}
+
+		$result = $this -> call ( 'WM_MantUsuario', $params );
+
+		if ( empty ( $result ) ) {
+			return false;
+		}
+		
+		$xmlObject = $this->_xml2Object( $result['WM_MantUsuarioResult'] );
+
+		if ( (string) $xmlObject->Error->Error_Cod != '0' ) {
+			$this->error = $xmlObject->Error->ErrorDesc;
+			return false;
+		}
+
+		if ( (string) $xmlObject->MantUsuarios->Datos->ESTADO == 'N' ) {
+			$this->error = $xmlObject->MantUsuarios->Datos->DESC_ESTADO;
+			return false;
+		}
+
+		if ( (string) $xmlObject->MantUsuarios->Datos->ESTADO != 'N' )
+			return $xmlObject->MantUsuarios->Datos->DESC_ESTADO;
+		
+		return false;
+	}
+
+	/**
+	 * updateUserAccess
+	 */
+	public function updateUserAccess ( $params ) {
+		if ( !isset ( $params['Cod_Empresa'] ) || empty ( $params['Cod_Empresa'] ) ) {
+			$params['Cod_Empresa'] = $this -> companyID;
+		}
+
+		if ( !isset ( $params['Cod_Sucursal'] ) || empty ( $params['Cod_Sucursal'] ) ) {
+			$params['Cod_Sucursal'] = $this -> branchID;
+		}
+
+		if ( !isset ( $params['User'] ) || empty ( $params['User'] ) ) {
+			$params['User'] = $this -> webUser;
+		}
+
+		if ( !isset ( $params['IP_Cliente'] ) || empty ( $params['IP_Cliente'] ) ) {
+			$params['IP_Cliente'] = $this -> ip;
+		}
+
+		$result = $this -> call ( 'WM_CambiarClaveWeb', $params );
+
+		if ( !$result ) {
+			return false;
+		}
+
+		$xmlObject = $this -> _xml2Object ( $result['WM_CambiarClaveWebResult'] );
+		if ( $xmlObject->Error->Error_Cod != 0 ) {
+			$this->error = $xmlObject->Error->ErrorDesc;
+			return false;
+		}
+
+		if ( (string) $xmlObject->CambioClaveWeb->DatosCambio->CODMENSAJE == 'CNIA' ) {
+			$this->error = $xmlObject->CambioClaveWeb->DatosCambio->_x0027_LACLAVENUEVAESIGUALALACLAVEACTUAL_x002C_ELIJAOTRACLAVE_x0027_;
+			return false;
+		}
+
+		if ( (string) $xmlObject->CambioClaveWeb->DatosCambio->CODMENSAJE == 'CAI' ) {
+			$this->error = $xmlObject->CambioClaveWeb->DatosCambio->_x0027_CLAVEACTUALINVALIDA_x0027_;
+			return false;
+		}
+
+		if ( (string) $xmlObject->CambioClaveWeb->CodMensaje == 'N' || (string) $xmlObject->CambioClaveWeb->CodMensaje == '0' ) {
+			$this->error = $xmlObject->Error->ErrorDesc;
+			return false;
+		}
+
+		if ( (string) $xmlObject->CambioClaveWeb->DatosCambio->CODMENSAJE == 'C' )
+			return $xmlObject->CambioClaveWeb->DatosCambio->_x0027_DATOSCAMBIADOSEXITOSAMENTE_x0027_;
+		
+		return false;
+	}
+
+	/**
+	 * addUserFamilyMember
+	 *
+	 * @access public
+	 * @param array $params
+	 */
+	public function addUserFamilyMember ( $params ) {
+		if ( !isset ( $params['Cod_Empresa'] ) || empty ( $params['Cod_Empresa'] ) ) {
+			$params['Cod_Empresa'] = $this -> companyID;
+		}
+
+		if ( !isset ( $params['Cod_Sucursal'] ) || empty ( $params['Cod_Sucursal'] ) ) {
+			$params['Cod_Sucursal'] = $this -> branchID;
+		}
+
+		if ( !isset ( $params['User'] ) || empty ( $params['User'] ) ) {
+			$params['User'] = $this -> webUser;
+		}
+
+		if ( !isset ( $params['IP_Cliente'] ) || empty ( $params['IP_Cliente'] ) ) {
+			$params['IP_Cliente'] = $this -> ip;
+		}
+
+		$result = $this -> call ( 'WM_MantCargas', $params );
+
+		if ( empty ( $result ) ) {
+			return false;
+		}
+
+		$xmlObject = $this->_xml2Object( $result['WM_MantCargasResult'] );
+
+		if ( (string) $xmlObject->Error->Error_Cod != '0' ) {
+			$this->error = $xmlObject->Error->ErrorDesc;
+			return false;
+		}
+
+		if ( (string) $xmlObject->MantCargas->Datos->ESTADO == 'N' ) {
+			$this->error = $xmlObject->MantCargas->Datos->DESC_ESTADO;
+			return false;
+		}
+
+		if ( (string) $xmlObject->MantCargas->Datos->ESTADO != 'N' )
+			return $xmlObject->MantCargas->Datos->DESC_ESTADO;
+		
+		return false;
+	}
 	
 	/**
 	 * Updates the user messagin options
@@ -497,10 +643,32 @@ class Timebooking {
 	 * @param array $data [Id_Paciente, ]
 	 * @param int id_ambulatorio
 	 */	
-	private function updateMessagingOptions($data){
+	public function updateMessagingOptions ( $params ){
+		if ( !isset ( $params['Cod_Empresa'] ) || empty ( $params['Cod_Empresa'] ) ) {
+			$params['Cod_Empresa'] = $this -> companyID;
+		}
+
+		if ( !isset ( $params['Cod_Sucursal'] ) || empty ( $params['Cod_Sucursal'] ) ) {
+			$params['Cod_Sucursal'] = $this -> branchID;
+		}
 		
-		$result = $this->call('WM_ActualizaOpcionesMensajeria', $params);
+		$result 	= $this->call('WM_ActualizaOpcionesMensajeria', $params);
+		$xmlObject 	= $this->_xml2Object ( $result['WM_ActualizaOpcionesMensajeriaResult'] );
 		
+		if ( $xmlObject->Error->Error_Cod != 0 ) {
+			$this->error = $xmlObject->Error->ErrorDesc;
+			return false;
+		}
+
+		if ( (string) $xmlObject->Resultado->ActualizaOpcionesMensajeria->ESTADO == 'N' ) {
+			$this->error = $xmlObject->Resultado->ActualizaOpcionesMensajeria->DESC_ESTADO;
+			return false;
+		}
+
+		if ( (string) $xmlObject->Resultado->ActualizaOpcionesMensajeria->ESTADO != 'N' )
+			return $xmlObject->Resultado->ActualizaOpcionesMensajeria->DESC_ESTADO;
+		
+		return false;
 	}
 
 	/**
@@ -545,6 +713,42 @@ class Timebooking {
 		
 	}
 	
+	/**
+	 * Get the user data
+	 * 
+	 * @access public
+	 * @param array $data [rut, dv]
+	 * @param int id_ambulatorio
+	 */	
+	public function getUserAccess($data){
+
+		$params = array(
+			'Cod_Empresa' => $this->companyID,
+			'Rut_Paciente' => $data['rut'],
+			'Dv_Paciente' => $data['dv']
+		);
+		
+		$result = $this->call('WM_TraeDatosAcceso', $params);
+		
+		if(!$result){
+			return false;
+		}
+		
+		$xmlObject = $this->_xml2Object($result['WM_TraeDatosAccesoResult']);
+		
+		$vars = get_object_vars ( $xmlObject->RecuperaAcceso->DatosAcceso );
+		
+		if($vars['ESTADO'] == 'N'){
+			$this->error = $vars['DESC_ESTADO'];
+			return false;
+		}
+		
+		foreach($vars as $i => $val){
+			$userData[strtolower($i)] = (string) $val;
+		}
+		
+		return $userData;
+	}
 	
 	/**
 	 * Get available dates by a doctor
