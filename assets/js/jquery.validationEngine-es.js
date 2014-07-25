@@ -7,7 +7,7 @@
             $.validationEngineLanguage.allRules = {
                 "required": { // Add your regex rules here, you can take telephone as an example
                     "regex": "none",
-                    "alertText": "* Este campo es obligatorio",
+                    "alertText": "* Este campo es obligatorio ",
                     "alertTextCheckboxMultiple": "* Por favor seleccione una opción",
                     "alertTextCheckboxe": "* Este checkbox es obligatorio"
                 },

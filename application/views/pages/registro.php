@@ -167,7 +167,7 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 			</label>
 	  	</div> 
 	  	<div class="form-group">
-	    	<label style="font-weight:normal">A través de correo electr&oeacute;nico</label>
+	    	<label style="font-weight:normal">A través de correo electr&oacute;nico</label>
 			<label class="radio-inline">
 		  		<input type="radio" name="EMAIL_notificacion" value="3" <?php echo set_radio('EMAIL_notificacion', '3', TRUE); ?>> Si
 			</label>
