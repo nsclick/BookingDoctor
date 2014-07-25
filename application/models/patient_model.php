@@ -51,23 +51,48 @@ class Patient_model extends CI_Model {
 		return !empty ( $tmpKey );
 	}
 	
+	/**
+	 * create a new patient
+	 */
 	function create($data){
-		
 		//Compose the phones
 		$data['Fono1_Paciente'] = $data['prefijo_Fono1_Paciente'] . $data['Fono1_Paciente'];
 		unset($data['prefijo_Fono1_Paciente']);
 		$data['Fono2_Paciente'] = ($data['Fono2_Paciente']) ? $data['prefijo_Fono2_Paciente'] . $data['Fono2_Paciente'] : NULL;
 		unset($data['prefijo_Fono2_Paciente']);
 		
-		$result = $this->timebooking->registerPatient( $data );
+		$result = $this->timebooking->registerPatient ( $data );
 		if(!$result){
+			$this->error = $this->timebooking->getError ();
+			return false;
+		}
+
+		$rut 				= $data['Rut_Paciente'];
+		$dv 				= $data['Dv_Paciente'];
+		// $user_data 			= $this -> get( $rut, $dv );
+		$sms_mail 			= $data['SMS_notificacion'] . '^' . $data['EMAIL_notificacion'];
+		$fono1_2			= !empty ( $data['FonoMovil1'] ) ? '1' : '2';
+		$modifica_moviles	= 'N';
+
+		$messagingParams	= array(
+			'Id_Paciente'			=> $result,
+			'Op_SmsEmail'			=> $sms_mail,
+			'Op_Fono1o2'			=> $fono1_2,
+			'Op_InfoClinica'		=> $data['Op_InfoClinica'],
+			'ModificaMoviles'		=> $modifica_moviles,
+			'PrefMovil1'			=> $data['PrefMovil1'],
+			'Movil1'				=> $data['FonoMovil1'],
+			'PrefMovil2'			=> $data['PrefMovil2'],
+			'Movil2'				=> $data['FonoMovil2']
+		);
+
+		$messagingResult 	= $this -> patient -> updateUserMessagingOptions ( $messagingParams );
+		if ( !$messagingResult ) {
 			$this->error = $this->timebooking->getError();
 			return false;
 		}
-		
+
 		//Login the user
-		$rut = $data['Rut_Paciente'];
-		$dv = $data['Dv_Paciente'];
 		$password = $data['Clave_Usuario'];
 		
 		if(!$this->login($rut, $dv, $password)){
