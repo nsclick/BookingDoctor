@@ -28,8 +28,8 @@ class Registro extends CI_Controller {
 
 		$this -> template -> add_js('assets/js/moment-2.4.0.js');
 		$this -> template -> add_js('assets/third_party/bootstrap/js/bootstrap-datetimepicker.min.js');
-		$this -> template -> add_js('assets/third_party/jquery.validationEngine.js');
-		$this -> template -> add_js('assets/third_party/validationEngine/jquery.validationEngine-es.js');
+		$this -> template -> add_js('assets/js/jquery.validationEngine.js');
+		$this -> template -> add_js('assets/js/jquery.validationEngine-es.js');
 		$this -> template -> add_js('assets/js/jquery.Rut.js');
 		$this -> template -> add_js('assets/third_party/bootstrap/js/bootstrap3-typeahead.js');
 		$this -> template -> add_js('assets/js/jquery.form.min.js');
@@ -45,6 +45,11 @@ class Registro extends CI_Controller {
 		$this -> template -> render();
 	}
 
+	/**
+	 * guardar
+	 *
+	 * Register a new user
+	 */
 	public function guardar() {
 
 		/* Para registrar las opciones de mensajeria usar el metodo del web service
@@ -96,6 +101,8 @@ class Registro extends CI_Controller {
 	 * modificardatos
 	 */
 	public function modificardatos() {
+		validate_false_session();
+
 		$action = isset($_POST['action']) ? $_POST['action'] : null;
 		switch ($action) {
 			case 'save_personal_info':
@@ -118,8 +125,15 @@ class Registro extends CI_Controller {
 
 		$this -> template -> write('title', $this -> title);
 		$this -> template -> add_css('assets/third_party/validationEngine/validationEngine.jquery.css');
-		$this -> template -> add_js('assets/third_party/validationEngine/jquery.validationEngine-es.js');
-		$this -> template -> add_js('assets/third_party/validationEngine/jquery.validationEngine.js');
+		
+		// $this -> template -> add_js('assets/third_party/validationEngine/jquery.validationEngine-es.js');
+		// $this -> template -> add_js('assets/third_party/validationEngine/jquery.validationEngine.js');
+		$this -> template -> add_js('assets/js/moment-2.4.0.js');
+		$this -> template -> add_js('assets/third_party/bootstrap/js/bootstrap-datetimepicker.min.js');
+		$this -> template -> add_js('assets/js/jquery.validationEngine.js');
+		$this -> template -> add_js('assets/js/jquery.validationEngine-es.js');
+		$this -> template -> add_js('assets/js/jquery.Rut.js');
+
 		$this -> template -> add_js('assets/third_party/bootstrap/js/bootstrap.min.js');
 		$this -> template -> add_js('assets/js/modificardatos.js');
 
