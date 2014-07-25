@@ -141,10 +141,11 @@ class Patient_model extends CI_Model {
 	
 	function getFamilyMembers($rut = null, $dv = null, $id_grupo_familiar = null){
 		
-
 		if(is_null($id_grupo_familiar) && !isset($this->id_grupo_familiar))
 			return null;
-
+		
+		$id_grupo_familiar = $id_grupo_familiar ? $id_grupo_familiar : $this->id_grupo_familiar;
+		
 		if (is_null($rut))
 			$rut = $this->session->userdata('rut');
 

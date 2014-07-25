@@ -12,7 +12,7 @@ class Timebooking {
 	 * @access private
 	 */
 	// private $host = 'http://reservas.davila.cl/Ws_ReservaHorasWeb/ResHoraWeb/ResHoraWeb.asmx?wsdl';
-	private $host = 'http://reservas.davila.cl/Age_Ws_Reserva_Horas_demo/ResHoraWeb.asmx?wsdl';
+	//private $host = 'http://reservas.davila.cl/Age_Ws_Reserva_Horas_demo/ResHoraWeb.asmx?wsdl';
 	
 	/**
 	 * Whether uses WSDL
@@ -965,8 +965,23 @@ class Timebooking {
 		return true;
 	}
 	
-	function getIsapres(){
-	
+	/**
+	 * Check the WS status
+	 * @return true | false
+	 * */
+	function checkServiceStaus(){
+		
+		$params['Cod_Empresa'] = $this->companyID;
+		$params['Accion'] = 'D';
+		$params['Valor_Encriptado'] = '37DA0F70A2A98FD6';
+		$params['Valor_Desencriptado'] = '';
+		
+		$result = $this->call('WM_EncriptaDesencripta', $params);
+		
+		if(!isset($result['WM_EncriptaDesencriptaResult']) )
+			return false;
+		
+		return true;
 	}
 }
 

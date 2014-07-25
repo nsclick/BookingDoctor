@@ -22,3 +22,13 @@ function loadSession(){
 	if(! session_id() )
 		session_start();
 }
+
+function chechStatus(){
+
+	$CI =& get_instance();
+	$controller = $CI->uri->segment(1);
+	
+	if( isAppBlocked() && $controller != 'contactenos' ){
+		redirect( 'contactenos' );
+	}
+}

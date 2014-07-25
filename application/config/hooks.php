@@ -17,7 +17,14 @@ $hook['pre_system'] = array(
                                 'filepath' => 'hooks'
                                 );
 
-$hook['post_controller_constructor'] = array(
+$hook['post_controller_constructor'][] = array(
+								'class'    => '',
+                                'function' => 'chechStatus',
+                                'filename' => 'bookingdoctor.php',
+                                'filepath' => 'hooks'
+                                );
+
+$hook['post_controller_constructor'][] = array(
 								'class'    => '',
                                 'function' => 'loadCompanyInfo',
                                 'filename' => 'bookingdoctor.php',

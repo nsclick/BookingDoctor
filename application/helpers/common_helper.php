@@ -53,3 +53,7 @@ function removeSessionVar($varName){
 	}
 	return true;
 }
+
+function isAppBlocked(){
+	return is_file( '.block' );
+}
