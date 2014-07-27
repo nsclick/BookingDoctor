@@ -125,9 +125,6 @@ class Registro extends CI_Controller {
 
 		$this -> template -> write('title', $this -> title);
 		$this -> template -> add_css('assets/third_party/validationEngine/validationEngine.jquery.css');
-		
-		// $this -> template -> add_js('assets/third_party/validationEngine/jquery.validationEngine-es.js');
-		// $this -> template -> add_js('assets/third_party/validationEngine/jquery.validationEngine.js');
 		$this -> template -> add_js('assets/js/moment-2.4.0.js');
 		$this -> template -> add_js('assets/third_party/bootstrap/js/bootstrap-datetimepicker.min.js');
 		$this -> template -> add_js('assets/js/jquery.validationEngine.js');
