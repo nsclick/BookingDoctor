@@ -224,7 +224,7 @@ fecha de inicio inicio de la agenda desde donde donde inicias
   	</div>
   	<div class="enviando">
 		<p class="uno">Enviando su registro...</p>
-		<p class="dos">Registro exitoso!<br/> <a href="<?php echo site_url("buscarmedico");?>">Ir a Reserva Horas</a> </p>
+		<p class="dos">Registro exitoso!<br/> <a href="<?php echo site_url("home");?>">Ir a Reserva Horas</a> </p>
 		<p class="error">Enviado</p>
 	</div>
 </div>
