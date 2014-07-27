@@ -1,12 +1,21 @@
 (function(window, $, undefined) {
 	$(document).ready(function() {
 
-		console.log('Ready');
+		var addFamilyForm 		= $('#family_info_f'),
+			addFamilyBtn		= $('#add_family_btn'),
+			cancelFamilyBtn		= $('#cancel_family_btn'),
+			editFamilyBtn		= $('#edit_carga_btn'),
+			patientBirthDate	= $('#Fechanac_Paciente'),
+			familyirthDate		= $('#Carga_Fechanac_Paciente');
 
-		var addFamilyForm 	= $('#family_info_f'),
-			addFamilyBtn	= $('#add_family_btn'),
-			cancelFamilyBtn	= $('#cancel_family_btn'),
-			editFamilyBtn	= $('#edit_carga_btn');
+		// Date Type Inputs
+		patientBirthDate.datetimepicker({
+			pickTime : false
+		});
+
+		familyirthDate.datetimepicker({
+			pickTime : false
+		});
 
 		// ValidationEngine
 		$('#personal_info').validationEngine('attach', {

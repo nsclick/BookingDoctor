@@ -421,19 +421,16 @@ class Timebooking {
 	function registerPatient($data){
 		
 		$params = array(
-			'Tipo_Usuario' => 'PACIENTE',
-			'IP_Cliente' => $this->ip,
-			'Usuario' => $this->webUser,
-			'Accion' => 'I',
-			'Cod_Empresa' => $this->companyID,
-			'Cod_Sucursal' => $this->branchID,
-			'Id_Ambulatorio' => '11111111',
-			'Estado' => 'D'
+			'Tipo_Usuario' 		=> 'PACIENTE',
+			'IP_Cliente' 		=> $this->ip,
+			'Usuario' 			=> $this->webUser,
+			'Accion' 			=> 'I',
+			'Cod_Empresa' 		=> $this->companyID,
+			'Cod_Sucursal' 		=> $this->branchID,
+			'Id_Ambulatorio' 	=> '11111111',
+			'Estado' 			=> 'D'
 		);
 		
-		$Op_InfoClinica = $data['Op_InfoClinica'];
-		$SMS_notificacion = $data['SMS_notificacion'];
-		$EMAIL_notificacion = $data['EMAIL_notificacion'];
 		unset($data['SMS_notificacion']);
 		unset($data['EMAIL_notificacion']);
 		unset($data['Op_InfoClinica']);
@@ -445,6 +442,7 @@ class Timebooking {
 		$result = $this->registerUser($params);
 		
 		if(!$result){
+			$this->error = 'El registro no pudo realizarse, favor intentar más tarde';
 			return false;
 		}
 		
@@ -457,26 +455,28 @@ class Timebooking {
 	}
 	
 	private function registerUser($params){
+		// var_dump($params);die;
+
 		$result = $this->call('WM_MantUsuario', $params);
 		
 		//TODO: Remove this assignation 
-		$result['WM_MantUsuarioResult'] = '<XML>
-					<MantUsuarios>
-						<Datos>
-							<ESTADO>S</ESTADO>
-							<DESC_ESTADO>GRABACION NUEVO REGISTRO WEB EXITOSA</DESC_ESTADO>
-							<ID_AMB_INGRESO>3061476</ID_AMB_INGRESO>
-						</Datos>
-					</MantUsuarios>
-					<Mensaje>
-						<CodMensaje>3</CodMensaje>
-						<DescMensaje></DescMensaje>
-					</Mensaje>
-					<Error>
-						<Error_Cod>0</Error_Cod>
-						<ErrorDesc>SIN ERRORES</ErrorDesc>
-					</Error>
-				</XML>';
+		// $result['WM_MantUsuarioResult'] = '<XML>
+		// 			<MantUsuarios>
+		// 				<Datos>
+		// 					<ESTADO>S</ESTADO>
+		// 					<DESC_ESTADO>GRABACION NUEVO REGISTRO WEB EXITOSA</DESC_ESTADO>
+		// 					<ID_AMB_INGRESO>3061476</ID_AMB_INGRESO>
+		// 				</Datos>
+		// 			</MantUsuarios>
+		// 			<Mensaje>
+		// 				<CodMensaje>3</CodMensaje>
+		// 				<DescMensaje></DescMensaje>
+		// 			</Mensaje>
+		// 			<Error>
+		// 				<Error_Cod>0</Error_Cod>
+		// 				<ErrorDesc>SIN ERRORES</ErrorDesc>
+		// 			</Error>
+		// 		</XML>';
 		
 		if(!$result){
 			return false;
@@ -484,12 +484,26 @@ class Timebooking {
 		
 		$xmlObject = $this->_xml2Object($result['WM_MantUsuarioResult']);
 		
-		//echo '<pre>',print_r($xmlObject),'</pre>';
-		$result = new stdClass();
-		$result->idAmbulatorio = (string) $xmlObject->MantUsuarios->Datos->ID_AMB_INGRESO;
-		$result->descEstado = (string) $xmlObject->MantUsuarios->Datos->DESC_ESTADO;
-		$result->estado = ($result->idAmbulatorio) ? TRUE : FALSE;
-		return $result;		
+		if ( (string) $xmlObject->Error->Error_Cod != '0' ) {
+			$this->error = $xmlObject->Error->ErrorDesc;
+			return false;
+		}
+
+		if ( (string) $xmlObject->MantUsuarios->Datos->ESTADO == 'N' ) {
+			$this->error = $xmlObject->MantUsuarios->Datos->DESC_ESTADO;
+			return false;
+		}
+
+		if ( (string) $xmlObject->MantUsuarios->Datos->ESTADO != 'N' ) {
+			$result = new stdClass();
+			$result->idAmbulatorio = (string) $xmlObject->MantUsuarios->Datos->ID_AMB_INGRESO;
+			$result->descEstado = (string) $xmlObject->MantUsuarios->Datos->DESC_ESTADO;
+			$result->estado = ($result->idAmbulatorio) ? TRUE : FALSE;
+			
+			return $result;		
+		}
+		
+		return false;
 	}
 
 	/**
