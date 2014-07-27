@@ -78,7 +78,7 @@ $(function() {
 			$.post(site_url + '/registro/guardar', queryString,function( data ) {
 				$(".enviando p.uno").fadeOut();
 				if(!data.state){
-					$(".enviando p.error").html('Error al crear el registro, intente mas tarde.');
+					$(".enviando p.error").html('Error al crear el registro, intente más tarde.');
 					$(".enviando p.error").fadeIn(1500);
 					setTimeout(function() { 
 						$(".enviando p.error").fadeOut();

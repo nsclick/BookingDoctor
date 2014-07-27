@@ -49,7 +49,7 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 	    	<input type="text" class="form-control" id="Apemat_Paciente" name="Apemat_Paciente" placeholder="Ingrese su segundo apellido" value="<?php echo set_value('Apemat_Paciente'); ?>">
 	  	</div> 
 	  	<div class="form-group">
-	    	<label for="Direccion_Paciente">Dirección</label>
+	    	<label for="Direccion_Paciente">Direcci&oacute;n</label>
 	    	<input type="text" class="form-control validate[required]" id="Direccion_Paciente" name="Direccion_Paciente" placeholder="Ingrese su dirección" value="<?php echo set_value('Direccion_Paciente'); ?>">
 	  	</div> 
 	  	<div class="form-group">
@@ -64,14 +64,14 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 	  	<div class="form-group">
 	    	<label>Sexo</label><br>
 			<label class="radio-inline">
-		  		<input type="radio" class="validate[required]" id="Sexo_Paciente" name="Sexo_Paciente" value="M" <?php echo set_radio('Sexo_Paciente', 'M'); ?>> Masculuno
+		  		<input type="radio" class="validate[required]" id="Sexo_Paciente" name="Sexo_Paciente" value="M" <?php echo set_radio('Sexo_Paciente', 'M'); ?>> Masculino
 			</label>
 			<label class="radio-inline">
 		  		<input type="radio" class="validate[required]" id="Sexo_Paciente" name="Sexo_Paciente" value="F" <?php echo set_radio('Sexo_Paciente', 'F'); ?>> Femenino
 			</label>
 	  	</div> 
 	  	<div class="form-group">
-	    	<label for="Prevision_Paciente">Previsión</label>
+	    	<label for="Prevision_Paciente">Previsi&oacute;n</label>
 			<select id="Prevision_Paciente" name="Prevision_Paciente" class="form-control validate[required]">
 				<option value="" <?php echo set_select('Prevision_Paciente', '', TRUE); ?>></option>
 				<?php foreach($medical_services as $id => $name): ?>
@@ -92,7 +92,7 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 	<?php echo form_open('registro2', array('id' => 'registro2')); ?>
   	<div class="tabspace space2">
 	  	<div class="form-group" style="width:23%">
-	    	<label for="Fono1_Paciente">Teléfono 1</label>
+	    	<label for="Fono1_Paciente">Tel&eacute;fono 1</label>
 	      	<div class="row">
 				<div class="col-lg-4">
 					<select class="form-control" id="prefijo_Fono1_Paciente" name="prefijo_Fono1_Paciente">
@@ -102,12 +102,12 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 					</select>
 				</div>
 				<div class="col-lg-8">
-					<input type="text" class="form-control validate[required,custom[integer],minSize[7],maxSize[7]]" id="Fono1_Paciente" name="Fono1_Paciente" placeholder="Ingrese los 7 Digitos" value="<?php echo set_value('Fono1_Paciente'); ?>">
+					<input type="text" class="form-control validate[required,custom[integer]]" id="Fono1_Paciente" name="Fono1_Paciente" placeholder="Ingrese los Digitos" value="<?php echo set_value('Fono1_Paciente'); ?>">
 				</div>
 		  	</div> 
 	  	</div> 
 	  	<div class="form-group" style="width:23%">
-	    	<label for="Fono2_Paciente">Teléfono 2</label>
+	    	<label for="Fono2_Paciente">Tel&eacute;fono 2</label>
 	      	<div class="row">
 				<div class="col-lg-4">
 					<select class="form-control" id="prefijo_Fono2_Paciente" name="prefijo_Fono2_Paciente">
@@ -117,7 +117,7 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 					</select>
 				</div>
 				<div class="col-lg-8">
-					<input type="text" class="form-control validate[custom[integer],minSize[7],maxSize[7]]" id="Fono2_Paciente" name="Fono2_Paciente" placeholder="Ingrese los 7 Digitos" value="<?php echo set_value('Fono2_Paciente'); ?>">
+					<input type="text" class="form-control validate[custom[integer]]" id="Fono2_Paciente" name="Fono2_Paciente" placeholder="Ingrese los Digitos" value="<?php echo set_value('Fono2_Paciente'); ?>">
 				</div>
 		  	</div> 
 	  	</div>
@@ -130,7 +130,7 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 					</select>
 				</div>
 				<div class="col-lg-8">
-					<input type="text" class="form-control validate[required,custom[integer],minSize[8],maxSize[8]]" id="FonoMovil1" name="FonoMovil1" placeholder="Ingrese los 8 Digitos" value="<?php echo set_value('FonoMovil1'); ?>">
+					<input type="text" class="form-control validate[required,custom[integer]]" id="FonoMovil1" name="FonoMovil1" placeholder="Ingrese los Digitos" value="<?php echo set_value('FonoMovil1'); ?>">
 				</div>
 		  	</div> 
 	  	</div>
@@ -143,7 +143,7 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 					</select>
 				</div>
 				<div class="col-lg-8">
-					<input type="text" class="form-control validate[custom[integer],minSize[8],maxSize[8]]" id="FonoMovil2" name="FonoMovil2" placeholder="Ingrese los 8 Digitos" value="<?php echo set_value('FonoMovil2'); ?>">
+					<input type="text" class="form-control validate[custom[integer]]" id="FonoMovil2" name="FonoMovil2" placeholder="Ingrese los Digitos" value="<?php echo set_value('FonoMovil2'); ?>">
 				</div>
 		  	</div> 
 	  	</div>
@@ -167,7 +167,7 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 			</label>
 	  	</div> 
 	  	<div class="form-group">
-	    	<label style="font-weight:normal">A través de correo electrónico</label>
+	    	<label style="font-weight:normal">A través de correo electr&oeacute;nico</label>
 			<label class="radio-inline">
 		  		<input type="radio" name="EMAIL_notificacion" value="3" <?php echo set_radio('EMAIL_notificacion', '3', TRUE); ?>> Si
 			</label>
@@ -176,9 +176,9 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 			</label>
 	  	</div>
 	  	<hr /> 
-	  	<h4>Si luego de enviado el mensaje no confirmas la hora, te llamaremos para verificar la cita médica. </h4>
+	  	<h4>Si luego de enviado el mensaje no confirmas la hora, te llamaremos para verificar la cita m&eacute;dica. </h4>
 	  	<div class="form-group">
-		    <label style="font-weight:normal">¿Quisiera recibir información de la clínica Dávila?</label>
+		    <label style="font-weight:normal">¿Quisiera recibir informaci&oacute;n de la cl&ieacute;nica D&aacute;vila?</label>
 			<label class="radio-inline">
 		  		<input type="radio" class="validate[required]" name="Op_InfoClinica" value="S" <?php echo set_radio('Op_InfoClinica', 'S', TRUE); ?>> Si
 			</label>
@@ -198,7 +198,7 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 	<!-- Block 3-->
 	<?php echo form_open('registro3', array('id' => 'registro3')); ?>
   	<div class="tabspace space3">
-	  	<p>Para poder reservar horas, consultar o anular horas reservadas, debes establecer una clave personal de máximo 8  digitos </p>
+	  	<p>Para poder reservar horas, consultar o anular horas reservadas, debes establecer una clave personal de m&aacute;ximo 8  d&iacute;gitos </p>
 	  	<div class="form-group">
 			<label for="Clave_Usuario">Clave</label>
 	    	<input type="password" class="form-control validate[required]" id="Clave_Usuario" name="Clave_Usuario" value="<?php echo set_value('Clave_Usuario'); ?>">
@@ -218,7 +218,7 @@ fecha de inicio inicio de la agenda desde donde donde inicias
 	  	</div>
 	  	<div class="divclear">&nbsp;</div>
 	  	<div class="btnspace">
-	  		<button type="button" class="btn btn-primary ante" id="sgte3">Anterior</button>
+	  		<button type="button" class="btn btn-primary ante" id="ante3">Anterior</button>
 	  		<button type="button" class="btn btn-primary fin" id="fin3">Finalizar</button>
 	  	</div>
   	</div>
