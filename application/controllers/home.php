@@ -37,8 +37,8 @@ class Home extends CI_Controller {
 			
 			$doctors = $this->agenda->getDoctorListByLastName($apellido);
 		}
-		
-		if($doctors){
+
+		if($area || $apellido){
 			$this->page_params['doctors'] = $doctors;
 			$this->page_params['title'] = "Listado de médicos por $msg";
 		}
