@@ -16,26 +16,27 @@ tbody tr td{vertical-align:middle;padding:5px;line-height:normal}
 .consulta .hora a:hover{background:#df9421;border:1px solid #fe9900}
 .consulta .hora .pasada{display:block;padding:10px;text-align:center;color:#333;background:#aaa;border:1px solid #999;margin:10px -10px 0 -10px;border-radius:0 0 10px 10px;-moz-border-radius:0 0 10px 10px;-ms-border-radius:0 0 10px 10px;-webkit-border-radius:0 0 10px 10px;text-decoration:none;font-weight:bold}
 /*Final*/
-body{margin:0;padding:0;font-family:Tahoma;color:#444;font-size:12px}
+body{margin:0;padding:0;font-family:Arial, Helvetica, sans-serif;color:#444;font-size:12px}
 h1, .h1, h2, .h2, h3, .h3{margin-top:10px;margin-bottom:20px;padding:0 5px}
 #wrapper{padding:10px}
 h1{color:#444;font-size:32px}
 h2{color:#444;font-size:18px;margin-bottom:10px}
-h2 b{color:#3891dd}
+h2 b{color:#fe9900}
 p{padding:0 5px}
+a{color:#444}
 input,select,textarea{font-size:12px!important}
 input, select{height:30px!important;padding:4px 8px!important}
 .container{width:100%;padding:0}
-.navbar-default{margin:0;background:#eee;color:#444;border-radius:0;border:none}
+.navbar-default{margin:0;background:#fff;color:#444;border-radius:0;border:none;border-bottom:1px solid #d5d5d5}
 .divclear{clear:both;height:0}
 .container > .navbar-header, .container-fluid > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-collapse{margin:0!important}
 .navbar-nav{margin:0;width:100%}
-.navbar-default .navbar-nav > li > a{color:#444;font-weight:bold}
-.navbar-default .navbar-nav > li > a:hover{background:#cccccc}
-.navbar-default .navbar-nav > li > a:active,.navbar-default .navbar-nav > li > a.active{background:#6fb4ef}
+.navbar-default .navbar-nav > li > a{color:#444;border-left:1px solid #d5d5d5}
+.navbar-default .navbar-nav > li > a:hover{background:#ffb648;color:#fff}
+.navbar-default .navbar-nav > li > a:active,.navbar-default .navbar-nav > li > a.active{background:#fe9900;color:#fff}
 ul{padding:0px;}
 li.carga {list-style:none;}
-form{background:#eee;padding:10px;margin:0 auto 20px;border-radius:10px;-moz-border-radius:10px;-ms-border-radius:10px;-webkit-border-radius:10px;border:1px solid #ddd}
+form{background:#def2fa;padding:10px;margin:0 auto 20px;border-radius:10px;-moz-border-radius:10px;-ms-border-radius:10px;-webkit-border-radius:10px}
 form.hidden-form{background: none; padding: 0px; margin: 0px; border: none;}
 .form-group label{margin-bottom:4px;margin-left:9px}
 .form-group.final{width:98%;float:none;margin:0 1% 5px;text-align:right}
@@ -43,12 +44,14 @@ form.hidden-form{background: none; padding: 0px; margin: 0px; border: none;}
 .form-group.final2{margin:0 1% 5px;text-align:right}
 .form-group:last-of-type{margin-bottom:0}
 #registro1, #registro2, #registro3{display:none}
-.formError.inline{position:relative;width:100%}
-.formError.inline .formErrorContent{border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;-ms-border-radius:5px;background:#ff4800;position:absolute;text-align:right;
-top:-10px;right:10px;width:auto}
+.formError.inline{position:absolute!important;width:100%}
+.formError.inline .formErrorContent{border-radius:5px 5px 0 0;-moz-border-radius:5px 5px 0 0;-webkit-border-radius:5px 5px 0 0;-ms-border-radius:5px 5px 0 0;background:#ff4800;position:absolute;text-align:right;
+top:-1px;right:10px;width:auto}
+.radio-inline .formError.inline .formErrorContent{left:70px;right:auto;top:-5px;border-radius:5px 5px 5px 0;-moz-border-radius:5px 5px 5px 0;-webkit-border-radius:5px 5px 5px 0;-ms-border-radius:5px 5px 5px 0;}
+input[type="radio"]{margin:0;height:20px!important}
+.formError.inline .formErrorContent br{display:none}
 .radio-inline .formError.inline .formErrorContent{}
-.btn.btn-default{color:#fff;background-color:#3891dd;border:1px solid #267bc3}
-.btn.btn-default:hover{background-color:#267bc3;border-color:#3891dd}
+.btn.btn-default, .btn-primary, .btn-primary:hover{color:#fff;background-color:#fe9900;border:none}
 .btn.btn-default.volver{color:#fff;background-color:#fe9900;border:1px solid #d68101}
 .seleccionado{color:#fff !important;background-color:#fe9900 !important;}
 .alert{background:#ff4800;color:#fff}
@@ -56,21 +59,22 @@ top:-10px;right:10px;width:auto}
 .btn.btn-default.volver:hover{background-color:#d68101;border-color:#fe9900}
 .registrotabs{width:100%;position:relative}
 .navbar-collapse.collapse{padding:0}
-h2.tab1{display:block;float:left;width:29%;background:#eee;padding:5px 10px;margin:0;text-align:center;color:#888;font-size:18px;position:relative;height:50px}
+h2.tab1{display:block;float:left;width:29%;background:#ffb648;padding:5px 10px;margin:0;text-align:center;color:#fff;font-size:18px;position:relative;height:50px}
 h2.tab1:first-of-type{margin:0 4% 10px 2%;}
 h2.tab1:last-of-type{margin:0 2% 10px 4%}
-h2.tab1.tabactive{background:#ddd;color:#333}
-h2.tab1:before{width:0px;height:0px;border-top:25px solid #eee;border-bottom:25px solid #eee;border-left:12px solid transparent;position:absolute;content:"";top:0px;left:-12px}
-h2.tab1:after{width:0;height:0;border-top:25px solid transparent;border-bottom:25px solid transparent;border-left:12px solid #eee;position:absolute;content:"";top:0px;right:-12px}
-h2.tab1.tabactive:before{border-top:25px solid #ddd;border-bottom:25px solid #ddd}
-h2.tab1.tabactive:after{border-left:12px solid #ddd}
+h2.tab1.tabactive{background:#fe9900;color:#fff}
+h2.tab1:before{width:0px;height:0px;border-top:25px solid #ffb648;border-bottom:25px solid #ffb648;border-left:12px solid transparent;position:absolute;content:"";top:0px;left:-12px}
+h2.tab1:after{width:0;height:0;border-top:25px solid transparent;border-bottom:25px solid transparent;border-left:12px solid #ffb648;position:absolute;content:"";top:0px;right:-12px}
+h2.tab1.tabactive:before{border-top:25px solid #fe9900;border-bottom:25px solid #fe9900}
+h2.tab1.tabactive:after{border-left:12px solid #fe9900}
 form.tabactive{display:block!important}
 .btnspace{text-align:right}
 .enviando{background-color:rgba(255,255,255,0.8);position:absolute;height:100%;width:100%;display:none;top:0}
 .enviando .uno, .enviando .dos, .enviando .error{display:none;text-align:center;font-size:24px;font-weight:bold;width:200px;height:100px;position:absolute;top:50%;left:50%;margin-top:-50px;margin-left:-100px}
 .enviando1{display:block!important}
 .enviando .error{color: #ff0000}
-.form-group{width:48%;float:left;margin:0 1% 15px 1%}
+.form-group{width:48%;float:left;margin:0 1% 15px 1%;position:relative}
+.input-group{position:initial!important}
 .container > .navbar-header, .container-fluid > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-collapse{margin:0!important}
 .navbar-nav{margin:0;width:100%}
 .table form{padding:0;background:none;margin:0;border:none}
@@ -87,7 +91,7 @@ form .table{margin:0}
 .agendamed table thead tr,.agendamed table thead tr th{width:100%;display:block}
 /*desde 768*/
 @media (min-width: 768px){
-	.navbar-brand{display:none}
+	.navbar-.formError.inline .formErrorContentand{display:none}
 	.mb-on{display:none}
 	table{margin-top:20px;margin-bottom:20px;border:0;border-collapse:separate;border-spacing:0}
 	table tr th,table tr td,.agendamed table tr th,.agendamed table tr td{border-right:1px solid #ddd;border-bottom:1px solid #ddd}
@@ -105,6 +109,7 @@ form .table{margin:0}
 	.agendamed table tbody td span{display:none}
 	.agendamed table{margin:0 auto}
 	.agendamed table tbody tr td{padding:5px 0}
+	.container > .navbar-header, .container-fluid > .navbar-header{display:none}
 }
 /*hasta 1000*/
 @media (max-width: 1000px){
@@ -144,3 +149,8 @@ form .table{margin:0}
     background-color: #DFF0D8 !important;
     border-color: #D6E9C6 !important;
 }
+
+
+
+/**/
+	.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12{position:initial}
