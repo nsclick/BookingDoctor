@@ -89,6 +89,9 @@ form .table{margin:0}
 .navbar-default .navbar-nav > li.sesion a:hover{background:none;color:#aaa}
 .agendamed table thead{margin-bottom:10px;display:block}
 .agendamed table thead tr,.agendamed table thead tr th{width:100%;display:block}
+.pestanas .btn{background:#eee;color:#444}
+.pestanas .btn.seleccionado{background:#fe9900;font-weight:bold}
+
 /*desde 768*/
 @media (min-width: 768px){
 	.navbar-.formError.inline .formErrorContentand{display:none}

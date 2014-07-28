@@ -387,7 +387,7 @@
 							<br>
 							</p>
 							<button id="edit_carga_btn" type="button" data-carga-index="<?php echo $index; ?>" class="btn btn-primary">Editar Carga</button>
-							<button type="submit" class="btn btn-danger">Disasociar Carga</button>
+							<button type="submit" class="btn btn-danger">Desasociar Carga</button>
 
 							<!-- Carga Hidden Inputs -->
 							<input type="hidden" id="<?php echo $index; ?>_Carga_Rut_Paciente" name="Carga_Rut_Paciente" value="<?php echo $carga['rut_paciente_str']; ?>" />

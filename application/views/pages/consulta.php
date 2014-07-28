@@ -1,6 +1,6 @@
 <div id="wrapper">
 
-	<div class="btn-group btn-group-justified">
+	<div class="btn-group btn-group-justified pestanas">
 	  <div class="btn-group">
 		<button type="button" class="btn btn-default display-control seleccionado" display="all">Todas</button>
 	  </div>

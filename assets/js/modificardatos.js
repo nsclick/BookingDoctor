@@ -19,19 +19,19 @@
 
 		// ValidationEngine
 		$('#personal_info').validationEngine('attach', {
-
+			promptPosition:"inline", scroll:false
 		});
 
 		$('#contact_info').validationEngine('attach', {
-			
+			promptPosition:"inline", scroll:false
 		});
 
 		$('#security_info').validationEngine('attach', {
-			
+			promptPosition:"inline", scroll:false
 		});
 
 		$('#family_info_f').validationEngine('attach', {
-			
+			promptPosition:"inline", scroll:false
 		});
 
 		// Form Fields
