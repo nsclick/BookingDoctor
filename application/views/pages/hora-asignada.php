@@ -78,3 +78,10 @@
 		</button>
 	</div>
 </div>
+
+<!-- Analytics -->
+<script type="text/javascript">
+(function(window, ga, $) {
+	ga('send', 'Reserva', 'Exitosa');
+})(window, ga, jQuery);
+</script>
