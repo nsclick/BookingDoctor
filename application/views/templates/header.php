@@ -51,8 +51,8 @@
 
             <?php if(isset($session_user['userName'])): ?>
 				<li class="navbar-text navbar-right sesion">Hola 
-	  			<span><?php echo $session_user['userName'] ?></span>
-				<a href="<?php echo site_url("login/logout");?>">Cerrar Sesión</a></li>
+	  			<span><b><?php echo $session_user['userName'] ?></b></span>
+				<a href="<?php echo site_url("login/logout");?>" class="davila-out">Cerrar Sesión</a></li>
 	  		<?php endif; ?>
 			
           </ul>
