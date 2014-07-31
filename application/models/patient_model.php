@@ -117,9 +117,9 @@ class Patient_model extends CI_Model {
 	}
 	
 	function get($rut, $dv){
-		$patient = getSessionValue( 'cache_patient' );
-		if($patient)
-			return $patient; 
+		//$patient = getSessionValue( 'cache_patient' );
+		//if($patient)
+			//return $patient; 
 			
 		$result = $this->timebooking->getUserInfo( array( 'rut' => $rut, 'dv' => $dv ) );
 		

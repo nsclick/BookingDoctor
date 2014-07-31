@@ -36,7 +36,7 @@ class Agenda_model extends CI_Model {
 			'Cod_Unidad' => $data['cod_unidad'],
 			'Cod_Medico' => $data['cod_prof'],
 			'Corr_Agenda' => $data['corragenda'],
-			'Cod_Isapre' => $data['patient']['prevision_paciente'] ? $data['patient']['prevision_paciente'] : $data['patient']['prevision'],
+			'Cod_Isapre' => isset($data['patient']['prevision_paciente']) ? $data['patient']['prevision_paciente'] : $data['patient']['prevision'],
 			'Box' => $data['box'],
 			'Multi' => ((bool) $data['multiplicity']) ? 'true' : 'false',
 			'Id_Paciente_Titular' => $data['main']['id_ambulatorio'],

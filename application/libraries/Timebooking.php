@@ -11,8 +11,8 @@ class Timebooking {
 	 * @var string
 	 * @access private
 	 */
-	private $host = 'http://reservas.davila.cl/Ws_ReservaHorasWeb/ResHoraWeb/ResHoraWeb.asmx?wsdl';
-	//private $host = 'http://reservas.davila.cl/Age_Ws_Reserva_Horas_demo/ResHoraWeb.asmx?wsdl';
+	//private $host = 'http://reservas.davila.cl/Ws_ReservaHorasWeb/ResHoraWeb/ResHoraWeb.asmx?wsdl';
+	private $host = 'http://reservas.davila.cl/Age_Ws_Reserva_Horas_demo/ResHoraWeb.asmx?wsdl';
 	
 	/**
 	 * Whether uses WSDL
@@ -157,10 +157,7 @@ class Timebooking {
 		
 		$result = $this->call('WM_LogeoPaciente', $params);
 
-		$xmlObject = $this->_xml2Object($result['WM_LogeoPacienteResult']);
-//TODO: Remove this line simulating connections
-		//$xmlObject = $this->_xml2Object('<XML><LogeoPaciente><InformacionLogeo><ESTADO>S</ESTADO><DESC_ESTADO>PACIENTE LOGEADO CORRECTAMENTE</DESC_ESTADO><CLAVE_TEMP>0</CLAVE_TEMP><ID_AMBULATORIO>3134429</ID_AMBULATORIO><NOMBRE_PACIENTE>MORIAL</NOMBRE_PACIENTE><APEPAT_PACIENTE>MARQUEZ</APEPAT_PACIENTE><APEMAT_PACIENTE>CHANAL</APEMAT_PACIENTE></InformacionLogeo></LogeoPaciente><Error><Error_Cod>0</Error_Cod><ErrorDesc>SIN ERRORES</ErrorDesc></Error></XML>');
-		
+		$xmlObject = $this->_xml2Object($result['WM_LogeoPacienteResult']);		
 		
 		if($xmlObject->Error->Error_Cod != 0){
 			$this->error = $xmlObject->Error->ErrorDesc;
@@ -532,6 +529,7 @@ class Timebooking {
 			return false;
 		}
 		
+		//debug_var($result);
 		$xmlObject = $this->_xml2Object( $result['WM_MantUsuarioResult'] );
 
 		if ( (string) $xmlObject->Error->Error_Cod != '0' ) {

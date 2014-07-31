@@ -23,7 +23,7 @@
 		</div>
 		<div class="form-group final2">
 			<?php if($mode == 'default'): ?>
-			<a href="<?php echo site_url("recuperarclave"); ?>">Recuperar contrase&ntilde;a</a> |
+			<!--<a href="<?php echo site_url("recuperarclave"); ?>">Recuperar contrase&ntilde;a</a> |-->
 			<?php endif; ?>
 
 			<?php if($mode == 'agenda'): ?>

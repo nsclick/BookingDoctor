@@ -20,13 +20,9 @@
 			</div>
 		</form>-->
 		<h2><b>Paso 1: </b>Selecci&oacute;n de Profesional</h2>
-		<ul>
-			<li>
-				Si conoces el apellido del médico con el cual te quieres atender, escríbelo en el espacio asignado.
-			</li>
-			<li>
-				Si no tienes médico definido, elige el área en la que te quieres atender.
-			</li>
+		<ul class="davila-out">
+			<li>Si conoces el apellido del médico con el cual te quieres atender, escríbelo en el espacio asignado.</li>
+			<li>Si no tienes médico definido, elige el área en la que te quieres atender.</li>
 		</ul>
 		<?php $attributes = array('role' => 'form'); ?>
 		<?php echo form_open('home', $attributes); ?>
@@ -95,6 +91,7 @@
 <?php if(isset($doctors)): ?>
 <div class="listamedicos">
 <h2><? echo $title; ?></h2>
+<p>Se han encontrado <strong><?php echo count($doctors) ?></strong> médicos</p>
 <?php if(count($doctors)): ?>
 <!--<div class="table-responsive">-->
   <table class="table">

@@ -167,7 +167,7 @@
 					</div>
 					-->
 					<div class="col-lg-12">
-						<input type="text" class="form-control validate[required,custom[integer]]" id="Fono1_Paciente" name="Fono1_Paciente" placeholder="Ingrese los Digitos" value="<?php echo set_value('Fono1_Paciente', $user_data['fono_princ_paciente']); ?>">
+						<input type="text" class="form-control validate[required]" id="Fono1_Paciente" name="Fono1_Paciente" placeholder="Ingrese los Digitos" value="<?php echo set_value('Fono1_Paciente', $user_data['fono_princ_paciente']); ?>">
 					</div>
 			  	</div> 
 		  	</div> 
@@ -197,7 +197,7 @@
 						</select>
 					</div>
 					<div class="col-lg-8">
-						<input type="text" class="form-control validate[required,custom[integer]]" id="FonoMovil1" name="FonoMovil1" placeholder="Ingrese los Digitos" value="<?php echo set_value('FonoMovil1', $user_data['numero_celular1']); ?>">
+						<input type="text" class="form-control validate[required]" id="FonoMovil1" name="FonoMovil1" placeholder="Ingrese los Digitos" value="<?php echo set_value('FonoMovil1', $user_data['numero_celular1']); ?>">
 					</div>
 			  	</div> 
 		  	</div>
@@ -210,7 +210,7 @@
 						</select>
 					</div>
 					<div class="col-lg-8">
-						<input type="text" class="form-control validate[custom[integer]]" id="FonoMovil2" name="FonoMovil2" placeholder="Ingrese los Digitos" value="<?php echo trim ( set_value( 'FonoMovil2', $user_data['numero_celular2'] ) ); ?>">
+						<input type="text" class="form-control" id="FonoMovil2" name="FonoMovil2" placeholder="Ingrese los Digitos" value="<?php echo trim ( set_value( 'FonoMovil2', $user_data['numero_celular2'] ) ); ?>">
 					</div>
 			  	</div> 
 		  	</div>
