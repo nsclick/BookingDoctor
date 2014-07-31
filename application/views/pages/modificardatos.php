@@ -39,7 +39,8 @@
 ?>
 
 <?php if ( isset ( $message ) && !empty ( $message ) ): ?>
-<!-- Message Box -->	
+<!-- Message Box -->
+	<br />
 	<div class="alert alert-<?php echo $message['class']; ?> alert-dismissible" role="alert">
 	  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
 	  <span><?php echo $message['text']; ?></span>
@@ -104,8 +105,12 @@
 		  	</div> 
 		  	<div class="form-group">
 		    	<label for="Comuna_Paciente">Comuna</label>
-		    	<input type="hidden" id="Comuna_Paciente" name="Comuna_Paciente">
-		    	<input type="text" class="form-control validate[required]" id="Comuna_Paciente-label" name="Comuna_Paciente" placeholder="Ingrese su comuna" value="<?php echo set_value('Comuna_Paciente', $user_data['comuna_paciente']); ?>">
+				<select id="Comuna_Paciente" name="Comuna_Paciente" class="form-control validate[required]">
+					<option value="">Selecciona su comuna</option>
+					<?php foreach($comunas as $id => $c): ?>
+					<option value="<?php echo $c->value ?>" <?php echo set_select('Prevision_Paciente', $c->value, $user_data['comuna_paciente'] == $c->value ); ?> ><?php echo $c->name ?></option>
+					<?php endforeach; ?>
+				</select>
 		  	</div> 
 		  	<div class="form-group">
 			    <label for="Ciudad_Paciente">Ciudad</label>
@@ -123,7 +128,7 @@
 		  	<div class="form-group">
 		    	<label for="Prevision_Paciente">Previsi&oacute;n</label>
 				<select id="Prevision_Paciente" name="Prevision_Paciente" class="form-control validate[required]">
-					<option value="">Selecciona tu previsi&oacute;n</option>
+					<option value="">Selecciona su previsi&oacute;n</option>
 					<?php foreach($medical_services as $id => $name): ?>
 					<option value="<?php echo $id ?>" <?php echo set_select('Prevision_Paciente', $id, $user_data['prevision_paciente'] == $id ); ?> ><?php echo $name ?></option>
 					<?php endforeach; ?>

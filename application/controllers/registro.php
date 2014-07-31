@@ -100,9 +100,12 @@ class Registro extends CI_Controller {
 	/**
 	 * modificardatos
 	 */
+	 
 	public function modificardatos() {
 		validate_false_session();
 
+		$this->registro_params['comunas'] = getComunes();
+		
 		$action = isset($_POST['action']) ? $_POST['action'] : null;
 		switch ($action) {
 			case 'save_personal_info':

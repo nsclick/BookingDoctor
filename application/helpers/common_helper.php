@@ -57,3 +57,8 @@ function removeSessionVar($varName){
 function isAppBlocked(){
 	return is_file( '.block' );
 }
+
+function getComunes(){
+	$json = file_get_contents( FCPATH . 'assets/js/comunas.json' );
+	return json_decode( $json );
+}
